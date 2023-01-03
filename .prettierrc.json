@@ -1,0 +1,16 @@
+{
+  "singleQuote": true,
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "importOrder": [
+    "^react",
+    ".*next.*",
+    "^classnames",
+    "^@components",
+    "^@hooks",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
