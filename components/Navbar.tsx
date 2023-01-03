@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineMenu as MenuIcon } from 'react-icons/ai';
 
 import Image from 'next/image';
 
@@ -10,12 +11,18 @@ const Navbar: React.FC = () => {
         <p className="text-lg">Tomás Mercado</p>
       </div>
 
-      <div className="flex space-x-3">
+      <div className="hidden sm:flex space-x-3">
         <p className="text-lg">Home</p>
         <p className="text-lg">Projects</p>
         <p className="text-lg">About</p>
         <p className="text-lg">Contact</p>
       </div>
+
+      <div className="sm:hidden">
+        <MenuIcon size={30} />
+      </div>
+
+      {/** TODO: mobile menu icon */}
     </div>
   );
 };
