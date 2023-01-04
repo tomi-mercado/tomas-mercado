@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={classNames([
-        'py-2 px-4 flex space-x-2 items-center border font-bold border-secondary hover:outline hover:outline-1',
+        'py-2 px-4 flex space-x-2 items-center border border-secondary hover:outline hover:outline-1',
         className,
       ])}
       {...props}
