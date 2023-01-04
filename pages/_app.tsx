@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import '../globals.css';
 
 const lato = Lato({
-  weight: ['400', '700'],
+  weight: ['400', '700', '900'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {

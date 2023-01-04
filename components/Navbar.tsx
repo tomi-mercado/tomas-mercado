@@ -3,11 +3,22 @@ import { AiOutlineMenu as MenuIcon } from 'react-icons/ai';
 
 import Image from 'next/image';
 
+import classNames from 'classnames';
+
 import { Text } from '@components';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  className?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
-    <div className="py-4 px-6 flex items-center justify-between w-full">
+    <div
+      className={classNames([
+        'py-4 px-6 flex items-center justify-between w-full',
+        className,
+      ])}
+    >
       <div className="flex space-x-2 w-fit items-center">
         <Image src="/logo.png" alt="Logo" width={50} height={50} />
         <Text as="p" variant="h6">

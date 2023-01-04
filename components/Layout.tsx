@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Image, { ImageProps } from 'next/image';
+
+import classNames from 'classnames';
 
 import { Navbar } from '@components';
 
@@ -9,17 +11,20 @@ interface LayoutProps {
   image: Pick<ImageProps, 'alt' | 'src'> & {
     screenPosition?: 'left' | 'right';
   };
+  contentWrapper?: {
+    className?: string;
+  };
+  navbar?: {
+    className?: string;
+  };
 }
 
-const AlternativeNavbar: React.FC = () => {
-  return (
-    <div className="w-full z-10 absolute text-[#e0d6cc] bg-[rgba(0,0,0,0.5)]">
-      <Navbar />
-    </div>
-  );
-};
-
-const Layout: React.FC<LayoutProps> = ({ children, image }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  image,
+  contentWrapper,
+  navbar,
+}) => {
   const screenPositionImage = image.screenPosition || 'right';
   const isImageOnLeft = screenPositionImage === 'left';
 
@@ -31,19 +36,28 @@ const Layout: React.FC<LayoutProps> = ({ children, image }) => {
       style={{
         objectFit: 'cover',
       }}
+      sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
     />
   );
 
+  const NavbarWithProps = <Navbar className={navbar?.className} />;
+
   let content = [
-    <div key="layout-children" className="px-6">
-      {!isImageOnLeft && <Navbar />}
+    <div key="layout-children">
+      {!isImageOnLeft && NavbarWithProps}
       {children}
     </div>,
 
-    <div key="layout-image" className="relative">
-      {isImageOnLeft && <AlternativeNavbar />}
-      {ImageWithProps}
-    </div>,
+    <Fragment key="layout-image">
+      <div className="relative">
+        {isImageOnLeft && (
+          <div className="absolute top-0 z-10 w-full">{NavbarWithProps}</div>
+        )}
+        {ImageWithProps}
+      </div>
+    </Fragment>,
   ];
 
   if (isImageOnLeft) {
@@ -51,20 +65,23 @@ const Layout: React.FC<LayoutProps> = ({ children, image }) => {
   }
 
   return (
-    <div className="bg-[#e0d6cc] text-stone-800">
+    <div
+      className={classNames(['bg-primary relative', contentWrapper?.className])}
+    >
       {/** Mobile */}
       <div className="block lg:hidden">
-        <div className="relative h-[calc(40vh+80px)]">
-          <AlternativeNavbar />
-          {ImageWithProps}
+        <div className="fixed top-0 w-full">
+          {NavbarWithProps}
+          <div className="relative h-[35vh]">{ImageWithProps}</div>
         </div>
-
-        <div className="px-6 h-[calc(60vh-80px)]">{children}</div>
+        <div className="px-6 mt-[calc(35vh+79px)] h-[calc(100vh-(35vh+79px))]">
+          {children}
+        </div>
       </div>
 
       {/** Desktop */}
       <div
-        className={`hidden lg:grid lg:grid-cols-[3fr,2fr] xl:grid-cols-2 h-screen max-w-[1440px] mx-auto`}
+        className={`hidden lg:grid lg:grid-cols-2 h-screen max-w-[1920px] mx-auto`}
       >
         {content.map((child) => child)}
       </div>

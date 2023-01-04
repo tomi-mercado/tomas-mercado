@@ -101,7 +101,7 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
             // We use the classnames library to dynamically set opacity of the div
             // element based on whether it is the current section or not.
             className={classnames([
-              'transition-opacity duration-1000 ease-in-out absolute top-0 left-0 w-full h-full overflow-hidden',
+              'transition-opacity duration-1000 ease-in-out absolute top-0 left-0 w-full h-full lg:overflow-hidden',
               {
                 'opacity-100': isCurrentSection,
                 'opacity-0': !isCurrentSection,
