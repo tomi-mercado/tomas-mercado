@@ -5,7 +5,7 @@ import Image from 'next/image';
 import classNames from 'classnames';
 
 type View = 'landscape' | 'portrait';
-type Size = 'sm' | 'md' | 'lg';
+type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ImageCardProps {
   image: {
@@ -25,12 +25,14 @@ function getWrapperStyles(view: View) {
     sm: 'max-w-[200px] max-h-[80px] p-2',
     md: 'max-w-[300px] max-h-[120px] p-4',
     lg: 'max-w-[400px] max-h-[160px] p-4',
+    xl: 'max-w-[500px] max-h-[200px] p-4',
   };
 
   const portraitStyles = {
     sm: 'max-w-[80px] max-h-[200px] p-2',
     md: 'max-w-[120px] max-h-[300px] p-4',
     lg: 'max-w-[160px] max-h-[400px] p-4',
+    xl: 'max-w-[200px] max-h-[500px] p-4',
   };
 
   return view === 'landscape' ? landscapeStyles : portraitStyles;
@@ -41,12 +43,14 @@ function getImageWrapperStyles(view: View) {
     sm: 'h-[48px]',
     md: 'h-[88px]',
     lg: 'h-[128px]',
+    xl: 'h-[168px]',
   };
 
   const portraitStyles = {
     sm: 'h-[68px]',
     md: 'h-[168px]',
     lg: 'h-[268px]',
+    xl: 'h-[368px]',
   };
 
   return view === 'landscape' ? landscapeStyles : portraitStyles;

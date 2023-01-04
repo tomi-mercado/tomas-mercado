@@ -1,10 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
-import DesktopProjectSide from './DesktopProjectSide';
-import MobileProjectSide from './MobileProjectSide';
+import Image from 'next/image';
+
+import classNames from 'classnames';
+
+import { ImageCard } from '@components';
+
+const images = [
+  {
+    alt: 'Utel CMS Hero',
+    src: '/utel-img-1.png',
+  },
+  {
+    alt: 'Utel CMS Search',
+    src: '/utel-img-2.png',
+  },
+  {
+    alt: 'Utel CMS Search results',
+    src: '/utel-img-3.png',
+  },
+];
 
 const ProjectSide: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
+
+  const zIndexes =
+    currentImage === 0
+      ? [30, 20, 10]
+      : currentImage === 1
+      ? [20, 30, 10]
+      : [10, 20, 30];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,35 +39,52 @@ const ProjectSide: React.FC = () => {
     return () => clearInterval(interval);
   });
 
-  const images: [
-    { alt: string; src: string },
-    { alt: string; src: string },
-    { alt: string; src: string },
-  ] = [
-    {
-      alt: 'Utel CMS Hero',
-      src: '/utel-img-1.png',
-    },
-    {
-      alt: 'Utel CMS Search',
-      src: '/utel-img-2.png',
-    },
-    {
-      alt: 'Utel CMS Search results',
-      src: '/utel-img-3.png',
-    },
-  ];
-
   return (
-    <>
-      <div className="lg:hidden">
-        <MobileProjectSide images={images} currentImage={currentImage} />
-      </div>
+    <div className="relative w-full h-full">
+      {/** Background */}
+      <Image
+        src="/projects-side-image.png"
+        alt="Illustration"
+        fill
+        className="grayscale-[0.3] object-cover"
+      />
 
-      <div className="hidden lg:block">
-        <DesktopProjectSide currentImage={currentImage} images={images} />
+      {/** Content */}
+      <div className="relative w-full max-w-[357px] lg:max-w-full mx-auto h-[35vh] lg:h-screen">
+        {images.map((image, index) => {
+          const view = index === 1 ? 'portrait' : 'landscape';
+
+          return (
+            <div
+              key={`project-image-mobile-${index}`}
+              className={classNames([
+                'absolute transition-opacity duration-500 ease-in-out',
+                `z-${zIndexes[index]}`,
+
+                {
+                  'opacity-50': currentImage !== index,
+                  'opacity-100': currentImage === index,
+                  'left-2 top-2 lg:top-40 lg:left-20 w-3/4': index === 0,
+                  'right-2 bottom-2 w-1/3 lg:bottom-32': index === 1,
+                  'left-14 bottom-4 w-3/4 lg:bottom-40 lg:left-16': index === 2,
+                },
+              ])}
+            >
+              <div className="lg:hidden">
+                <ImageCard
+                  image={image}
+                  view={view}
+                  size={index === 2 ? 'sm' : 'md'}
+                />
+              </div>
+              <div className="hidden lg:block">
+                <ImageCard image={image} view={view} size="xl" />
+              </div>
+            </div>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 
