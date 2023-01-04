@@ -7,6 +7,7 @@ interface TextProps {
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   children?: React.ReactNode;
   className?: string;
+  underline?: boolean;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -14,6 +15,7 @@ const Text: React.FC<TextProps> = ({
   children,
   variant = 'p',
   className,
+  underline,
 }) => {
   const Node = {
     h1: ({ children, className }: TextProps) => (
@@ -50,6 +52,15 @@ const Text: React.FC<TextProps> = ({
   }[variant];
 
   const nodeClassName = classNames([textClassName, className]);
+
+  if (underline) {
+    return (
+      <div className="flex flex-col w-fit">
+        <Node className={nodeClassName}>{children}</Node>
+        <div className="h-[2.5px] bg-black w-full"></div>
+      </div>
+    );
+  }
 
   return <Node className={nodeClassName}>{children}</Node>;
 };

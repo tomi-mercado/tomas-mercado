@@ -3,6 +3,8 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 import { Button, Layout, Text } from '@components';
 
+import ProjectSide from './components/ProjectSide';
+
 interface IddleContentProps {
   onClick: () => void;
 }
@@ -11,12 +13,9 @@ const IddleContent: React.FC<IddleContentProps> = ({ onClick }) => {
   return (
     <>
       <div className="flex flex-col space-y-2">
-        <div className="flex flex-col w-fit">
-          <Text as="h3" variant="h3">
-            Projects
-          </Text>
-          <div className="h-[2.5px] bg-black w-full"></div>
-        </div>
+        <Text underline as="h3" variant="h3">
+          Projects
+        </Text>
 
         <Text>
           In this section, you will find a selection of my most notable web
@@ -50,7 +49,7 @@ const Projects: React.FC = () => {
 
   const SideComponentProject = {
     iddle: null,
-    0: <div>holis</div>,
+    0: <ProjectSide />,
   }[currentProject];
 
   return (

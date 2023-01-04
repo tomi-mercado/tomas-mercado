@@ -95,7 +95,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
           src={image.src}
           alt={image.alt}
           fill
-          className="object-cover rounded-sm"
+          className="object-cover rounded-sm object-top"
         />
       </div>
 

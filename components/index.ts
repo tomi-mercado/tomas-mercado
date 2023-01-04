@@ -5,3 +5,4 @@ export { default as Layout } from './Layout';
 export { default as Text } from './Text';
 export { default as Projects } from './Projects';
 export { default as Button } from './Button';
+export { default as ImageCard } from './ImageCard';
