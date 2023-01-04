@@ -8,6 +8,11 @@ module.exports = {
       fontFamily: {
         sans: ['var(--lato-font)', ...fontFamily.serif],
       },
+      colors: {
+        primary: '#e0d6cc',
+        secondary: '#252629',
+        overlay: 'rgba(0,0,0,0.75)',
+      },
     },
   },
   plugins: [],
