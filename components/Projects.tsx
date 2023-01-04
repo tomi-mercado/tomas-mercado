@@ -3,11 +3,11 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 import { Button, Layout, Text } from '@components';
 
-interface IddleProps {
+interface IddleContentProps {
   onClick: () => void;
 }
 
-const Iddle: React.FC<IddleProps> = ({ onClick }) => {
+const IddleContent: React.FC<IddleContentProps> = ({ onClick }) => {
   return (
     <>
       <div className="flex flex-col space-y-2">
@@ -44,28 +44,23 @@ const Projects: React.FC = () => {
     setCurrentProject(0);
   };
 
-  const ComponentByProject = {
-    iddle: <Iddle onClick={handleShowFirstProject} />,
+  const ContentProject = {
+    iddle: <IddleContent onClick={handleShowFirstProject} />,
   }[currentProject];
 
-  const imageByProject = {
-    iddle: {
-      alt: 'Illustration',
-      src: '/projects-side-image.png',
-    },
-    0: {
-      alt: 'Utel hero image',
-      src: '/utel-img-1.png',
-    },
-  }[currentProject] as { alt: string; src: string };
+  const SideComponentProject = {
+    iddle: null,
+    0: <div>holis</div>,
+  }[currentProject];
 
   return (
     <Layout
       image={{
-        alt: imageByProject.alt,
-        src: imageByProject.src,
+        alt: 'Illustration',
+        src: '/projects-side-image.png',
         screenPosition: 'left',
       }}
+      sideComponent={SideComponentProject}
       contentWrapper={{
         className: 'bg-gradient-to-b from-[#f2c0a1e8] to-[#d1d1c3]',
       }}
@@ -74,7 +69,7 @@ const Projects: React.FC = () => {
       }}
     >
       <div className="px-6 py-4 flex flex-col space-y-6 h-full justify-center">
-        {ComponentByProject}
+        {ContentProject}
       </div>
     </Layout>
   );
