@@ -4,7 +4,7 @@ import { Text } from '@components';
 
 const Introduction: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-full">
+    <div className="flex flex-col py-8 lg:py-0 sm:justify-center items-center h-full">
       <div className="flex flex-col space-y-4 text-center">
         <Text as="h1" variant="h1">
           Tomás Mercado
