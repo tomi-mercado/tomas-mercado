@@ -41,7 +41,7 @@ const ProjectSide: React.FC = () => {
 
   return (
     <div className="relative w-full h-full">
-      {/** Background */}
+      {/** Project cards */}
       <Image
         src="/projects-side-image.png"
         alt="Illustration"

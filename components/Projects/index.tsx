@@ -1,38 +1,10 @@
 import React from 'react';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { FaReact } from 'react-icons/fa';
+import { SiGraphql, SiNextdotjs } from 'react-icons/si';
 
-import { Button, Layout, Text } from '@components';
+import { Layout } from '@components';
 
-import ProjectSide from './components/ProjectSide';
-
-interface IddleContentProps {
-  onClick: () => void;
-}
-
-const IddleContent: React.FC<IddleContentProps> = ({ onClick }) => {
-  return (
-    <>
-      <div className="flex flex-col space-y-2">
-        <Text underline as="h3" variant="h3">
-          Projects
-        </Text>
-
-        <Text>
-          In this section, you will find a selection of my most notable web
-          development projects. Each project showcases my ability to create
-          visually stunning, user-friendly websites and web applications that
-          meet the needs of my clients and users.
-        </Text>
-      </div>
-
-      <div className="flex justify-end">
-        <Button rightIcon={<AiOutlineArrowRight />} onClick={onClick}>
-          See my projects
-        </Button>
-      </div>
-    </>
-  );
-};
+import { IddleContent, ProjectDetail, ProjectSide } from './components';
 
 const Projects: React.FC = () => {
   const [currentProject, setCurrentProject] = React.useState<number | 'iddle'>(
@@ -45,6 +17,18 @@ const Projects: React.FC = () => {
 
   const ContentProject = {
     iddle: <IddleContent onClick={handleShowFirstProject} />,
+    0: (
+      <ProjectDetail
+        title="Utel CMS"
+        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus."
+        techStackIcons={[
+          <FaReact key="tech-utel-0" className="text-4xl lg:text-5xl" />,
+          <SiNextdotjs key="tech-utel-1" className="text-4xl lg:text-5xl" />,
+          <SiGraphql key="tech-utel-2" className="text-4xl lg:text-5xl" />,
+        ]}
+        mainChallenges={['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum']}
+      />
+    ),
   }[currentProject];
 
   const SideComponentProject = {
@@ -54,12 +38,16 @@ const Projects: React.FC = () => {
 
   return (
     <Layout
-      image={{
-        alt: 'Illustration',
-        src: '/projects-side-image.png',
-        screenPosition: 'left',
-      }}
+      image={
+        currentProject === 'iddle'
+          ? {
+              alt: 'Illustration',
+              src: '/projects-side-image.png',
+            }
+          : undefined
+      }
       sideComponent={SideComponentProject}
+      screenPosition="left"
       contentWrapper={{
         className: 'bg-gradient-to-b from-[#f2c0a1e8] to-[#d1d1c3]',
       }}
