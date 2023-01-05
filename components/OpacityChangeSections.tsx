@@ -105,6 +105,8 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
               {
                 'opacity-100': isCurrentSection,
                 'opacity-0': !isCurrentSection,
+                // Prevent the section from being scrollable when it is not the current section.
+                'overflow-hidden': !isCurrentSection,
               },
             ])}
           >
