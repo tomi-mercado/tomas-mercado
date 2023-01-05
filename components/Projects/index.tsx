@@ -77,6 +77,10 @@ const Projects: React.FC = () => {
     setCurrentProject(0);
   };
 
+  const handleBackToIddle = () => {
+    setCurrentProject('iddle');
+  };
+
   const ContentProject = {
     iddle: <IddleContent onClick={handleShowFirstProject} />,
     ...Object.entries(projects).reduce(
@@ -145,6 +149,7 @@ const Projects: React.FC = () => {
             setCurrentProject(currentProject - 1);
           }
         }}
+        onBackToIddle={handleBackToIddle}
       >
         {ContentProject}
       </ContentProjectWrapper>

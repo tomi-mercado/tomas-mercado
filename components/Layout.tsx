@@ -76,13 +76,13 @@ const Layout: React.FC<LayoutProps> = ({
     >
       {/** Mobile */}
       <div className="block lg:hidden">
-        <div className="fixed top-0 w-full">
+        <div className="fixed z-10 top-0 w-full">
           {NavbarWithProps}
           <div className="relative h-[35vh]">
             {sideComponent || ImageWithProps}
           </div>
         </div>
-        <div className="px-6 mt-[calc(35vh+79px)] h-[calc(100vh-(35vh+79px))]">
+        <div className="px-6 mt-[calc(35vh+79px)] min-h-[calc(100vh-(35vh+79px))]">
           {children}
         </div>
       </div>

@@ -1,7 +1,7 @@
-import Button from 'components/Button';
+import React from 'react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
-import React, { PropsWithChildren } from 'react';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { Button, IconButton, Text } from '@components';
 
 interface ContentProjectWrapperProps {
   children: React.ReactNode;
@@ -9,7 +9,85 @@ interface ContentProjectWrapperProps {
   totalProjects: number;
   onNextProject: () => void;
   onPreviousProject: () => void;
+  onBackToIddle: () => void;
 }
+
+interface ChangeProjectButtonsProps {
+  previousButton: {
+    onClick: () => void;
+    show: boolean;
+  };
+  nextButton: {
+    onClick: () => void;
+    show: boolean;
+  };
+}
+
+const showNextButton = (
+  currentProject: number | 'iddle',
+  totalProjects: number,
+) => currentProject !== 'iddle' && currentProject < totalProjects - 1;
+
+const showPreviousButton = (currentProject: number | 'iddle') =>
+  currentProject !== 'iddle' && currentProject > 0;
+
+const MobileChangeProjectButtons: React.FC<ChangeProjectButtonsProps> = ({
+  nextButton,
+  previousButton,
+}) => {
+  return (
+    <>
+      {previousButton.show && (
+        <div className="lg:hidden absolute left-[-16px] top-[25%]">
+          <IconButton
+            icon={<FaArrowLeft />}
+            onClick={previousButton.onClick}
+            size="sm"
+            rounded
+            variant="primary"
+          />
+        </div>
+      )}
+
+      {nextButton.show && (
+        <div className="lg:hidden absolute right-[-16px] top-[25%]">
+          <IconButton
+            icon={<FaArrowRight />}
+            onClick={nextButton.onClick}
+            size="sm"
+            rounded
+            variant="primary"
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+const DesktopChangeProjectButtons: React.FC<ChangeProjectButtonsProps> = ({
+  nextButton,
+  previousButton,
+}) => {
+  return (
+    <div className="w-full justify-between hidden lg:flex">
+      <div>
+        {previousButton.show && (
+          <div onClick={previousButton.onClick}>
+            <Button>Previous project</Button>
+          </div>
+        )}
+      </div>
+
+      <div>
+        {nextButton.show && (
+          <div onClick={nextButton.onClick}>
+            <Button>Next project</Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
   children,
@@ -17,48 +95,46 @@ const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
   totalProjects,
   onNextProject,
   onPreviousProject,
+  onBackToIddle,
 }) => {
-  const showNextButton =
-    currentProject !== 'iddle' && currentProject < totalProjects - 1;
-  const showPreviousButton = currentProject !== 'iddle' && currentProject > 0;
+  const showBackToIddleButton = currentProject !== 'iddle';
 
   return (
-    <div className="px-6 py-4 flex flex-col space-y-6 h-full justify-center relative">
+    <div className="px-6 py-4 flex flex-col space-y-2 h-full justify-center relative">
+      {showBackToIddleButton && (
+        <Button
+          leftIcon={<FaArrowLeft />}
+          size="xs"
+          variant="quaternary"
+          onClick={onBackToIddle}
+        >
+          Back to projects
+        </Button>
+      )}
+
       {children}
 
-      {showPreviousButton && (
-        <button
-          className="lg:hidden absolute left-[-16px] top-[25%] cursor-pointer"
-          onClick={onPreviousProject}
-        >
-          <FaArrowCircleLeft size={20} />
-        </button>
-      )}
-      {showNextButton && (
-        <button
-          className="lg:hidden absolute right-[-16px] top-[25%] cursor-pointer"
-          onClick={onNextProject}
-        >
-          <FaArrowCircleRight size={20} />
-        </button>
-      )}
+      <MobileChangeProjectButtons
+        previousButton={{
+          onClick: onPreviousProject,
+          show: showPreviousButton(currentProject),
+        }}
+        nextButton={{
+          onClick: onNextProject,
+          show: showNextButton(currentProject, totalProjects),
+        }}
+      />
 
-      {showPreviousButton && (
-        <div
-          className="absolute hidden lg:block left-6 bottom-6"
-          onClick={onPreviousProject}
-        >
-          <Button>Previous project</Button>
-        </div>
-      )}
-      {showNextButton && (
-        <div
-          className="absolute hidden lg:block right-6 bottom-6"
-          onClick={onNextProject}
-        >
-          <Button>Next project</Button>
-        </div>
-      )}
+      <DesktopChangeProjectButtons
+        previousButton={{
+          onClick: onPreviousProject,
+          show: showPreviousButton(currentProject),
+        }}
+        nextButton={{
+          onClick: onNextProject,
+          show: showNextButton(currentProject, totalProjects),
+        }}
+      />
     </div>
   );
 };

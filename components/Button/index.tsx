@@ -81,6 +81,7 @@ const Button: React.FC<ButtonProps> = ({
         wrapperStyles.variantStyles,
         { 'rounded-full': rounded },
         { 'rounded-md': !rounded },
+        { 'pl-0': variant === 'quaternary' },
       ])}
       {...props}
     >

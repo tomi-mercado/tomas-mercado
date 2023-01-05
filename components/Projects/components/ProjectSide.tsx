@@ -17,13 +17,6 @@ export interface ProjectSideProps {
 const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
-  const zIndexes =
-    currentImage === 0
-      ? [30, 20, 10]
-      : currentImage === 1
-      ? [20, 30, 10]
-      : [10, 20, 30];
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % 3);
@@ -33,8 +26,8 @@ const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
   });
 
   return (
-    <div className="relative w-full h-full">
-      {/** Project cards */}
+    <div className="relative w-full h-full flex items-center">
+      {/** Background */}
       <Image
         src="/projects-side-image.png"
         alt="Illustration"
@@ -42,25 +35,26 @@ const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
         className="grayscale-[0.3] object-cover"
       />
 
-      {/** Content */}
-      <div className="relative w-full max-w-[357px] lg:max-w-full mx-auto h-[35vh] lg:h-screen">
+      {/** Project cards */}
+      <div className="relative w-full max-w-[357px] lg:max-w-full mx-auto h-[225px] lg:h-[400px]">
         {images.map((image, index) => {
           const view = index === 1 ? 'portrait' : 'landscape';
 
           return (
             <div
               key={`project-image-mobile-${index}`}
-              onClick={() => setCurrentImage(index)}
+              onMouseEnter={() => setCurrentImage(index)}
               className={classNames([
                 'absolute transition-opacity duration-500 ease-in-out cursor-pointer',
-                `z-${zIndexes[index]}`,
-
                 {
-                  'opacity-50': currentImage !== index,
+                  'opacity-40': currentImage !== index,
                   'opacity-100': currentImage === index,
-                  'left-2 top-2 lg:top-40 lg:left-20 w-3/4': index === 0,
-                  'right-2 bottom-2 w-1/3 lg:bottom-32': index === 1,
-                  'left-14 bottom-4 w-3/4 lg:bottom-40 lg:left-16': index === 2,
+                  'left-2 top-2 2xl:top-[-1rem] 2xl:left-40 w-3/4': index === 0,
+                  'right-2 bottom-2 2xl:top-0 w-1/3': index === 1,
+                  'left-14 bottom-4 2xl:bottom-4 lg:left-4 2xl:left-36 w-3/4':
+                    index === 2,
+                  'z-10': currentImage !== index,
+                  'z-20': currentImage === index,
                 },
               ])}
             >

@@ -17,7 +17,7 @@ interface CarouselItemProps {
 const CarouselItem: React.FC<CarouselItemProps> = ({ children, title }) => {
   return (
     <div className="px-1">
-      <div className="!flex items-center justify-center w-full flex-col space-y-1 lg:space-y-4 bg-[#e7ddd0] p-4 lg:min-h-[150px] rounded-lg shadow-md">
+      <div className="!flex items-center justify-center w-full flex-col space-y-1 lg:space-y-4 bg-primary p-4 lg:min-h-[150px] rounded-lg shadow-md">
         <Text variant="p" className="font-bold">
           {title}
         </Text>
