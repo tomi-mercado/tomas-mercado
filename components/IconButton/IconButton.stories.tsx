@@ -1,21 +1,33 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
+import { FaArrowRight } from 'react-icons/fa';
 
-import Button from '.';
+import IconButton from '.';
 
 export default {
-  title: 'Components/Button',
-  component: Button,
-} as ComponentMeta<typeof Button>;
+  title: 'Components/IconButton',
+  component: IconButton,
+  argTypes: {
+    size: {
+      control: false,
+    },
+    variant: {
+      control: false,
+    },
+    icon: {
+      control: false,
+    },
+  },
+} as ComponentMeta<typeof IconButton>;
 
-const Template: ComponentStory<typeof Button> = (args) => {
+const Template: ComponentStory<typeof IconButton> = (args) => {
   const sizes = ['xs', 'sm', 'md', 'lg'];
 
   return (
     <div className="flex space-x-4">
       {sizes.map((size) => (
-        <Button
+        <IconButton
           key={`${args.variant}-${args.size}`}
           {...args}
           size={size as 'xs' | 'sm' | 'md' | 'lg'}
@@ -27,24 +39,24 @@ const Template: ComponentStory<typeof Button> = (args) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: 'Button',
+  icon: <FaArrowRight />,
   variant: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Button',
+  icon: <FaArrowRight />,
   variant: 'secondary',
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  children: 'Button',
+  icon: <FaArrowRight />,
   variant: 'tertiary',
 };
 
 export const Quaternary = Template.bind({});
 Quaternary.args = {
-  children: 'Button',
+  icon: <FaArrowRight />,
   variant: 'quaternary',
 };

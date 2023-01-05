@@ -9,8 +9,22 @@ module.exports = {
         sans: ['var(--lato-font)', ...fontFamily.serif],
       },
       colors: {
-        primary: '#e0d6cc',
-        secondary: '#252629',
+        disabled: '#737373',
+        primary: {
+          DEFAULT: '#e0d6cc',
+          onHover: '#e0d9d3',
+          onActive: '#d9d0ca',
+        },
+        secondary: {
+          DEFAULT: '#252629',
+          onHover: '#3a3b3d',
+          onActive: '#1f2022',
+        },
+        tertiary: {
+          DEFAULT: '#f4f2f1',
+          onHover: '#e0d6cc',
+          onActive: '#e1dedd',
+        },
         overlay: 'rgba(0,0,0,0.75)',
       },
     },

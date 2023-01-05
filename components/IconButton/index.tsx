@@ -6,32 +6,28 @@ type Size = 'xs' | 'sm' | 'md' | 'lg';
 
 type Variant = 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
   variant?: Variant;
   icon?: React.ReactNode;
   rounded?: boolean;
   disabled?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const IconButton: React.FC<IconButtonProps> = ({
   size = 'md',
   variant = 'primary',
   icon,
   rounded = false,
-  leftIcon,
-  rightIcon,
-  children,
   ...props
 }) => {
   const wrapperStyles = {
     sizeStyles: {
-      xs: 'px-2 py-1',
-      sm: 'px-3 py-2',
-      md: 'px-4 py-3',
-      lg: 'px-5 py-4',
+      xs: 'w-6 h-6',
+      sm: 'w-8 h-8',
+      md: 'w-10 h-10',
+      lg: 'w-12 h-12',
     }[size],
     variantStyles: {
       primary: `
@@ -58,12 +54,12 @@ const Button: React.FC<ButtonProps> = ({
     }[variant],
   };
 
-  const textStyles = {
+  const iconStyles = {
     sizeStyles: {
       xs: 'text-sm',
-      sm: 'text-md',
-      md: 'text-lg',
-      lg: 'text-xl',
+      sm: 'text-xl',
+      md: 'text-[1.5rem]',
+      lg: 'text-[2rem]',
     }[size],
     variantStyles: {
       primary: 'text-secondary',
@@ -76,26 +72,22 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={classNames([
-        'flex space-x-2 items-center disabled:bg-disabled h-fit',
+        'flex items-center justify-center disabled:bg-disabled',
         wrapperStyles.sizeStyles,
         wrapperStyles.variantStyles,
         { 'rounded-full': rounded },
-        { 'rounded-md': !rounded },
+        { 'rounded-sm': !rounded },
       ])}
       {...props}
     >
-      {leftIcon && <span className="mt-0.5">{leftIcon}</span>}
-      <span
-        className={classNames([
-          textStyles.sizeStyles,
-          textStyles.variantStyles,
-        ])}
-      >
-        {children}
-      </span>
-      {rightIcon && <span className="mt-0.5">{rightIcon}</span>}
+      {React.cloneElement(icon as React.ReactElement, {
+        className: classNames([
+          iconStyles.sizeStyles,
+          iconStyles.variantStyles,
+        ]),
+      })}
     </button>
   );
 };
 
-export default Button;
+export default IconButton;
