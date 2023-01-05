@@ -8,9 +8,8 @@ import { Navbar } from '@components';
 
 interface LayoutProps {
   children: React.ReactNode;
-  image?: Pick<ImageProps, 'alt' | 'src'> & {
-    screenPosition?: 'left' | 'right';
-  };
+  image?: Pick<ImageProps, 'alt' | 'src'>;
+  screenPosition?: 'left' | 'right';
   contentWrapper?: {
     className?: string;
   };
@@ -25,13 +24,14 @@ const Layout: React.FC<LayoutProps> = ({
   image,
   contentWrapper,
   navbar,
+  screenPosition,
   sideComponent,
 }) => {
   if (!sideComponent && !image) {
     throw new Error('You need to provide a sideComponent or an image');
   }
 
-  const screenPositionImage = image?.screenPosition || 'right';
+  const screenPositionImage = screenPosition || 'right';
   const isImageOnLeft = screenPositionImage === 'left';
 
   const ImageWithProps = image ? (
