@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Carousel, Text } from '@components';
 
-interface ProjectDetailProps {
+export interface ProjectDetailProps {
   title: string;
   description: string;
   techStackIcons: React.ReactNode[];

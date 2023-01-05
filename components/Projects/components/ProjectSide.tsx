@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 
 import classNames from 'classnames';
 
 import { ImageCard } from '@components';
 
-const images = [
-  {
-    alt: 'Utel CMS Hero',
-    src: '/utel-img-1.png',
-  },
-  {
-    alt: 'Utel CMS Search',
-    src: '/utel-img-2.png',
-  },
-  {
-    alt: 'Utel CMS Search results',
-    src: '/utel-img-3.png',
-  },
-];
+export interface ProjectSideProps {
+  images: [
+    Pick<ImageProps, 'alt' | 'src'>,
+    Pick<ImageProps, 'alt' | 'src'>,
+    Pick<ImageProps, 'alt' | 'src'>,
+  ];
+}
 
-const ProjectSide: React.FC = () => {
+const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const zIndexes =
@@ -57,8 +50,9 @@ const ProjectSide: React.FC = () => {
           return (
             <div
               key={`project-image-mobile-${index}`}
+              onClick={() => setCurrentImage(index)}
               className={classNames([
-                'absolute transition-opacity duration-500 ease-in-out',
+                'absolute transition-opacity duration-500 ease-in-out cursor-pointer',
                 `z-${zIndexes[index]}`,
 
                 {

@@ -34,7 +34,10 @@ const Carousel: React.FC<PropsWithChildren> = ({ children }) => {
     },
     customPaging: (i) => {
       return (
-        <div className="flex justify-center items-center">
+        <div
+          className="flex justify-center items-center"
+          onClick={() => setCurrentSlide(i)}
+        >
           <div
             className={classNames([
               'w-2 h-2 bg-white rounded-full',

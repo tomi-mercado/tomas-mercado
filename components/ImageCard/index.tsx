@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 
 import classNames from 'classnames';
 
@@ -8,10 +8,7 @@ type View = 'landscape' | 'portrait';
 type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ImageCardProps {
-  image: {
-    src: string;
-    alt: string;
-  };
+  image: Pick<ImageProps, 'alt' | 'src'>;
   size?: Size;
   view?: View;
 }
