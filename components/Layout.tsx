@@ -74,17 +74,17 @@ const Layout: React.FC<LayoutProps> = ({
     <div
       className={classNames(['bg-primary relative', contentWrapper?.className])}
     >
+      <div className="fixed z-50 lg:hidden top-0 w-full">{NavbarWithProps}</div>
+
       {/** Mobile */}
       <div className="block lg:hidden">
-        <div className="fixed z-10 top-0 w-full">
-          {NavbarWithProps}
-          <div className="relative h-[35vh]">
+        <div className="lg:fixed z-10 top-0 w-full">
+          <div className="relative h-[50vh]">
             {sideComponent || ImageWithProps}
           </div>
         </div>
-        <div className="px-6 mt-[calc(35vh+79px)] min-h-[calc(100vh-(35vh+79px))]">
-          {children}
-        </div>
+
+        <div className="px-6 min-h-[50vh]">{children}</div>
       </div>
 
       {/** Desktop */}
