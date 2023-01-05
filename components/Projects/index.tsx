@@ -5,6 +5,7 @@ import { SiGraphql, SiNextdotjs } from 'react-icons/si';
 import { Layout } from '@components';
 
 import {
+  ContentProjectWrapper,
   IddleContent,
   ProjectDetail,
   ProjectDetailProps,
@@ -37,6 +38,31 @@ const projects: Project[] = [
       {
         alt: 'Utel CMS Search results',
         src: '/utel-img-3.png',
+      },
+    ],
+  },
+  {
+    title: 'Henry Landing Page',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus.',
+    techStackIcons: [
+      <FaReact key="tech-utel-0" className="text-4xl lg:text-5xl" />,
+      <SiNextdotjs key="tech-utel-1" className="text-4xl lg:text-5xl" />,
+      <SiGraphql key="tech-utel-2" className="text-4xl lg:text-5xl" />,
+    ],
+    mainChallenges: ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
+    images: [
+      {
+        alt: 'Henry Hero',
+        src: '/henry-img-1.png',
+      },
+      {
+        alt: 'Henry Press section',
+        src: '/henry-img-2.png',
+      },
+      {
+        alt: 'Henry Opinions section',
+        src: '/henry-img-3.png',
       },
     ],
   },
@@ -102,9 +128,26 @@ const Projects: React.FC = () => {
         className: 'bg-gradient-to-l from-[#f2c0a1e8] to-[#d1d1c3]',
       }}
     >
-      <div className="px-6 py-4 flex flex-col space-y-6 h-full justify-center">
+      <ContentProjectWrapper
+        totalProjects={projects.length}
+        currentProject={currentProject}
+        onNextProject={() => {
+          if (currentProject === 'iddle') {
+            handleShowFirstProject();
+          } else if (currentProject < projects.length - 1) {
+            setCurrentProject(currentProject + 1);
+          }
+        }}
+        onPreviousProject={() => {
+          if (currentProject === 'iddle') {
+            setCurrentProject(projects.length - 1);
+          } else if (currentProject > 0) {
+            setCurrentProject(currentProject - 1);
+          }
+        }}
+      >
         {ContentProject}
-      </div>
+      </ContentProjectWrapper>
     </Layout>
   );
 };

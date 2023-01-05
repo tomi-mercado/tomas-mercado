@@ -4,3 +4,5 @@ export { default as ProjectDetail } from './ProjectDetail';
 export * from './ProjectDetail';
 export { default as ProjectSide } from './ProjectSide';
 export * from './ProjectSide';
+export { default as ContentProjectWrapper } from './ContentProjectWrapper';
+export * from './ContentProjectWrapper';
