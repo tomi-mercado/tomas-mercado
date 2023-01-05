@@ -2,6 +2,8 @@ import React from 'react';
 import { FaReact } from 'react-icons/fa';
 import { SiGraphql, SiNextdotjs } from 'react-icons/si';
 
+import Image from 'next/image';
+
 import { Layout } from '@components';
 
 import {
@@ -17,6 +19,15 @@ type Project = ProjectDetailProps & ProjectSideProps;
 
 const projects: Project[] = [
   {
+    icon: (
+      <Image
+        alt="Utel favicon"
+        src="/utel-favicon.ico"
+        width={36}
+        height={36}
+        className="object-contain"
+      />
+    ),
     title: 'Utel CMS',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus.',
@@ -42,6 +53,15 @@ const projects: Project[] = [
     ],
   },
   {
+    icon: (
+      <Image
+        alt="Henry favicon"
+        src="/henry-favicon.ico"
+        width={36}
+        height={36}
+        className="object-contain"
+      />
+    ),
     title: 'Henry Landing Page',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus.',
@@ -90,6 +110,7 @@ const Projects: React.FC = () => {
           <ProjectDetail
             key={`project-detail-${index}`}
             title={project.title}
+            icon={project.icon}
             description={project.description}
             techStackIcons={project.techStackIcons}
             mainChallenges={project.mainChallenges}

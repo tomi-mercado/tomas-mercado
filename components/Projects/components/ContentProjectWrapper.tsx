@@ -73,7 +73,7 @@ const DesktopChangeProjectButtons: React.FC<ChangeProjectButtonsProps> = ({
       <div>
         {previousButton.show && (
           <div onClick={previousButton.onClick}>
-            <Button>Previous project</Button>
+            <Button leftIcon={<FaArrowLeft />}>Previous project</Button>
           </div>
         )}
       </div>
@@ -81,7 +81,7 @@ const DesktopChangeProjectButtons: React.FC<ChangeProjectButtonsProps> = ({
       <div>
         {nextButton.show && (
           <div onClick={nextButton.onClick}>
-            <Button>Next project</Button>
+            <Button rightIcon={<FaArrowRight />}>Next project</Button>
           </div>
         )}
       </div>

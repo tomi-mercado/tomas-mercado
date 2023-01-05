@@ -4,6 +4,7 @@ import { Carousel, Text } from '@components';
 
 export interface ProjectDetailProps {
   title: string;
+  icon?: React.ReactNode;
   description: string;
   techStackIcons: React.ReactNode[];
   mainChallenges: string[];
@@ -30,15 +31,19 @@ const CarouselItem: React.FC<CarouselItemProps> = ({ children, title }) => {
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({
   title,
+  icon,
   description,
   techStackIcons,
   mainChallenges,
 }) => {
   return (
     <div className="flex flex-col space-y-4">
-      <Text as="h3" variant="h3" underline>
-        {title}
-      </Text>
+      <div className="flex space-x-2">
+        {icon}
+        <Text as="h3" variant="h3" underline>
+          {title}
+        </Text>
+      </div>
 
       <Text>{description}</Text>
 
