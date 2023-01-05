@@ -1,12 +1,25 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
+import { SiReact } from 'react-icons/si';
 
 import Button from '.';
 
 export default {
   title: 'Components/Button',
   component: Button,
+  argTypes: {
+    leftIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    rightIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => {
@@ -19,6 +32,8 @@ const Template: ComponentStory<typeof Button> = (args) => {
           key={`${args.variant}-${args.size}`}
           {...args}
           size={size as 'xs' | 'sm' | 'md' | 'lg'}
+          leftIcon={args.leftIcon ? <SiReact /> : undefined}
+          rightIcon={args.rightIcon ? <SiReact /> : undefined}
         />
       ))}
     </div>

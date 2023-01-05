@@ -28,21 +28,23 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const wrapperStyles = {
     sizeStyles: {
-      xs: 'px-2 py-1',
-      sm: 'px-3 py-2',
-      md: 'px-4 py-3',
-      lg: 'px-5 py-4',
+      xs: 'px-2 py-1 text-sm',
+      sm: 'px-3 py-2 text-md',
+      md: 'px-4 py-3 text-lg',
+      lg: 'px-5 py-4 text-xl',
     }[size],
     variantStyles: {
       primary: `
           bg-primary
             hover:bg-primary-onHover
             active:bg-primary-onActive
+          text-secondary
       `,
       secondary: `
           bg-secondary 
             hover:bg-secondary-onHover
             active:bg-secondary-onActive
+          text-primary
         `,
       tertiary: `
           bg-tertiary
@@ -51,25 +53,12 @@ const Button: React.FC<ButtonProps> = ({
           border border-secondary
             hover:border-none
             active:border-none
+          text-secondary
       `,
       quaternary: `
           bg-transparent
+          text-secondary
       `,
-    }[variant],
-  };
-
-  const textStyles = {
-    sizeStyles: {
-      xs: 'text-sm',
-      sm: 'text-md',
-      md: 'text-lg',
-      lg: 'text-xl',
-    }[size],
-    variantStyles: {
-      primary: 'text-secondary',
-      secondary: 'text-primary',
-      tertiary: 'text-secondary',
-      quaternary: 'text-secondary',
     }[variant],
   };
 
@@ -85,16 +74,9 @@ const Button: React.FC<ButtonProps> = ({
       ])}
       {...props}
     >
-      {leftIcon && <span className="mt-0.5">{leftIcon}</span>}
-      <span
-        className={classNames([
-          textStyles.sizeStyles,
-          textStyles.variantStyles,
-        ])}
-      >
-        {children}
-      </span>
-      {rightIcon && <span className="mt-0.5">{rightIcon}</span>}
+      {leftIcon}
+      <span>{children}</span>
+      {rightIcon}
     </button>
   );
 };
