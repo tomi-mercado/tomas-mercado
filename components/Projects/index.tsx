@@ -4,6 +4,8 @@ import { SiGraphql, SiNextdotjs } from 'react-icons/si';
 
 import Image from 'next/image';
 
+import classNames from 'classnames';
+
 import { Layout } from '@components';
 
 import {
@@ -121,18 +123,20 @@ const Projects: React.FC = () => {
     ),
   }[currentProject];
 
-  const SideComponentProject = {
-    iddle: null,
-    ...Object.entries(projects).reduce(
-      (acc, [index, project]) => ({
-        ...acc,
-        [index]: (
-          <ProjectSide images={project.images} key={`project-side-${index}`} />
-        ),
-      }),
-      {},
-    ),
-  }[currentProject];
+  const sideComponents = projects.map((project, index) => (
+    <div
+      key={`project-side-${index}`}
+      className={classNames([
+        'transition-opacity ease-in-out duration-500 h-full absolute w-full',
+        {
+          'opacity-0': currentProject !== index,
+          'opacity-100': currentProject === index,
+        },
+      ])}
+    >
+      <ProjectSide images={project.images} />
+    </div>
+  ));
 
   return (
     <Layout
@@ -144,7 +148,7 @@ const Projects: React.FC = () => {
             }
           : undefined
       }
-      sideComponent={SideComponentProject}
+      sideComponent={currentProject === 'iddle' ? undefined : sideComponents}
       screenPosition="left"
       contentWrapper={{
         className: 'bg-gradient-to-b from-[#f2c0a1e8] to-[#d1d1c3]',
