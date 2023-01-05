@@ -6,6 +6,7 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   withWrapper?: boolean;
+  wrapperClassName?: string;
 }
 
 interface UpDownDetailProps {
@@ -28,6 +29,7 @@ const Card: React.FC<CardProps> = ({
   children,
   className,
   withWrapper = true,
+  wrapperClassName,
 }) => {
   return (
     <div
@@ -38,7 +40,11 @@ const Card: React.FC<CardProps> = ({
     >
       <UpDownDetail position="top" />
       {!withWrapper && children}
-      {withWrapper && <div className="py-4 px-6">{children}</div>}
+      {withWrapper && (
+        <div className={classNames(['py-4 px-6', wrapperClassName])}>
+          {children}
+        </div>
+      )}
       <UpDownDetail position="bottom" />
     </div>
   );

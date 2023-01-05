@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Carousel, Text } from '@components';
+import { Card, Carousel, Text } from '@components';
 
 export interface ProjectDetailProps {
   title: string;
@@ -18,13 +18,16 @@ interface CarouselItemProps {
 const CarouselItem: React.FC<CarouselItemProps> = ({ children, title }) => {
   return (
     <div className="px-1">
-      <div className="!flex items-center justify-center w-full flex-col space-y-1 lg:space-y-4 bg-primary p-4 lg:min-h-[150px] rounded-lg shadow-md">
+      <Card
+        className="w-full p-4 lg:min-h-[150px]"
+        wrapperClassName="flex flex-col space-y-1 lg:space-y-4 items-center"
+      >
         <Text variant="p" className="font-bold">
           {title}
         </Text>
 
         {children}
-      </div>
+      </Card>
     </div>
   );
 };
