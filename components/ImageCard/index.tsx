@@ -4,6 +4,8 @@ import Image, { ImageProps } from 'next/image';
 
 import classNames from 'classnames';
 
+import { Card } from '@components';
+
 type View = 'landscape' | 'portrait';
 type Size = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -83,14 +85,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
   const { wrapperStyles, imageWrapperStyles } = getViewSizeStyles(view, size);
 
   return (
-    <div
-      className={classNames([
-        'w-full bg-yellow-50 rounded-md shadow-lg relative',
-        wrapperStyles,
-      ])}
-    >
-      <UpDownDetail position="top" />
-
+    <Card className={wrapperStyles} withWrapper={false}>
       <div className={classNames(['relative w-full', imageWrapperStyles])}>
         <Image
           src={image.src}
@@ -99,9 +94,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
           className="object-cover rounded-sm object-top"
         />
       </div>
-
-      <UpDownDetail position="bottom" />
-    </div>
+    </Card>
   );
 };
 

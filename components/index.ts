@@ -8,3 +8,4 @@ export { default as Button } from './Button';
 export { default as ImageCard } from './ImageCard';
 export { default as Carousel } from './Carousel';
 export { default as IconButton } from './IconButton';
+export { default as Card } from './Card';

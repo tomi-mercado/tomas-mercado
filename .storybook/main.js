@@ -1,5 +1,3 @@
-// .storybook/main.js
-
 const path = require('path');
 
 module.exports = {
@@ -32,8 +30,17 @@ module.exports = {
      */
     config.resolve.alias = {
       ...config.resolve?.alias,
-      '@': [path.resolve(__dirname, '../src/'), path.resolve(__dirname, '../')],
+      '@components': [
+        path.resolve(__dirname, '../components'),
+        path.resolve(__dirname, '../components'),
+      ],
+      '@hooks': [
+        path.resolve(__dirname, '../hooks'),
+        path.resolve(__dirname, '../hooks'),
+      ],
     };
+
+    // config.resolve.plugins = [new TsconfigPathsPlugin()]
 
     /**
      * Fixes font import with /
