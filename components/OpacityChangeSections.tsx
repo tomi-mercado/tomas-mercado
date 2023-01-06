@@ -53,10 +53,17 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
   // is currently visible.
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
+  const [isScrolling, setIsScrolling] = useState(false);
+
   // handleScroll is a callback function that will be passed to the useOnScroll hook. It will
   // be called whenever the user scrolls the page. It receives the direction of the scroll as
   // its argument.
   const handleScroll: Parameters<typeof useOnScroll>[0] = (direction) => {
+    // If the user is currently scrolling, we return early.
+    if (isScrolling) {
+      return;
+    }
+
     // newCurrentSectionIndex is the index of the next section that should be shown based on
     // the direction of the scroll and the index of the current section.
     const newCurrentSectionIndex = updateSectionIndex(
@@ -64,6 +71,22 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
       currentSectionIndex,
       sectionsRef.current,
     );
+
+    // If the new current section index is the same as the current section index, we return
+    // early.
+    if (newCurrentSectionIndex === currentSectionIndex) {
+      return;
+    }
+
+    // We set the isScrolling state variable to true to prevent the user from scrolling
+    // multiple sections at once.
+    setIsScrolling(true);
+
+    // We set a timeout to set the isScrolling state variable to false after 1 second. This
+    // will allow the user to change section again after 1 second.
+    setTimeout(() => {
+      setIsScrolling(false);
+    }, 1000);
 
     // We update the currentSectionIndex state variable with the index of the next section.
     setCurrentSectionIndex(newCurrentSectionIndex);
