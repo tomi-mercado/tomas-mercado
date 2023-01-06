@@ -7,7 +7,7 @@ type Callback = (direction: 'up' | 'down') => void;
 
 /**
  * Custom hook that tracks scroll direction (up or down) in the window.
- * @param cb - Callback function to be called when scroll direction changes.
+ * @param cb - Callback function to be called when scroll.
  */
 const useOnScroll = (cb: Callback) => {
   const lastScrollTop = useRef(0);
@@ -17,7 +17,6 @@ const useOnScroll = (cb: Callback) => {
     const handleScroll = (e: WheelEvent | KeyboardEvent) => {
       // Initialize scroll direction and difference from last scroll
       let newScroll: 'down' | 'up' | null = null;
-      let isDifferentScroll = false;
 
       if (e instanceof KeyboardEvent) {
         // Check if event is an arrow key press
@@ -39,14 +38,8 @@ const useOnScroll = (cb: Callback) => {
         lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
       }
 
-      // Flag that the new scroll direction is different from last scroll direction
-      isDifferentScroll = lastScroll !== newScroll;
-
-      // If scroll direction is different, call callback function and update last scroll direction state
-      if (isDifferentScroll) {
-        cb(newScroll as 'up' | 'down');
-        setLastScroll(newScroll);
-      }
+      cb(newScroll as 'up' | 'down');
+      setLastScroll(newScroll);
     };
 
     // Add event listeners for scroll events

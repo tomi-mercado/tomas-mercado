@@ -48,31 +48,6 @@ describe('useOnScroll', () => {
     expect(cb).toHaveBeenCalledTimes(1);
   });
 
-  it('should only call the callback function when the scroll direction changes', () => {
-    const cb = jest.fn();
-
-    // Render the hook with a mock callback function
-    renderHook(() => useOnScroll(cb));
-
-    // Simulate multiple mouse wheel scroll events in the same direction
-    act(() => {
-      const event = new WheelEvent('wheel', { deltaY: 100 });
-
-      // Dispatch the event multiple times
-      window.dispatchEvent(event);
-
-      // Timeouts are needed to ensure that the scroll is enough to trigger the callback function
-      const timeouts = [100, 200];
-      timeouts.forEach((timeout) => {
-        setTimeout(() => {
-          window.dispatchEvent(event);
-        }, timeout);
-      });
-    });
-
-    expect(cb).toHaveBeenCalledTimes(1);
-  });
-
   it('should remove the event listeners when the hook unmounts', () => {
     const cb = jest.fn();
 
