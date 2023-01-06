@@ -24,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   leftIcon,
   rightIcon,
   children,
+  className,
   ...props
 }) => {
   const wrapperStyles = {
@@ -71,6 +72,7 @@ const Button: React.FC<ButtonProps> = ({
         { 'rounded-full': rounded },
         { 'rounded-md': !rounded },
         { 'pl-0': variant === 'quaternary' },
+        className,
       ])}
       {...props}
     >
