@@ -5,7 +5,7 @@ import { Button, Text } from '@components';
 
 const Content: React.FC = () => {
   return (
-    <div className="px-8 flex flex-col space-y-8 h-full min-h-[inherit] lg:min-h-fit lg:h-[70%] 2xl:h-[75%] w-full justify-center">
+    <div className="px-8 py-4 flex flex-col space-y-8 h-full min-h-[inherit] lg:min-h-fit lg:h-[70%] 2xl:h-[75%] w-full justify-center">
       <div className="flex flex-col space-y-4">
         <Text variant="h3" underline>
           Experience
