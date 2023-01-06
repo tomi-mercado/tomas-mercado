@@ -10,6 +10,7 @@ const Hero: React.FC = () => {
       image={{
         src: '/hero-side-image.png',
         alt: 'Illustration',
+        priority: true,
       }}
       navbar={{
         className: 'bg-gradient-to-r from-[#d8c0aa] to-[#c6c1b5] lg:white',
