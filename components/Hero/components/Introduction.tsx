@@ -4,7 +4,7 @@ import { Text } from '@components';
 
 const Introduction: React.FC = () => {
   return (
-    <div className="flex flex-col py-8 lg:py-0 sm:justify-center items-center h-full">
+    <div className="flex flex-col justify-center h-full min-h-[inherit] lg:min-h-fit">
       <div className="flex flex-col space-y-4 text-center">
         <Text as="h1" variant="h1">
           Tomás Mercado
@@ -13,9 +13,6 @@ const Introduction: React.FC = () => {
           <Text as="h2" variant="h3">
             Web Developer
           </Text>
-          {/* <h4 className="text-lg text-gray-500 italic">
-            Success is a journey, not a destination
-          </h4> */}
           <Text as="h4" variant="h6" className="text-gray-500 italic">
             Success is a journey, not a destination
           </Text>
