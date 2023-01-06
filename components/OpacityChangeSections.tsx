@@ -126,10 +126,8 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
             className={classnames([
               'transition-opacity duration-1000 ease-in-out absolute top-0 left-0 w-full h-full lg:overflow-hidden',
               {
-                'opacity-100': isCurrentSection,
-                'opacity-0': !isCurrentSection,
-                // Prevent the section from being scrollable when it is not the current section.
-                'overflow-hidden': !isCurrentSection,
+                'opacity-100 z-50': isCurrentSection,
+                'opacity-0 z-0 overflow-hidden': !isCurrentSection,
               },
             ])}
           >
