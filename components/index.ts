@@ -9,3 +9,5 @@ export { default as ImageCard } from './ImageCard';
 export { default as Carousel } from './Carousel';
 export { default as IconButton } from './IconButton';
 export { default as Card } from './Card';
+export { default as Experience } from './Experience';
+export { default as CircleImageGradient } from './CircleImageGradient';
