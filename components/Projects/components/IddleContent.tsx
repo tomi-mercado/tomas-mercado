@@ -23,7 +23,11 @@ const IddleContent: React.FC<IddleContentProps> = ({ onClick }) => {
       </div>
 
       <div className="flex justify-end">
-        <Button rightIcon={<AiOutlineArrowRight />} onClick={onClick}>
+        <Button
+          variant="secondary"
+          rightIcon={<AiOutlineArrowRight />}
+          onClick={onClick}
+        >
           See my projects
         </Button>
       </div>
