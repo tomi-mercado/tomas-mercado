@@ -100,7 +100,7 @@ const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
   const showBackToIddleButton = currentProject !== 'iddle';
 
   return (
-    <div className="px-6 py-4 flex flex-col space-y-2 h-full justify-center relative">
+    <div className="px-6 py-4 flex flex-col space-y-2 h-full min-h-[inherit] lg:min-h-fit justify-center relative">
       {showBackToIddleButton && (
         <Button
           leftIcon={<FaArrowLeft />}
