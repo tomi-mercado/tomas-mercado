@@ -22,8 +22,10 @@ const CircleImageGradient: React.FC<CircleImageGradientProps> = ({
         className={classNames([
           'rounded-full w-full h-full bg-gradient-to-r animate-rot',
           {
-            [`from-${gradient?.from ?? 'secondary'}`]: true,
-            [`to-${gradient?.to ?? 'orange-500'}`]: true,
+            [`from-${gradient?.from}`]: gradient?.from,
+            [`to-${gradient?.to}`]: gradient?.to,
+            'from-primary': !gradient?.from,
+            'to-secondary': !gradient?.to,
           },
         ])}
       >
