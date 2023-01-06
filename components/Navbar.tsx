@@ -34,6 +34,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           Projects
         </Text>
         <Text as="p" variant="h6">
+          Experience
+        </Text>
+        <Text as="p" variant="h6">
           About
         </Text>
         <Text as="p" variant="h6">

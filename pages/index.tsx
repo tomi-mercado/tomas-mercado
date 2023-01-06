@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { Hero, OpacityChangeSections, Projects } from '@components';
+import { Experience, Hero, OpacityChangeSections, Projects } from '@components';
 
 const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -18,6 +18,7 @@ export default function Home() {
     <HomeContainer>
       <Hero />
       <Projects />
+      <Experience />
     </HomeContainer>
   );
 }
