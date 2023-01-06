@@ -11,7 +11,6 @@ type Callback = (direction: 'up' | 'down') => void;
  */
 const useOnScroll = (cb: Callback) => {
   const lastScrollTop = useRef(0);
-  const [lastScroll, setLastScroll] = useState<'down' | 'up' | null>(null);
 
   useEffect(() => {
     const handleScroll = (e: WheelEvent | KeyboardEvent) => {
@@ -39,7 +38,6 @@ const useOnScroll = (cb: Callback) => {
       }
 
       cb(newScroll as 'up' | 'down');
-      setLastScroll(newScroll);
     };
 
     // Add event listeners for scroll events

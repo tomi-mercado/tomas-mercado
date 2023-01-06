@@ -86,7 +86,7 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
     // will allow the user to change section again after 1 second.
     setTimeout(() => {
       setIsScrolling(false);
-    }, 1000);
+    }, 2000);
 
     // We update the currentSectionIndex state variable with the index of the next section.
     setCurrentSectionIndex(newCurrentSectionIndex);

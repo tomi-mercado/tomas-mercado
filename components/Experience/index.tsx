@@ -20,7 +20,7 @@ const Experience: React.FC = () => {
 
           <CircleImageGradient
             image={{
-              src: '/experience-side-image.png',
+              src: '/experience-first-image.png',
               alt: 'Illustration',
             }}
           />
