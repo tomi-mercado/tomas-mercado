@@ -35,6 +35,10 @@ const CircleImageGradient: React.FC<CircleImageGradientProps> = ({
             alt={image.alt}
             fill
             className="overflow-hidden rounded-full !left-[9px] !top-[9px] animate-unrot"
+            sizes="
+              (max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           />
         </div>
       </div>
