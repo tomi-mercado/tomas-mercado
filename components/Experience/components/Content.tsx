@@ -1,31 +1,61 @@
 import React from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 import { Button, Text } from '@components';
 
-const Content: React.FC = () => {
+export interface ContentProps {
+  title: string;
+  description: string;
+  rightButton?: {
+    label: string;
+    onClick: () => void;
+  };
+  leftButton?: {
+    label: string;
+    onClick: () => void;
+  };
+}
+
+const Content: React.FC<ContentProps> = ({
+  description,
+  title,
+  leftButton,
+  rightButton,
+}) => {
   return (
     <div className="px-8 py-4 flex flex-col space-y-8 h-full min-h-[inherit] lg:min-h-fit lg:h-[70%] 2xl:h-[75%] w-full justify-center">
       <div className="flex flex-col space-y-4">
         <Text variant="h3" underline>
-          Experience
+          {title}
         </Text>
 
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis,
-          quam nobis. Ipsam quisquam cumque ea fugiat commodi in facere nam
-          beatae eveniet, voluptates quasi ab hic aspernatur officiis cum fugit.
-        </Text>
+        <Text>{description}</Text>
       </div>
 
-      <div className="w-full flex justify-end">
-        <Button
-          variant="secondary"
-          rightIcon={<FaArrowRight />}
-          className="w-fit"
-        >
-          Where I was working
-        </Button>
+      <div className="w-full flex justify-between">
+        <div>
+          {leftButton && (
+            <Button
+              variant="secondary"
+              leftIcon={<FaArrowLeft />}
+              className="w-fit"
+              onClick={leftButton.onClick}
+            >
+              {leftButton.label}
+            </Button>
+          )}
+        </div>
+
+        {rightButton && (
+          <Button
+            variant="secondary"
+            rightIcon={<FaArrowRight />}
+            className="w-fit"
+            onClick={rightButton.onClick}
+          >
+            {rightButton.label}
+          </Button>
+        )}
       </div>
     </div>
   );

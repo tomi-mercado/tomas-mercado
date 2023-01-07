@@ -1,10 +1,15 @@
 import React from 'react';
 
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 
 import { CircleImageGradient } from '@components';
 
-const Side: React.FC = () => {
+export interface SideProps {
+  images: ImageProps[];
+  currentIndex: number;
+}
+
+const Side: React.FC<SideProps> = ({ images, currentIndex }) => {
   return (
     <div className="relative w-full h-full">
       <Image
@@ -18,12 +23,24 @@ const Side: React.FC = () => {
           33vw"
       />
 
-      <CircleImageGradient
-        image={{
-          src: '/experience-first-image.png',
-          alt: 'Illustration',
-        }}
-      />
+      {images.map((image, index) => {
+        const isCurrent = currentIndex === index;
+
+        return (
+          <div
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out
+             ${isCurrent ? 'opacity-100' : 'opacity-0'}`}
+            key={String(image.src)}
+          >
+            <CircleImageGradient
+              image={{
+                src: image.src,
+                alt: image.alt,
+              }}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
