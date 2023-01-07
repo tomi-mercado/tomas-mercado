@@ -28,19 +28,18 @@ const CircleImageGradient: React.FC<CircleImageGradientProps> = ({
             'to-secondary': !gradient?.to,
           },
         ])}
-      >
-        <div className="relative w-40 h-40 sm:w-60 sm:h-60">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            className="overflow-hidden rounded-full !left-[9px] !top-[9px] animate-unrot"
-            sizes="
+      ></div>
+      <div className="absolute top-0 w-40 h-40 sm:w-60 sm:h-60">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          className="overflow-hidden rounded-full !left-[9px] !top-[9px]"
+          sizes="
               (max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-          />
-        </div>
+        />
       </div>
     </div>
   );
