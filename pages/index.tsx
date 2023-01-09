@@ -1,6 +1,12 @@
 import { PropsWithChildren } from 'react';
 
-import { Experience, Hero, OpacityChangeSections, Projects } from '@components';
+import {
+  About,
+  Experience,
+  Hero,
+  OpacityChangeSections,
+  Projects,
+} from '@components';
 
 const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -19,6 +25,7 @@ export default function Home() {
       <Hero />
       <Projects />
       <Experience />
+      <About />
     </HomeContainer>
   );
 }

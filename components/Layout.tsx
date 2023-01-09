@@ -8,7 +8,7 @@ import { Navbar } from '@components';
 
 interface LayoutProps {
   children: React.ReactNode;
-  image?: Pick<ImageProps, 'alt' | 'src' | 'priority'>;
+  image?: ImageProps;
   screenPosition?: 'left' | 'right';
   contentWrapper?: {
     className?: string;
@@ -36,9 +36,9 @@ const Layout: React.FC<LayoutProps> = ({
 
   const ImageWithProps = image ? (
     <Image
+      {...image}
       src={image.src}
       alt={image.alt}
-      priority={image.priority}
       fill
       style={{
         objectFit: 'cover',
