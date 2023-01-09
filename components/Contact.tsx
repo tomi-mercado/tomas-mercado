@@ -60,6 +60,7 @@ const SocialMedia: React.FC = () => {
 const Contact: React.FC = () => {
   return (
     <Layout
+      id="contact"
       image={{
         src: '/contact-side-image.png',
         alt: 'Illustration of an eye and phone',

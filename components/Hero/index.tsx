@@ -7,6 +7,7 @@ import { Introduction } from './components';
 const Hero: React.FC = () => {
   return (
     <Layout
+      id="hero"
       image={{
         src: '/hero-side-image.png',
         alt: 'Illustration',

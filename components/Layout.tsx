@@ -17,6 +17,7 @@ interface LayoutProps {
     className?: string;
   };
   sideComponent?: React.ReactNode;
+  id?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -26,6 +27,7 @@ const Layout: React.FC<LayoutProps> = ({
   navbar,
   screenPosition,
   sideComponent,
+  id,
 }) => {
   if (!sideComponent && !image) {
     throw new Error('You need to provide a sideComponent or an image');
@@ -73,6 +75,7 @@ const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div
+      id={id}
       className={classNames(['bg-primary relative', contentWrapper?.className])}
     >
       <div className="fixed z-50 lg:hidden top-0 w-full">{NavbarWithProps}</div>

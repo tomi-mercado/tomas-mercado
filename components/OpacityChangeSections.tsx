@@ -1,4 +1,6 @@
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+
+import { useRouter } from 'next/router';
 
 import classnames from 'classnames';
 
@@ -9,6 +11,7 @@ import { useOnScroll } from '@hooks';
 // rendered inside the component.
 interface ScrollableSectionsProps {
   children: ReactNode;
+  navbarIds?: string[];
 }
 
 /**
@@ -44,14 +47,31 @@ function updateSectionIndex(
  */
 const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
   children,
+  navbarIds,
 }) => {
+  const router = useRouter();
+
   // sectionsRef is a mutable ref object that will be used to store the DOM elements of the
   // sections. This will allow us to manipulate these elements later on.
   const sectionsRef = useRef<HTMLDivElement[]>([]);
 
+  const memoNavbarIds = useMemo(() => navbarIds, [navbarIds]);
+
   // currentSectionIndex is a state variable that keeps track of the index of the section that
   // is currently visible.
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+
+  // Whenever the router changes, we update the current section index checking if the current
+  // section is one of the sections that we have in the navbar.
+  useEffect(() => {
+    if (!memoNavbarIds || !memoNavbarIds.length) {
+      return;
+    }
+
+    const currentSection = router.query['current-section'] as string;
+    const index = memoNavbarIds.indexOf(`${currentSection}`);
+    setCurrentSectionIndex(index === -1 ? 0 : index);
+  }, [router, memoNavbarIds]);
 
   const [isScrolling, setIsScrolling] = useState(false);
 

@@ -140,6 +140,7 @@ const Projects: React.FC = () => {
 
   return (
     <Layout
+      id="projects"
       image={
         currentProject === 'iddle'
           ? {

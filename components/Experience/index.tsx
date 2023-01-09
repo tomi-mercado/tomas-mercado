@@ -76,6 +76,7 @@ const Experience: React.FC = () => {
 
   return (
     <Layout
+      id="experience"
       sideComponent={<Side images={images} currentIndex={currentIndex} />}
     >
       <Content {...contentProps} />

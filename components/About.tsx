@@ -5,6 +5,7 @@ import { Layout, Text } from '@components';
 const About: React.FC = () => {
   return (
     <Layout
+      id="about"
       image={{
         src: '/tomas-mercado.jpeg',
         alt: 'Tomas Mercado photo',
