@@ -8,8 +8,7 @@ const About: React.FC = () => {
       image={{
         src: '/tomas-mercado.jpeg',
         alt: 'Tomas Mercado photo',
-        className:
-          'object-contain lg:object-cover lg:object-top grayscale-[200]',
+        className: 'object-contain lg:object-cover lg:object-top',
       }}
       screenPosition="left"
       navbar={{

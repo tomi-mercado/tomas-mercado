@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import {
   About,
+  Contact,
   Experience,
   Hero,
   OpacityChangeSections,
@@ -26,6 +27,7 @@ export default function Home() {
       <Projects />
       <Experience />
       <About />
+      <Contact />
     </HomeContainer>
   );
 }
