@@ -1,0 +1,152 @@
+{
+  "common": {
+    "hero": {
+      "title": "Tomás Mercado",
+      "subtitle": "Web Developer",
+      "description": "Let's learn as a team!"
+    },
+    "projects": {
+      "projects": [
+        {
+          "title": "Utel CMS",
+          "iconTitle": "/utel-favicon.ico",
+          "techStack": "next,typescript,chakra,react-hook-form,zod,strapi",
+          "images": [
+            {
+              "alt": "Utel CMS Hero",
+              "src": "/utel-img-1.png"
+            },
+            {
+              "alt": "Utel CMS Search",
+              "src": "/utel-img-2.png"
+            },
+            {
+              "alt": "Utel CMS Search results",
+              "src": "/utel-img-3.png"
+            }
+          ]
+        },
+        {
+          "title": "Henry Website",
+          "iconTitle": "/henry-favicon.ico",
+          "techStack": "react,typescript,material-ui,styled-components",
+          "images": [
+            {
+              "alt": "Henry Hero",
+              "src": "/henry-img-1.png"
+            },
+            {
+              "alt": "Henry Press section",
+              "src": "/henry-img-2.png"
+            },
+            {
+              "alt": "Henry Opinions section",
+              "src": "/henry-img-3.png"
+            }
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "links": [
+        {
+          "socialMedia": "linkedin",
+          "text": "/tomas-mercado",
+          "url": "https://www.linkedin.com/in/tomas-mercado/"
+        },
+        {
+          "socialMedia": "github",
+          "text": "/tomi-mercado",
+          "url": "https://github.com/tomi-mercado"
+        },
+        {
+          "socialMedia": "email",
+          "text": "tmercadoslp@gmail.com",
+          "url": "mailto:tmercadoslp@gmail.com"
+        }
+      ]
+    }
+  },
+  "en": {
+    "projects": {
+      "backButtonLabel": "Back to projects",
+      "techStackTitle": "Tech stack",
+      "title": "Projects",
+      "description": "In this section, you will find a selection of my most notable web development projects. Each project showcases my ability to create visually stunning, user-friendly websites and web applications that meet the needs of my clients and users.",
+      "buttonLabel": "See my projects",
+      "projects": [
+        {
+          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.\bWith that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes.",
+          "mainChallenges": [
+            "Make the CMS easy to use for non-technical users.",
+            "Abstract sections of the site into reusable components to represent them in the CMS.",
+            "Understand the business logic of the enrollment process and implement it in the CMS.",
+            "CMS features related with dynamic forms and validations."
+          ]
+        },
+        {
+          "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses.",
+          "mainChallenges": [
+            "Create reutilizable components and sections to allow for quick and easy website page building.",
+            "SEO optimization to allow for better ranking in search engines.",
+            "Management of params in the URL to track user behavior."
+          ]
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "As a web developer with over 2+ of experience in the field, I have had the opportunity to work at some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile applications to developing internal systems and implementing automation solutions.",
+      "buttonLabel": "Where I was working"
+    },
+    "about": {
+      "title": "Who am I?",
+      "description": "My name is Tomás Mercado, and my colleagues call me Tom. In addition to programming, I really enjoy physics and astronomy, and I would like to participate in projects related to these materials someday.\bI enjoy working as a team, and learning from my colleagues. I believe that each person brings something different to a project, and that together we can create something incredible. The community is the foundation of the growth of technology.\bI am a vegetarian, I enjoy taking care of the plants at home, and I really like music. I listen to everything, so if you want to recommend something to me, don't hesitate to do so. I also like consuming Youtube content, more than movies or TV shows, I believe it is the medium that has helped me learn new things and understand other points of view on different topics."
+    },
+    "contact": {
+      "title": "Get in touch",
+      "description": "If you have any questions or inquiries about my work, please don't hesitate to reach out. You can contact me via email or Linkedin, and I'll do my best to get back to you as soon as possible. Feel free to follow me on LinkedIn to stay up-to-date on my work. Thank you for visiting my portfolio website. I'm always open to new collaborations, so don't hesitate to get in touch. I look forward to hearing from you!"
+    }
+  },
+  "es": {
+    "projects": {
+      "title": "Projectos",
+      "description": "En esta sección, encontrarás una selección de mis proyectos más destacados. Cada proyecto muestra mi capacidad para crear sitios web y aplicaciones web visualmente impresionantes y fáciles de usar que satisfacen las necesidades de mis clientes y usuarios.",
+      "buttonLabel": "Mira mis proyectos",
+      "projects": [
+        {
+          "backButtonLabel": "Volver a proyectos",
+          "techStackTitle": "Tecnologías",
+          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.\bCon ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente.",
+          "mainChallenges": [
+            "Hacer que el CMS sea fácil de usar para usuarios no técnicos.",
+            "Abstractar secciones del sitio en componentes reutilizables para representarlos en el CMS.",
+            "Comprender la lógica de negocio del proceso de inscripción e implementarlo en el CMS.",
+            "Features del CMS relacionados con formularios dinámicos y validaciones."
+          ]
+        },
+        {
+          "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios inscribirse a los cursos.",
+          "mainChallenges": [
+            "Crear componentes y secciones reutilizables para permitir la construcción rápida y sencilla de páginas del sitio web.",
+            "Optimización de SEO para permitir un mejor posicionamiento en los motores de búsqueda.",
+            "Administración de parámetros en la URL para rastrear el comportamiento del usuario."
+          ]
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experiencia",
+      "description": "Como desarrollador web con 2+ años de experiencia en el campo, he tenido la oportunidad de trabajar en algunas de las empresas más innovadoras de mi área. Mi experiencia abarca una variedad de proyectos, desde la creación de sitios web y aplicaciones móviles hasta el desarrollo de sistemas internos y la implementación de soluciones de automatización.",
+      "buttonLabel": "Dónde he trabajado"
+    },
+    "about": {
+      "title": "¿Quién soy?",
+      "description": "Mi nombre es Tomás Mercado, y mis compañeros me llaman Tom. Además de programar, me gusta mucho la física y la astronomía, y me gustaría participar en proyectos relacionados a estas material alguna vez.\bDisfruto trabajar en equipo, y aprender de mis compañeros. Creo que cada persona aporta algo diferente a un proyecto, y que juntos podemos crear algo increíble. La comunidad es la base del crecimiento de la tecnología.\b Soy vegetariano, disfruto cuidar las plantas de casa, y me gusta mucho la música. Escucho de todo, así que si quieres recomendarme algo, no dudes en hacerlo. También me gusta consumir contenido de Youtube, por encima de películas o series, creo que es el medio que más me ha ayudado a aprender cosas nuevas y a entender otros puntos de vista sobre diferentes temas."
+    },
+    "contact": {
+      "title": "Estemos en contacto",
+      "description": "Si tienes alguna pregunta o consulta sobre mi trabajo, no dudes en ponerse en contacto conmigo. Podrás hacerlo a través de correo electrónico o LinkedIn, y haré lo posible por responderle lo antes posible. Sígueme en Github y LinkedIn para estar al día con mi trabajo. Gracias por visitar mi sitio web de portafolio. Siempre estoy abierto a nuevas colaboraciones, así que no dudes en ponerse en contacto conmigo. ¡Espero tener noticias tuyas!"
+    }
+  }
+}
