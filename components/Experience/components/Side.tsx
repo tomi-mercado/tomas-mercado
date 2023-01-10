@@ -37,10 +37,6 @@ const Side: React.FC<SideProps> = ({ images, currentIndex }) => {
                 src: image.src,
                 alt: image.alt,
               }}
-              gradient={{
-                from: '[#65362d]',
-                to: '[#7f6358]',
-              }}
             />
           </div>
         );
