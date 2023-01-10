@@ -1,6 +1,8 @@
+import { IntroductionProps } from 'components/Hero/components';
+
 import { PropsWithChildren } from 'react';
 
-import { GetStaticProps } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 
 import {
   About,
@@ -13,6 +15,22 @@ import {
 } from '@components';
 
 import content from '../content.json';
+
+type ObjectInfo = Record<string, any>;
+
+interface LanguageContent {
+  [section: string]: ObjectInfo;
+}
+
+interface Content {
+  es: LanguageContent;
+  en: LanguageContent;
+  common: LanguageContent;
+}
+
+interface HomeProps {
+  content: LanguageContent;
+}
 
 const linkIds = links.map((link) => link.sectionName);
 
@@ -29,31 +47,20 @@ const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default function Home() {
+const Home: NextPage<HomeProps> = ({ content }) => {
+  console.log(content);
   return (
     <HomeContainer>
-      <Hero />
+      <Hero {...(content.hero as IntroductionProps)} />
       <Projects />
       <Experience />
       <About />
       <Contact />
     </HomeContainer>
   );
-}
+};
 
-type ObjectInfo = Record<string, any>;
-
-interface LanguageContent {
-  [section: string]: ObjectInfo;
-}
-
-interface Content {
-  es: LanguageContent;
-  en: LanguageContent;
-  common: LanguageContent;
-}
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   const parsedContent: Content = JSON.parse(JSON.stringify(content));
 
   const languageContent = parsedContent[locale as 'en' | 'es'];
@@ -114,6 +121,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 
   return {
-    props: {},
+    props: {
+      content: languageContent,
+    },
   };
 };
+
+export default Home;
