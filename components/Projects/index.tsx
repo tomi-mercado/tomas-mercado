@@ -1,6 +1,12 @@
 import React from 'react';
 import { FaReact } from 'react-icons/fa';
-import { SiGraphql, SiNextdotjs } from 'react-icons/si';
+import {
+  SiChakraui,
+  SiGraphql,
+  SiNextdotjs,
+  SiStrapi,
+  SiTypescript,
+} from 'react-icons/si';
 
 import Image from 'next/image';
 
@@ -19,78 +25,43 @@ import {
 
 type Project = ProjectDetailProps & ProjectSideProps;
 
-const projects: Project[] = [
-  {
-    icon: (
-      <Image
-        alt="Utel favicon"
-        src="/utel-favicon.ico"
-        width={36}
-        height={36}
-        className="object-contain"
-      />
-    ),
-    title: 'Utel CMS',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus.',
-    techStackIcons: [
-      <FaReact key="tech-utel-0" className="text-4xl lg:text-5xl" />,
-      <SiNextdotjs key="tech-utel-1" className="text-4xl lg:text-5xl" />,
-      <SiGraphql key="tech-utel-2" className="text-4xl lg:text-5xl" />,
-    ],
-    mainChallenges: ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
-    images: [
-      {
-        alt: 'Utel CMS Hero',
-        src: '/utel-img-1.png',
-      },
-      {
-        alt: 'Utel CMS Search',
-        src: '/utel-img-2.png',
-      },
-      {
-        alt: 'Utel CMS Search results',
-        src: '/utel-img-3.png',
-      },
-    ],
-  },
-  {
-    icon: (
-      <Image
-        alt="Henry favicon"
-        src="/henry-favicon.ico"
-        width={36}
-        height={36}
-        className="object-contain"
-      />
-    ),
-    title: 'Henry Landing Page',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum enim voluptate quis, libero dolorum, maxime assumenda ducimus.',
-    techStackIcons: [
-      <FaReact key="tech-utel-0" className="text-4xl lg:text-5xl" />,
-      <SiNextdotjs key="tech-utel-1" className="text-4xl lg:text-5xl" />,
-      <SiGraphql key="tech-utel-2" className="text-4xl lg:text-5xl" />,
-    ],
-    mainChallenges: ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'],
-    images: [
-      {
-        alt: 'Henry Hero',
-        src: '/henry-img-1.png',
-      },
-      {
-        alt: 'Henry Press section',
-        src: '/henry-img-2.png',
-      },
-      {
-        alt: 'Henry Opinions section',
-        src: '/henry-img-3.png',
-      },
-    ],
-  },
-];
+interface ContentProject {
+  title: string;
+  description: string;
+  iconTitle: string;
+  techStack: string;
+  mainChallenges: string[];
+  images: { alt: string; src: string }[];
+}
 
-const Projects: React.FC = () => {
+export interface ProjectsProps {
+  backButtonLabel: string;
+  techStackTitle: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
+  projects: ContentProject[];
+}
+
+const techIcons: Record<string, JSX.Element> = {
+  react: <FaReact size={36} />,
+  graphql: <SiGraphql size={36} />,
+  next: <SiNextdotjs size={36} />,
+  typescript: <SiTypescript size={36} />,
+  chakra: <SiChakraui size={36} />,
+  'react-hook-form': <>TODO RHF</>,
+  zod: <>TODO ZOD</>,
+  strapi: <SiStrapi size={36} />,
+};
+
+const Projects: React.FC<ProjectsProps> = ({
+  title,
+  description,
+  projects,
+  backButtonLabel,
+  buttonLabel,
+  techStackTitle,
+}) => {
   const [currentProject, setCurrentProject] = React.useState<number | 'iddle'>(
     'iddle',
   );
@@ -104,23 +75,50 @@ const Projects: React.FC = () => {
   };
 
   const ContentProject = {
-    iddle: <IddleContent onClick={handleShowFirstProject} />,
-    ...Object.entries(projects).reduce(
-      (acc, [index, project]) => ({
+    iddle: (
+      <IddleContent
+        title={title}
+        description={description}
+        buttonLabel={buttonLabel}
+        onClick={handleShowFirstProject}
+      />
+    ),
+    ...Object.entries(projects).reduce((acc, [index, project]) => {
+      const iconTitle = (
+        <Image
+          src={project.iconTitle}
+          alt={`Icon ${project.iconTitle}`}
+          width={36}
+          height={36}
+          className="object-contain"
+        />
+      );
+
+      const technologies = project.techStack.split(',');
+      const techStackIcons = technologies.map((tech) => {
+        return techIcons[tech];
+      });
+
+      return {
         ...acc,
         [index]: (
           <ProjectDetail
             key={`project-detail-${index}`}
             title={project.title}
-            icon={project.icon}
+            icon={iconTitle}
             description={project.description}
-            techStackIcons={project.techStackIcons}
-            mainChallenges={project.mainChallenges}
+            techStack={{
+              title: techStackTitle,
+              icons: techStackIcons,
+            }}
+            mainChallenges={{
+              title: techStackTitle,
+              items: project.mainChallenges,
+            }}
           />
         ),
-      }),
-      {},
-    ),
+      };
+    }, {}),
   }[currentProject];
 
   const sideComponents = projects.map((project, index) => (
@@ -134,7 +132,7 @@ const Projects: React.FC = () => {
         },
       ])}
     >
-      <ProjectSide images={project.images} />
+      <ProjectSide images={project.images as ProjectSideProps['images']} />
     </div>
   ));
 
@@ -160,6 +158,7 @@ const Projects: React.FC = () => {
       }}
     >
       <ContentProjectWrapper
+        backButtonLabel={backButtonLabel}
         totalProjects={projects.length}
         currentProject={currentProject}
         onNextProject={() => {

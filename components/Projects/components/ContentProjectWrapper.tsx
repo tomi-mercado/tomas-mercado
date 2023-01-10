@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Button, IconButton, Text } from '@components';
 
 interface ContentProjectWrapperProps {
+  backButtonLabel: string;
   children: React.ReactNode;
   currentProject: number | 'iddle';
   totalProjects: number;
@@ -93,6 +94,7 @@ const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
   children,
   currentProject,
   totalProjects,
+  backButtonLabel,
   onNextProject,
   onPreviousProject,
   onBackToIddle,
@@ -108,7 +110,7 @@ const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
           variant="quaternary"
           onClick={onBackToIddle}
         >
-          Back to projects
+          {backButtonLabel}
         </Button>
       )}
 

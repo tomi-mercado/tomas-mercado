@@ -11,6 +11,7 @@ import {
   Hero,
   OpacityChangeSections,
   Projects,
+  ProjectsProps,
   links,
 } from '@components';
 
@@ -48,11 +49,10 @@ const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
 };
 
 const Home: NextPage<HomeProps> = ({ content }) => {
-  console.log(content);
   return (
     <HomeContainer>
       <Hero {...(content.hero as IntroductionProps)} />
-      <Projects />
+      <Projects {...(content.projects as ProjectsProps)} />
       <Experience />
       <About />
       <Contact />

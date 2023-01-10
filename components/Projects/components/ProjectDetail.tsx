@@ -6,8 +6,14 @@ export interface ProjectDetailProps {
   title: string;
   icon?: React.ReactNode;
   description: string;
-  techStackIcons: React.ReactNode[];
-  mainChallenges: string[];
+  techStack: {
+    title: string;
+    icons: React.ReactNode[];
+  };
+  mainChallenges: {
+    title: string;
+    items: string[];
+  };
 }
 
 interface CarouselItemProps {
@@ -36,7 +42,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
   title,
   icon,
   description,
-  techStackIcons,
+  techStack,
   mainChallenges,
 }) => {
   return (
@@ -51,13 +57,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
       <Text>{description}</Text>
 
       <Carousel>
-        <CarouselItem title="Tech stack">
-          <div className="flex space-x-2">{techStackIcons}</div>
+        <CarouselItem title={techStack.title}>
+          <div className="grid grid-cols-3 lg:grid-cols-4 justify-items-center gap-x-2 gap-y-4">
+            {techStack.icons}
+          </div>
         </CarouselItem>
 
-        <CarouselItem title="Main challenges">
+        <CarouselItem title={mainChallenges.title}>
           <ul className="self-start">
-            {mainChallenges.map((challenge, i) => (
+            {mainChallenges.items.map((challenge, i) => (
               <li key={`main-challenges-${title}-${i}`}>
                 <Text variant="p2">✨ {challenge}</Text>
               </li>

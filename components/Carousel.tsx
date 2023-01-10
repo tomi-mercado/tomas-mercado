@@ -53,7 +53,17 @@ const Carousel: React.FC<PropsWithChildren> = ({ children }) => {
     dotsClass: 'slick-dots !relative !bottom-0',
   };
 
-  return <Slider {...settings}>{children}</Slider>;
+  return (
+    <>
+      <style jsx global>{`
+        .slick-track {
+          display: flex;
+          align-items: center;
+        }
+      `}</style>
+      <Slider {...settings}>{children}</Slider>;
+    </>
+  );
 };
 
 export default Carousel;

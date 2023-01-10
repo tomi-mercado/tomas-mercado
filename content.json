@@ -10,7 +10,7 @@
         {
           "title": "Utel CMS",
           "iconTitle": "/utel-favicon.ico",
-          "techStack": "next,typescript,chakra,react-hook-form,zod,strapi",
+          "techStack": "next,typescript,chakra,graphql,react-hook-form,zod,strapi",
           "images": [
             {
               "alt": "Utel CMS Hero",
@@ -110,13 +110,13 @@
   },
   "es": {
     "projects": {
-      "title": "Projectos",
+      "title": "Proyectos",
       "description": "En esta sección, encontrarás una selección de mis proyectos más destacados. Cada proyecto muestra mi capacidad para crear sitios web y aplicaciones web visualmente impresionantes y fáciles de usar que satisfacen las necesidades de mis clientes y usuarios.",
       "buttonLabel": "Mira mis proyectos",
+      "backButtonLabel": "Volver a proyectos",
+      "techStackTitle": "Tecnologías",
       "projects": [
         {
-          "backButtonLabel": "Volver a proyectos",
-          "techStackTitle": "Tecnologías",
           "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.\bCon ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente.",
           "mainChallenges": [
             "Hacer que el CMS sea fácil de usar para usuarios no técnicos.",
