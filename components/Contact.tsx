@@ -36,8 +36,6 @@ const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
 const SocialMedia: React.FC = () => {
   return (
     <div className="flex flex-col space-y-3">
-      <Text>Contact me:</Text>
-
       <div className="w-[300px]">
         <div className="grid grid-cols-[1fr,5fr] gap-y-2">
           <SocialMediaItem
