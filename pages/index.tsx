@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
 import { GetStaticProps, NextPage } from 'next';
 
@@ -6,6 +6,7 @@ import {
   About,
   AboutProps,
   Contact,
+  ContactProps,
   Experience,
   ExperienceProps,
   Hero,
@@ -32,11 +33,15 @@ interface Content {
 
 interface HomeProps {
   content: LanguageContent;
+  locale: 'en' | 'es';
 }
 
-const linkIds = links.map((link) => link.sectionName);
+interface HomeContainerProps {
+  children: ReactNode;
+  linkIds: string[];
+}
 
-const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
+const HomeContainer: React.FC<HomeContainerProps> = ({ children, linkIds }) => {
   return (
     <>
       {/** Desktop */}
@@ -51,14 +56,19 @@ const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const Home: NextPage<HomeProps> = ({ content }) => {
+const Home: NextPage<HomeProps> = ({ content, locale }) => {
+  const linkIds = links(locale).map((link) => link.sectionName);
+
   return (
-    <HomeContainer>
-      <Hero {...(content.hero as IntroductionProps)} />
-      <Projects {...(content.projects as ProjectsProps)} />
-      <Experience {...(content.experience as ExperienceProps)} />
-      <About {...(content.about as AboutProps)} />
-      <Contact />
+    <HomeContainer linkIds={linkIds}>
+      <Hero {...(content.hero as IntroductionProps)} locale={locale} />
+      <Projects {...(content.projects as ProjectsProps)} locale={locale} />
+      <Experience
+        {...(content.experience as ExperienceProps)}
+        locale={locale}
+      />
+      <About {...(content.about as AboutProps)} locale={locale} />
+      <Contact {...(content.contact as ContactProps)} locale={locale} />
     </HomeContainer>
   );
 };
@@ -134,6 +144,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   return {
     props: {
       content: languageContent,
+      locale: locale as 'en' | 'es',
     },
   };
 };

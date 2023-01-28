@@ -47,7 +47,7 @@ const ChangeProjectButtons: React.FC<ChangeProjectButtonsProps> = ({
   };
 
   return (
-    <div className="w-full justify-between flex">
+    <div className="w-full justify-between flex space-x-4">
       <div>
         {previousButton.show && (
           <Button
@@ -117,8 +117,8 @@ const ContentProjectWrapper: React.FC<ContentProjectWrapperProps> = ({
         }}
       />
 
-      <div className="absolute bottom-6">
-        <Text variant="p2">*{aclaration}</Text>
+      <div className="absolute bottom-6 hidden md:block">
+        <Text variant="p3">*{aclaration}</Text>
       </div>
     </div>
   );

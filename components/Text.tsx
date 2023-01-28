@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 interface TextProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'p2';
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'p2' | 'p3';
   children?: React.ReactNode;
   className?: string;
   underline?: boolean;
@@ -56,6 +56,7 @@ const Text: React.FC<TextProps> = ({
     h6: 'text-lg',
     p: 'text-base',
     p2: 'text-sm',
+    p3: 'text-xs',
   }[variant];
 
   const nodeClassName = classNames([textClassName, className]);

@@ -33,6 +33,7 @@ export interface ProjectsProps {
   nextProjectButtonLabel: string;
   previousProjectButtonLabel: string;
   note: string;
+  locale: 'en' | 'es';
 }
 
 /**
@@ -105,6 +106,7 @@ const Projects: React.FC<ProjectsProps> = ({
   nextProjectButtonLabel,
   previousProjectButtonLabel,
   note,
+  locale,
 }) => {
   const [currentProject, setCurrentProject] = React.useState<number | 'iddle'>(
     'iddle',
@@ -189,6 +191,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className:
           'bg-gradient-to-l from-[#f2c0a1e8] to-[#d1d1c3] hidden lg:flex',
       }}
+      locale={locale}
     >
       <ContentProjectWrapper
         buttonLabels={{

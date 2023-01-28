@@ -5,9 +5,10 @@ import { Layout, Text } from '@components';
 export interface AboutProps {
   title: string;
   description: string;
+  locale: 'en' | 'es';
 }
 
-const About: React.FC<AboutProps> = ({ title, description }) => {
+const About: React.FC<AboutProps> = ({ title, description, locale }) => {
   return (
     <Layout
       id="about"
@@ -23,6 +24,7 @@ const About: React.FC<AboutProps> = ({ title, description }) => {
       contentWrapper={{
         className: 'pt-4 lg:pt-0',
       }}
+      locale={locale}
     >
       <div className="p-6 flex flex-col space-y-4 text-center items-center lg:justify-center h-full">
         <Text variant="h3" underline>

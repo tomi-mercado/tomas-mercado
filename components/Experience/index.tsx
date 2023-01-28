@@ -27,6 +27,7 @@ export interface ExperienceProps {
   previousButtonLabel: string;
   presentText: string;
   experiences: Experience[];
+  locale: 'en' | 'es';
 }
 
 const Experience: React.FC<ExperienceProps> = ({
@@ -38,6 +39,7 @@ const Experience: React.FC<ExperienceProps> = ({
   previousButtonLabel,
   experiences,
   presentText,
+  locale,
 }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -96,6 +98,7 @@ const Experience: React.FC<ExperienceProps> = ({
     <Layout
       id="experience"
       sideComponent={<Side images={images} currentIndex={currentIndex} />}
+      locale={locale}
     >
       <Content {...contentProps} />
     </Layout>

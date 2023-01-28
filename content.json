@@ -3,7 +3,7 @@
     "hero": {
       "title": "Tomás Mercado",
       "subtitle": "Web Developer",
-      "description": "Let's learn as a team!"
+      "description": "Record<string, unknown>;"
     },
     "projects": {
       "projects": [

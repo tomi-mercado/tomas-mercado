@@ -10,6 +10,12 @@ interface SocialMediaItemProps {
   text: string;
 }
 
+export interface ContactProps {
+  title: string;
+  description: string;
+  locale: 'en' | 'es';
+}
+
 const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
   icon,
   link,
@@ -57,7 +63,7 @@ const SocialMedia: React.FC = () => {
   );
 };
 
-const Contact: React.FC = () => {
+const Contact: React.FC<ContactProps> = ({ title, description, locale }) => {
   return (
     <Layout
       id="contact"
@@ -66,21 +72,15 @@ const Contact: React.FC = () => {
         alt: 'Illustration of an eye and phone',
         className: 'object-contain',
       }}
+      locale={locale}
     >
       <div className="flex flex-col space-y-4 items-center px-6 lg:px-8 py-4 md:min-h-[inherit] h-full md:justify-center lg:h-[80%]">
         <div className="flex flex-col space-y-4">
           <Text variant="h3" underline>
-            Get in touch
+            {title}
           </Text>
 
-          <Text>
-            {`If you have any questions or inquiries
-          about my work, please don't hesitate to reach out. You can contact me
-          via email or Linkedin, and I'll do my best to get back to you as soon as
-          possible. Feel free to follow me on LinkedIn to stay up-to-date on my work.
-          Thank you for visiting my portfolio website. I'm always open to new
-          collaborations, so don't hesitate to get in touch. I look forward to hearing from you!`}
-          </Text>
+          <Text>{description}</Text>
 
           <SocialMedia />
         </div>

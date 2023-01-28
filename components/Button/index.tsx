@@ -76,7 +76,13 @@ const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {leftIcon}
-      <span>{children}</span>
+      <span
+        style={{
+          inlineSize: '-webkit-fill-available',
+        }}
+      >
+        {children}
+      </span>
       {rightIcon}
     </button>
   );

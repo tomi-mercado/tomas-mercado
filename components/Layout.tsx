@@ -18,6 +18,7 @@ interface LayoutProps {
   };
   sideComponent?: React.ReactNode;
   id?: string;
+  locale: 'en' | 'es';
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -28,6 +29,7 @@ const Layout: React.FC<LayoutProps> = ({
   screenPosition,
   sideComponent,
   id,
+  locale,
 }) => {
   if (!sideComponent && !image) {
     throw new Error('You need to provide a sideComponent or an image');
@@ -51,7 +53,9 @@ const Layout: React.FC<LayoutProps> = ({
     />
   ) : null;
 
-  const NavbarWithProps = <Navbar className={navbar?.className} />;
+  const NavbarWithProps = (
+    <Navbar className={navbar?.className} locale={locale} />
+  );
 
   let content = [
     <div key="layout-children">
