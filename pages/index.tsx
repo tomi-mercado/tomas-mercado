@@ -60,20 +60,21 @@ const HomeContainer: React.FC<HomeContainerProps> = ({ children, linkIds }) => {
 const Home: NextPage<HomeProps> = ({ content, locale }) => {
   const linkIds = links(locale).map((link) => link.sectionName);
 
+  const title = 'Tomás Mercado - Developer';
+  const description = {
+    en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
+    es: 'Sitio web de portafolio de Tomás Mercado, Desarrollador Full Stack con más de 2+ años de experiencia',
+  }[locale];
+
   return (
     <>
       <Head>
         <title>Tomás Mercado - Developer</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content={
-            {
-              en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
-              es: 'Sitio web de portafolio de Tomás Mercado, Desarrollador Full Stack con más de 2+ años de experiencia',
-            }[locale]
-          }
-        />
+        <meta name="description" content={description} />
+        <meta property="og:title" content="Tomás Mercado - Developer" />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="/logo.png" />
       </Head>
 
       <HomeContainer linkIds={linkIds}>
