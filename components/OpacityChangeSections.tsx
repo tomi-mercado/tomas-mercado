@@ -106,10 +106,27 @@ const OpacityChangeSections: React.FC<ScrollableSectionsProps> = ({
     // will allow the user to change section again after 1 second.
     setTimeout(() => {
       setIsScrolling(false);
-    }, 2000);
+    }, 1500);
 
     // We update the currentSectionIndex state variable with the index of the next section.
     setCurrentSectionIndex(newCurrentSectionIndex);
+
+    if (!memoNavbarIds || !memoNavbarIds.length) {
+      return;
+    }
+
+    // Change url to the current section
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          ...router.query,
+          'current-section': memoNavbarIds[newCurrentSectionIndex],
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   // We call the useOnScroll hook and pass it the handleScroll callback function as its

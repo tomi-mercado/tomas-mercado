@@ -16,7 +16,7 @@ const IddleContent: React.FC<IddleContentProps> = ({
   onClick,
 }) => {
   return (
-    <>
+    <div className="flex flex-col space-y-4">
       <div className="flex flex-col space-y-2">
         <Text underline as="h3" variant="h3">
           {title}
@@ -34,7 +34,7 @@ const IddleContent: React.FC<IddleContentProps> = ({
           {buttonLabel}
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 

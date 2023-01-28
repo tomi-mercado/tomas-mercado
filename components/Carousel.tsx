@@ -61,7 +61,7 @@ const Carousel: React.FC<PropsWithChildren> = ({ children }) => {
           align-items: center;
         }
       `}</style>
-      <Slider {...settings}>{children}</Slider>;
+      <Slider {...settings}>{children}</Slider>
     </>
   );
 };

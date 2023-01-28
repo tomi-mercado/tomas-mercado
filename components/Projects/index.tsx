@@ -1,14 +1,7 @@
-import React from 'react';
-import { FaReact } from 'react-icons/fa';
-import {
-  SiChakraui,
-  SiGraphql,
-  SiNextdotjs,
-  SiStrapi,
-  SiTypescript,
-} from 'react-icons/si';
+import React, { ReactNode } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import classNames from 'classnames';
 
@@ -18,40 +11,88 @@ import {
   ContentProjectWrapper,
   IddleContent,
   ProjectDetail,
-  ProjectDetailProps,
   ProjectSide,
   ProjectSideProps,
 } from './components';
-
-type Project = ProjectDetailProps & ProjectSideProps;
 
 interface ContentProject {
   title: string;
   description: string;
   iconTitle: string;
-  techStack: string;
-  mainChallenges: string[];
   images: { alt: string; src: string }[];
+  url: string;
 }
 
 export interface ProjectsProps {
   backButtonLabel: string;
-  techStackTitle: string;
   title: string;
   description: string;
   buttonLabel: string;
   projects: ContentProject[];
+  meetButtonLabel: string;
+  nextProjectButtonLabel: string;
+  previousProjectButtonLabel: string;
+  note: string;
 }
 
-const techIcons: Record<string, JSX.Element> = {
-  react: <FaReact size={36} />,
-  graphql: <SiGraphql size={36} />,
-  next: <SiNextdotjs size={36} />,
-  typescript: <SiTypescript size={36} />,
-  chakra: <SiChakraui size={36} />,
-  'react-hook-form': <>TODO RHF</>,
-  zod: <>TODO ZOD</>,
-  strapi: <SiStrapi size={36} />,
+/**
+ * Replace LinkedIn with a link to the LinkedIn profile and the same text
+ * Replace Repositories with a link to the Repositories profile and the same text
+ * Replace Repositorios with a link to the Repositorios profile and the same text
+ */
+const parseNote = (note: string): ReactNode => {
+  return (
+    <>
+      {note
+        .split(' ')
+        .map((word, index) => {
+          if (word.includes('LinkedIn')) {
+            return (
+              <Link
+                key={`note-${index}`}
+                href="https://www.linkedin.com/in/tomas-mercado"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  textDecoration: 'underline',
+                }}
+              >
+                {word}
+              </Link>
+            );
+          }
+
+          if (word.includes('Repositories') || word.includes('Repositorios')) {
+            return (
+              <Link
+                key={`note-${index}`}
+                href="https://github.com/tomi-mercado/repositories"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  textDecoration: 'underline',
+                }}
+              >
+                {word}
+              </Link>
+            );
+          }
+
+          return word;
+        })
+        .map((word, index) => {
+          if (index === 0) {
+            return word;
+          }
+
+          if (typeof word === 'string') {
+            return <span key={`note-${index}`}> {word} </span>;
+          }
+
+          return word;
+        })}
+    </>
+  );
 };
 
 const Projects: React.FC<ProjectsProps> = ({
@@ -60,7 +101,10 @@ const Projects: React.FC<ProjectsProps> = ({
   projects,
   backButtonLabel,
   buttonLabel,
-  techStackTitle,
+  meetButtonLabel,
+  nextProjectButtonLabel,
+  previousProjectButtonLabel,
+  note,
 }) => {
   const [currentProject, setCurrentProject] = React.useState<number | 'iddle'>(
     'iddle',
@@ -84,37 +128,26 @@ const Projects: React.FC<ProjectsProps> = ({
       />
     ),
     ...Object.entries(projects).reduce((acc, [index, project]) => {
-      const iconTitle = (
+      const { iconTitle: iconTitleProject } = project;
+
+      const iconTitle = iconTitleProject ? (
         <Image
-          src={project.iconTitle}
-          alt={`Icon ${project.iconTitle}`}
+          src={iconTitleProject}
+          alt={`Icon ${iconTitleProject}`}
           width={36}
           height={36}
           className="object-contain"
         />
-      );
-
-      const technologies = project.techStack.split(',');
-      const techStackIcons = technologies.map((tech) => {
-        return techIcons[tech];
-      });
+      ) : null;
 
       return {
         ...acc,
         [index]: (
           <ProjectDetail
             key={`project-detail-${index}`}
-            title={project.title}
+            meetButtonLabel={meetButtonLabel}
             icon={iconTitle}
-            description={project.description}
-            techStack={{
-              title: techStackTitle,
-              icons: techStackIcons,
-            }}
-            mainChallenges={{
-              title: techStackTitle,
-              items: project.mainChallenges,
-            }}
+            {...project}
           />
         ),
       };
@@ -158,9 +191,14 @@ const Projects: React.FC<ProjectsProps> = ({
       }}
     >
       <ContentProjectWrapper
-        backButtonLabel={backButtonLabel}
+        buttonLabels={{
+          backToIddle: backButtonLabel,
+          nextProject: nextProjectButtonLabel,
+          previousProject: previousProjectButtonLabel,
+        }}
         totalProjects={projects.length}
         currentProject={currentProject}
+        aclaration={parseNote(note)}
         onNextProject={() => {
           if (currentProject === 'iddle') {
             handleShowFirstProject();

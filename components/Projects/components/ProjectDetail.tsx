@@ -1,50 +1,33 @@
 import React from 'react';
+import { FaArrowRight, FaGithub } from 'react-icons/fa';
 
-import { Card, Carousel, Text } from '@components';
+import Link from 'next/link';
+
+import { Button, Text } from '@components';
 
 export interface ProjectDetailProps {
   title: string;
   icon?: React.ReactNode;
   description: string;
-  techStack: {
-    title: string;
-    icons: React.ReactNode[];
-  };
-  mainChallenges: {
-    title: string;
-    items: string[];
-  };
+  url: string;
+  meetButtonLabel: string;
+  githubUrl?: string;
 }
-
-interface CarouselItemProps {
-  children: React.ReactNode;
-  title: string;
-}
-
-const CarouselItem: React.FC<CarouselItemProps> = ({ children, title }) => {
-  return (
-    <div className="px-1">
-      <Card
-        className="w-full p-4 lg:min-h-[150px]"
-        wrapperClassName="flex flex-col space-y-1 lg:space-y-4 items-center"
-      >
-        <Text variant="p" className="font-bold">
-          {title}
-        </Text>
-
-        {children}
-      </Card>
-    </div>
-  );
-};
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({
   title,
   icon,
   description,
-  techStack,
-  mainChallenges,
+  url,
+  meetButtonLabel,
+  githubUrl,
 }) => {
+  const baseButtonProps = {
+    size: 'xs' as const,
+    rightIcon: <FaArrowRight />,
+    variant: 'quaternary' as const,
+  };
+
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex space-x-2">
@@ -56,23 +39,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
       <Text>{description}</Text>
 
-      <Carousel>
-        <CarouselItem title={techStack.title}>
-          <div className="grid grid-cols-3 lg:grid-cols-4 justify-items-center gap-x-2 gap-y-4">
-            {techStack.icons}
-          </div>
-        </CarouselItem>
+      <Link href={url} target="_blank">
+        <Button {...baseButtonProps}>
+          {meetButtonLabel} {title}
+        </Button>
 
-        <CarouselItem title={mainChallenges.title}>
-          <ul className="self-start">
-            {mainChallenges.items.map((challenge, i) => (
-              <li key={`main-challenges-${title}-${i}`}>
-                <Text variant="p2">✨ {challenge}</Text>
-              </li>
-            ))}
-          </ul>
-        </CarouselItem>
-      </Carousel>
+        {githubUrl && (
+          <Link href={githubUrl} target="_blank">
+            <Button {...baseButtonProps} leftIcon={<FaGithub />}>
+              Source code
+            </Button>
+          </Link>
+        )}
+      </Link>
     </div>
   );
 };

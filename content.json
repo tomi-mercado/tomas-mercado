@@ -10,7 +10,7 @@
         {
           "title": "Utel CMS",
           "iconTitle": "/utel-favicon.ico",
-          "techStack": "next,typescript,chakra,graphql,react-hook-form,zod,strapi",
+          "url": "https://utel.edu.mx",
           "images": [
             {
               "alt": "Utel CMS Hero",
@@ -29,7 +29,7 @@
         {
           "title": "Henry Website",
           "iconTitle": "/henry-favicon.ico",
-          "techStack": "react,typescript,material-ui,styled-components",
+          "url": "https://soyhenry.com",
           "images": [
             {
               "alt": "Henry Hero",
@@ -42,6 +42,63 @@
             {
               "alt": "Henry Opinions section",
               "src": "/henry-img-3.png"
+            }
+          ]
+        },
+        {
+          "title": "RMBL",
+          "iconTitle": "/rmbl-favicon.ico",
+          "url": "https://rmbl.live",
+          "images": [
+            {
+              "alt": "Select booster",
+              "src": "/rmbl-img-1.png"
+            },
+            {
+              "alt": "Game",
+              "src": "/rmbl-img-2.png"
+            },
+            {
+              "alt": "Ranking",
+              "src": "/rmbl-img-3.png"
+            }
+          ]
+        },
+        {
+          "title": "Hangman (side project)",
+          "url": "https://el-ahorcado.vercel.app/",
+          "githubUrl": "https://github.com/tomi-mercado/el-ahorcado",
+          "images": [
+            {
+              "alt": "Iddle screen",
+              "src": "/hangman-img-1.png"
+            },
+            {
+              "alt": "Lost screen",
+              "src": "/hangman-img-2.png"
+            },
+            {
+              "alt": "Won screen",
+              "src": "/hangman-img-3.png"
+            }
+          ]
+        },
+        {
+          "title": "Redeem App (Aerolab challenge)",
+          "url": "https://redeem-app.vercel.app/",
+          "githubUrl": "https://github.com/tomi-mercado/redeem-app",
+          "images": [
+            {
+              "alt": "Hero",
+              "src": "/redeem-img-1.png"
+            },
+            {
+              "alt": "Mobile screen",
+              "src": "/redeem-img-2.png"
+            },
+            {
+              "alt": "Catalogue sorted by price",
+              "src": "/redeem-img-3.png"
             }
           ]
         }
@@ -70,27 +127,28 @@
   "en": {
     "projects": {
       "backButtonLabel": "Back to projects",
-      "techStackTitle": "Tech stack",
       "title": "Projects",
       "description": "In this section, you will find a selection of my most notable web development projects. Each project showcases my ability to create visually stunning, user-friendly websites and web applications that meet the needs of my clients and users.",
       "buttonLabel": "See my projects",
+      "meetButtonLabel": "Meet",
+      "note": "Several projects I have participated in are not published due to privacy concerns. You can learn about them in my Projects section on LinkedIn. There are also side projects that I have not published here, but you can learn about them in my Repositories section on GitHub.",
+      "nextProjectButtonLabel": "Next project",
+      "previousProjectButtonLabel": "Previous project",
       "projects": [
         {
-          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.\bWith that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes.",
-          "mainChallenges": [
-            "Make the CMS easy to use for non-technical users.",
-            "Abstract sections of the site into reusable components to represent them in the CMS.",
-            "Understand the business logic of the enrollment process and implement it in the CMS.",
-            "CMS features related with dynamic forms and validations."
-          ]
+          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.\bWith that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
         },
         {
-          "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses.",
-          "mainChallenges": [
-            "Create reutilizable components and sections to allow for quick and easy website page building.",
-            "SEO optimization to allow for better ranking in search engines.",
-            "Management of params in the URL to track user behavior."
-          ]
+          "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses."
+        },
+        {
+          "description": "RMBL is an online web game where participants are randomly assigned a soccer team in every minute of a live match. Every action of the match earns points, and users can add or subtract from their opponent's score using boosters. A daily, weekly, and overall ranking is generated where prizes can be won."
+        },
+        {
+          "description": "Classic game of Hangman. Available only in Spanish. Use an API that generates random words. The game is responsive, and it is available for mobile devices. Counts with a dark mode."
+        },
+        {
+          "description": "Aerolab challenge. A web application that allows users to redeem points for products. The application is responsive, and it is available for mobile devices."
         }
       ]
     },
@@ -114,24 +172,25 @@
       "description": "En esta sección, encontrarás una selección de mis proyectos más destacados. Cada proyecto muestra mi capacidad para crear sitios web y aplicaciones web visualmente impresionantes y fáciles de usar que satisfacen las necesidades de mis clientes y usuarios.",
       "buttonLabel": "Mira mis proyectos",
       "backButtonLabel": "Volver a proyectos",
-      "techStackTitle": "Tecnologías",
+      "meetButtonLabel": "Conoce",
+      "nextProjectButtonLabel": "Siguiente proyecto",
+      "previousProjectButtonLabel": "Proyecto anterior",
+      "note": "Varios proyectos en los que he participado no están publicados por cuestiones de privacidad. Puedes conocerlos en mi sección de Proyectos en LinkedIn. También hay side projects que no he publicado aquí pero puedes conocerlos en mi sección de Respositorios en GitHub.",
       "projects": [
         {
-          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.\bCon ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente.",
-          "mainChallenges": [
-            "Hacer que el CMS sea fácil de usar para usuarios no técnicos.",
-            "Abstractar secciones del sitio en componentes reutilizables para representarlos en el CMS.",
-            "Comprender la lógica de negocio del proceso de inscripción e implementarlo en el CMS.",
-            "Features del CMS relacionados con formularios dinámicos y validaciones."
-          ]
+          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.\bCon ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente."
         },
         {
-          "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios inscribirse a los cursos.",
-          "mainChallenges": [
-            "Crear componentes y secciones reutilizables para permitir la construcción rápida y sencilla de páginas del sitio web.",
-            "Optimización de SEO para permitir un mejor posicionamiento en los motores de búsqueda.",
-            "Administración de parámetros en la URL para rastrear el comportamiento del usuario."
-          ]
+          "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios inscribirse a los cursos."
+        },
+        {
+          "description": "RMBL es un juego web en línea donde los participantes tienen asignado en cada minuto un equipo de fútbol al azar de un partido que se juega en vivo. Cada acción del partido genera puntos, y los usuarios pueden sumar más o restarle a su rival utilizando sus boosters. Se genera un ranking diario, semanal y total donde se pueden ganar premios."
+        },
+        {
+          "description": "Juego clásico del Ahorcado. Disponible únicamente en español. Usa una API que genera palabras al azar. El juego es responsive, y está disponible para dispositivos móviles. Cuenta con un modo oscuro."
+        },
+        {
+          "description": "Challenge de Aerolab. Una aplicación web que permite a los usuarios canjear puntos por productos. La aplicación es responsive, y está disponible para dispositivos móviles."
         }
       ]
     },
