@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 
 import {
   About,
@@ -60,16 +61,32 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
   const linkIds = links(locale).map((link) => link.sectionName);
 
   return (
-    <HomeContainer linkIds={linkIds}>
-      <Hero {...(content.hero as IntroductionProps)} locale={locale} />
-      <Projects {...(content.projects as ProjectsProps)} locale={locale} />
-      <Experience
-        {...(content.experience as ExperienceProps)}
-        locale={locale}
-      />
-      <About {...(content.about as AboutProps)} locale={locale} />
-      <Contact {...(content.contact as ContactProps)} locale={locale} />
-    </HomeContainer>
+    <>
+      <Head>
+        <title>Tomás Mercado - Developer</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content={
+            {
+              en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
+              es: 'Sitio web de portafolio de Tomás Mercado, Desarrollador Full Stack con más de 2+ años de experiencia',
+            }[locale]
+          }
+        />
+      </Head>
+
+      <HomeContainer linkIds={linkIds}>
+        <Hero {...(content.hero as IntroductionProps)} locale={locale} />
+        <Projects {...(content.projects as ProjectsProps)} locale={locale} />
+        <Experience
+          {...(content.experience as ExperienceProps)}
+          locale={locale}
+        />
+        <About {...(content.about as AboutProps)} locale={locale} />
+        <Contact {...(content.contact as ContactProps)} locale={locale} />
+      </HomeContainer>
+    </>
   );
 };
 
