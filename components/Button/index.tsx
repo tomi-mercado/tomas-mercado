@@ -48,12 +48,11 @@ const Button: React.FC<ButtonProps> = ({
           text-primary
         `,
       tertiary: `
-          bg-tertiary
-            hover:bg-tertiary-onHover
-            active:bg-tertiary-onActive
-          border border-secondary
-            hover:border-none
-            active:border-none
+          hover:bg-tertiary-onHover
+          active:bg-tertiary-onActive
+          outline outline-secondary
+            hover:outline-none
+            active:outline-none
           text-secondary
       `,
       quaternary: `
