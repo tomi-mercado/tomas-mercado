@@ -1,14 +1,15 @@
-import { IntroductionProps } from 'components/Hero/components';
-
 import { PropsWithChildren } from 'react';
 
 import { GetStaticProps, NextPage } from 'next';
 
 import {
   About,
+  AboutProps,
   Contact,
   Experience,
+  ExperienceProps,
   Hero,
+  IntroductionProps,
   OpacityChangeSections,
   Projects,
   ProjectsProps,
@@ -38,11 +39,13 @@ const linkIds = links.map((link) => link.sectionName);
 const HomeContainer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
+      {/** Desktop */}
       <div className="hidden lg:block">
         <OpacityChangeSections navbarIds={linkIds}>
           {children}
         </OpacityChangeSections>
       </div>
+      {/** Mobile */}
       <div className="block lg:hidden">{children}</div>
     </>
   );
@@ -53,8 +56,8 @@ const Home: NextPage<HomeProps> = ({ content }) => {
     <HomeContainer>
       <Hero {...(content.hero as IntroductionProps)} />
       <Projects {...(content.projects as ProjectsProps)} />
-      <Experience />
-      <About />
+      <Experience {...(content.experience as ExperienceProps)} />
+      <About {...(content.about as AboutProps)} />
       <Contact />
     </HomeContainer>
   );
@@ -63,25 +66,32 @@ const Home: NextPage<HomeProps> = ({ content }) => {
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   const parsedContent: Content = JSON.parse(JSON.stringify(content));
 
+  //select the language specific content
   const languageContent = parsedContent[locale as 'en' | 'es'];
 
+  //iterate over the common sections of the content
   for (const section in parsedContent.common) {
+    //if the section doesn't exist in the language content, add it from common
     if (!languageContent[section]) {
       languageContent[section] = parsedContent.common[section];
       continue;
     }
 
+    //iterate over the keys in the common section
     for (const key in parsedContent.common[section]) {
+      //if the key doesn't exist in the language section, add it from common
       if (!languageContent[section][key]) {
         languageContent[section][key] = parsedContent.common[section][key];
         continue;
       }
 
+      //if the key is a string, update it with the common version
       if (typeof languageContent[section][key] === 'string') {
         languageContent[section][key] = parsedContent.common[section][key];
         continue;
       }
 
+      //if the key is an array, iterate over the items and update them with the common version if they don't exist for the language
       if (Array.isArray(languageContent[section][key])) {
         const languageContentArray = languageContent[section][
           key
@@ -101,6 +111,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
         continue;
       }
 
+      //if the key is an object, iterate over the keys and update them with the common version
       if (typeof languageContent[section][key] === 'object') {
         const languageContentObject = languageContent[section][
           key

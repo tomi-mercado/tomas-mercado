@@ -2,7 +2,12 @@ import React from 'react';
 
 import { Layout, Text } from '@components';
 
-const About: React.FC = () => {
+export interface AboutProps {
+  title: string;
+  description: string;
+}
+
+const About: React.FC<AboutProps> = ({ title, description }) => {
   return (
     <Layout
       id="about"
@@ -19,17 +24,12 @@ const About: React.FC = () => {
         className: 'pt-4 lg:pt-0',
       }}
     >
-      <div className="py-6 flex flex-col space-y-4 text-center items-center lg:justify-center h-full">
+      <div className="p-6 flex flex-col space-y-4 text-center items-center lg:justify-center h-full">
         <Text variant="h3" underline>
-          Who am I?
+          {title}
         </Text>
 
-        <Text>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-          consequatur laudantium laborum harum atque corrupti delectus, officia
-          itaque molestias quaerat et esse at dolores. Aut obcaecati ipsum
-          impedit corporis facilis?
-        </Text>
+        <Text>{description}</Text>
       </div>
     </Layout>
   );

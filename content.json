@@ -104,6 +104,38 @@
         }
       ]
     },
+    "experience": {
+      "image": {
+        "src": "/experience-first-image.png",
+        "alt": "Illustration"
+      },
+      "nextButtonLabel": "Siguiente",
+      "previousButtonLabel": "Anterior",
+      "experiences": [
+        {
+          "title": "Aerolab",
+          "time": {
+            "from": 2022,
+            "to": "present"
+          },
+          "image": {
+            "src": "/aerolab-logo.png",
+            "alt": "Aerolab Logo"
+          }
+        },
+        {
+          "title": "Henry",
+          "time": {
+            "from": 2020,
+            "to": 2022
+          },
+          "image": {
+            "src": "/henry-logo.png",
+            "alt": "Henry Logo"
+          }
+        }
+      ]
+    },
     "contact": {
       "links": [
         {
@@ -136,7 +168,7 @@
       "previousProjectButtonLabel": "Previous project",
       "projects": [
         {
-          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.\bWith that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
+          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.With that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
         },
         {
           "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses."
@@ -154,12 +186,23 @@
     },
     "experience": {
       "title": "Experience",
-      "description": "As a web developer with over 2+ of experience in the field, I have had the opportunity to work at some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile applications to developing internal systems and implementing automation solutions.",
-      "buttonLabel": "Where I was working"
+      "description": "As a web developer with 2+ years of experience in the field, I have had the opportunity to work on some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile apps to developing internal systems and implementing automation solutions.",
+      "presentText": "Present",
+      "buttonLabel": "Where I was working",
+      "nextButtonLabel": "Next",
+      "previousButtonLabel": "Back",
+      "experiences": [
+        {
+          "description": "Aerolab is a Product Design Agency that combines custom user experience, personalized design, and technology. They design and execute tailored solutions to help their clients improve their business, from mobile apps and websites to branding. At Aerolab, I had the opportunity to work with a wide variety of technologies, and to communicate directly with clients to understand their needs and offer custom solutions. Finally, I found that I really enjoy documenting, both the code and various processes around it."
+        },
+        {
+          "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. Here I was the first dev they hired and I could see the growth from my work, and how the team was formed around it, having the opportunity to learn alongside them in my first steps in coding. At Henry, I participated in the first projects that sought to solve common problems in the company and the community."
+        }
+      ]
     },
     "about": {
       "title": "Who am I?",
-      "description": "My name is Tomás Mercado, and my colleagues call me Tom. In addition to programming, I really enjoy physics and astronomy, and I would like to participate in projects related to these materials someday.\bI enjoy working as a team, and learning from my colleagues. I believe that each person brings something different to a project, and that together we can create something incredible. The community is the foundation of the growth of technology.\bI am a vegetarian, I enjoy taking care of the plants at home, and I really like music. I listen to everything, so if you want to recommend something to me, don't hesitate to do so. I also like consuming Youtube content, more than movies or TV shows, I believe it is the medium that has helped me learn new things and understand other points of view on different topics."
+      "description": "My name is Tomás Mercado, and my colleagues call me Tom. In addition to programming, I really enjoy physics and astronomy, and I would like to participate in projects related to these materials someday.I enjoy working as a team, and learning from my colleagues. I believe that each person brings something different to a project, and that together we can create something incredible. The community is the foundation of the growth of technology. I am a vegetarian, I enjoy taking care of the plants at home, and I really like music. I listen to everything, so if you want to recommend something to me, don't hesitate to do so. I also like consuming Youtube content, more than movies or TV shows, I believe it is the medium that has helped me learn new things and understand other points of view on different topics."
     },
     "contact": {
       "title": "Get in touch",
@@ -178,7 +221,7 @@
       "note": "Varios proyectos en los que he participado no están publicados por cuestiones de privacidad. Puedes conocerlos en mi sección de Proyectos en LinkedIn. También hay side projects que no he publicado aquí pero puedes conocerlos en mi sección de Respositorios en GitHub.",
       "projects": [
         {
-          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.\bCon ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente."
+          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.Con ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente."
         },
         {
           "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios inscribirse a los cursos."
@@ -197,11 +240,22 @@
     "experience": {
       "title": "Experiencia",
       "description": "Como desarrollador web con 2+ años de experiencia en el campo, he tenido la oportunidad de trabajar en algunas de las empresas más innovadoras de mi área. Mi experiencia abarca una variedad de proyectos, desde la creación de sitios web y aplicaciones móviles hasta el desarrollo de sistemas internos y la implementación de soluciones de automatización.",
-      "buttonLabel": "Dónde he trabajado"
+      "presentText": "Actualidad",
+      "buttonLabel": "Dónde he trabajado",
+      "nextButtonLabel": "Siguiente",
+      "previousButtonLabel": "Anterior",
+      "experiences": [
+        {
+          "description": "Aerolab es una Agencia de Diseño de Productos que combina experiencia de usuario a medida, diseño personalizado y tecnología. Diseñan y ejecutan soluciones adaptadas para ayudar a sus clientes a mejorar su negocio, desde aplicaciones móviles y sitios web hasta el branding. En Aerolab tuve la oportunidad de trabajar con una gran variedad de tecnologías, y poder comunicarme directamente con los clientes para entender sus necesidades y poder ofrecer soluciones a medida. Por último, encontré que me gusta mucho documentar, tanto el código como distintos procesos alrededor del mismo."
+        },
+        {
+          "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. Aquí fue el primer dev que contrataron y pude ver el crecimiento a partir de mi trabajo, y cómo se formaba el equipo alrededor, teniendo la oportunidad de aprender junto a ellos en mis primeros pasos en el código. En Henry participé de los primeros proyectos que buscaban solucionar problemas comunes en la compañía y la comunidad."
+        }
+      ]
     },
     "about": {
       "title": "¿Quién soy?",
-      "description": "Mi nombre es Tomás Mercado, y mis compañeros me llaman Tom. Además de programar, me gusta mucho la física y la astronomía, y me gustaría participar en proyectos relacionados a estas material alguna vez.\bDisfruto trabajar en equipo, y aprender de mis compañeros. Creo que cada persona aporta algo diferente a un proyecto, y que juntos podemos crear algo increíble. La comunidad es la base del crecimiento de la tecnología.\b Soy vegetariano, disfruto cuidar las plantas de casa, y me gusta mucho la música. Escucho de todo, así que si quieres recomendarme algo, no dudes en hacerlo. También me gusta consumir contenido de Youtube, por encima de películas o series, creo que es el medio que más me ha ayudado a aprender cosas nuevas y a entender otros puntos de vista sobre diferentes temas."
+      "description": "Mi nombre es Tomás Mercado, y mis compañeros me llaman Tom. Además de programar, me gusta mucho la física y la astronomía, y me gustaría participar en proyectos relacionados a estas material alguna vez. Disfruto trabajar en equipo, y aprender de mis compañeros. Creo que cada persona aporta algo diferente a un proyecto, y que juntos podemos crear algo increíble. La comunidad es la base del crecimiento de la tecnología. Soy vegetariano, disfruto cuidar las plantas de casa, y me gusta mucho la música. Escucho de todo, así que si quieres recomendarme algo, no dudes en hacerlo. También me gusta consumir contenido de Youtube, por encima de películas o series, creo que es el medio que más me ha ayudado a aprender cosas nuevas y a entender otros puntos de vista sobre diferentes temas."
     },
     "contact": {
       "title": "Estemos en contacto",

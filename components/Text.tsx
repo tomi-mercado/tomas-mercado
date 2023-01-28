@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface TextProps {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'p2';
   children?: React.ReactNode;
   className?: string;
@@ -41,6 +41,9 @@ const Text: React.FC<TextProps> = ({
     ),
     p2: ({ children, className }: TextProps) => (
       <p className={className}>{children}</p>
+    ),
+    span: ({ children, className }: TextProps) => (
+      <span className={className}>{children}</span>
     ),
   }[as];
 

@@ -4,6 +4,8 @@ import { Layout } from '@components';
 
 import { Introduction, IntroductionProps } from './components';
 
+export * from './components';
+
 const Hero: React.FC<IntroductionProps> = (props) => {
   return (
     <Layout
