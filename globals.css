@@ -6,3 +6,9 @@ body {
   margin: 0;
   color: #252629;
 }
+
+@media (max-width: 345px) {
+  body {
+    zoom: 0.88;
+  }
+}
