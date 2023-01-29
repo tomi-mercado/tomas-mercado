@@ -23,7 +23,7 @@ const Introduction: React.FC<IntroductionProps> = ({
           <Text as="h2" variant="h3">
             {subtitle}
           </Text>
-          <Text as="h4" variant="h6" className="text-gray-500 italic">
+          <Text as="h3" variant="h6" className="text-secondary-onHover italic">
             {description}
           </Text>
         </div>
