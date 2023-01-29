@@ -1,4 +1,5 @@
 import { LocaleProvider } from 'contexts/locale';
+import useWindowSize from 'hooks/useWindowSize';
 
 import { ReactNode } from 'react';
 
@@ -45,17 +46,18 @@ interface HomeContainerProps {
 }
 
 const HomeContainer: React.FC<HomeContainerProps> = ({ children, linkIds }) => {
+  const { width } = useWindowSize();
+
+  const isMobile = width < 1024;
+
+  if (isMobile) {
+    return <>{children}</>;
+  }
+
   return (
-    <>
-      {/** Desktop */}
-      <div className="hidden lg:block">
-        <OpacityChangeSections navbarIds={linkIds}>
-          {children}
-        </OpacityChangeSections>
-      </div>
-      {/** Mobile */}
-      <div className="block lg:hidden">{children}</div>
-    </>
+    <OpacityChangeSections navbarIds={linkIds}>
+      {children}
+    </OpacityChangeSections>
   );
 };
 

@@ -1,3 +1,5 @@
+import useWindowSize from 'hooks/useWindowSize';
+
 import React, { useEffect, useState } from 'react';
 
 import Image, { ImageProps } from 'next/image';
@@ -15,6 +17,9 @@ export interface ProjectSideProps {
 }
 
 const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
+  const { width } = useWindowSize();
+  const isMinorThan1024 = width < 1024;
+
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -39,6 +44,7 @@ const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
       <div className="relative w-full max-w-[357px] lg:max-w-full mx-auto h-[225px] lg:h-[400px]">
         {images.map((image, index) => {
           const view = index === 1 ? 'portrait' : 'landscape';
+          const size = !isMinorThan1024 ? 'xl' : index === 2 ? 'sm' : 'md';
 
           return (
             <div
@@ -58,16 +64,7 @@ const ProjectSide: React.FC<ProjectSideProps> = ({ images }) => {
                 },
               ])}
             >
-              <div className="lg:hidden">
-                <ImageCard
-                  image={image}
-                  view={view}
-                  size={index === 2 ? 'sm' : 'md'}
-                />
-              </div>
-              <div className="hidden lg:block">
-                <ImageCard image={image} view={view} size="xl" />
-              </div>
+              <ImageCard image={image} view={view} size={size} />
             </div>
           );
         })}

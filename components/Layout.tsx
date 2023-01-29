@@ -1,3 +1,5 @@
+import useWindowSize from 'hooks/useWindowSize';
+
 import React, { Fragment } from 'react';
 
 import Image, { ImageProps } from 'next/image';
@@ -29,6 +31,9 @@ const Layout: React.FC<LayoutProps> = ({
   sideComponent,
   id,
 }) => {
+  const { width } = useWindowSize();
+  const isMobile = width < 1024;
+
   if (!sideComponent && !image) {
     throw new Error('You need to provide a sideComponent or an image');
   }
@@ -78,25 +83,23 @@ const Layout: React.FC<LayoutProps> = ({
       id={id}
       className={classNames(['bg-primary relative', contentWrapper?.className])}
     >
-      <div className="fixed z-50 lg:hidden top-0 w-full">{NavbarWithProps}</div>
+      {isMobile && (
+        <>
+          <div className="fixed z-50 top-0 w-full">{NavbarWithProps}</div>
 
-      {/** Mobile */}
-      <div className="block lg:hidden">
-        <div className="lg:fixed z-10 top-0 w-full">
           <div className="relative h-[50vh]">
             {sideComponent || ImageWithProps}
           </div>
+
+          <div className="px-6 min-h-[50vh]">{children}</div>
+        </>
+      )}
+
+      {!isMobile && (
+        <div className={`grid lg:grid-cols-2 h-screen max-w-[1920px] mx-auto`}>
+          {content.map((child) => child)}
         </div>
-
-        <div className="px-6 min-h-[50vh]">{children}</div>
-      </div>
-
-      {/** Desktop */}
-      <div
-        className={`hidden lg:grid lg:grid-cols-2 h-screen max-w-[1920px] mx-auto`}
-      >
-        {content.map((child) => child)}
-      </div>
+      )}
     </div>
   );
 };

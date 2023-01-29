@@ -186,8 +186,7 @@ const Projects: React.FC<ProjectsProps> = ({
         className: 'bg-gradient-to-b from-[#f2c0a1e8] to-[#d1d1c3]',
       }}
       navbar={{
-        className:
-          'bg-gradient-to-l from-[#f2c0a1e8] to-[#d1d1c3] hidden lg:flex',
+        className: 'bg-gradient-to-l from-[#f2c0a1e8] to-[#d1d1c3]',
       }}
     >
       <ContentProjectWrapper
