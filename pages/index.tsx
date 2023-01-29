@@ -1,3 +1,5 @@
+import { LocaleProvider } from 'contexts/locale';
+
 import { ReactNode } from 'react';
 
 import { GetStaticProps, NextPage } from 'next';
@@ -69,24 +71,23 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
   return (
     <>
       <Head>
-        <title>Tomás Mercado - Developer</title>
+        <title>{title}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="description" content={description} />
-        <meta property="og:title" content="Tomás Mercado - Developer" />
+        <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content="/logo.png" />
       </Head>
 
-      <HomeContainer linkIds={linkIds}>
-        <Hero {...(content.hero as IntroductionProps)} locale={locale} />
-        <Projects {...(content.projects as ProjectsProps)} locale={locale} />
-        <Experience
-          {...(content.experience as ExperienceProps)}
-          locale={locale}
-        />
-        <About {...(content.about as AboutProps)} locale={locale} />
-        <Contact {...(content.contact as ContactProps)} locale={locale} />
-      </HomeContainer>
+      <LocaleProvider locale={locale}>
+        <HomeContainer linkIds={linkIds}>
+          <Hero {...(content.hero as IntroductionProps)} />
+          <Projects {...(content.projects as ProjectsProps)} />
+          <Experience {...(content.experience as ExperienceProps)} />
+          <About {...(content.about as AboutProps)} />
+          <Contact {...(content.contact as ContactProps)} />
+        </HomeContainer>
+      </LocaleProvider>
     </>
   );
 };

@@ -13,7 +13,6 @@ interface SocialMediaItemProps {
 export interface ContactProps {
   title: string;
   description: string;
-  locale: 'en' | 'es';
 }
 
 const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
@@ -61,7 +60,7 @@ const SocialMedia: React.FC = () => {
   );
 };
 
-const Contact: React.FC<ContactProps> = ({ title, description, locale }) => {
+const Contact: React.FC<ContactProps> = ({ title, description }) => {
   return (
     <Layout
       id="contact"
@@ -70,7 +69,6 @@ const Contact: React.FC<ContactProps> = ({ title, description, locale }) => {
         alt: 'Illustration of an eye and phone',
         className: 'object-contain',
       }}
-      locale={locale}
     >
       <div className="flex flex-col space-y-4 items-center px-6 lg:px-8 py-4 md:min-h-[inherit] h-full md:justify-center lg:h-[80%]">
         <div className="flex flex-col space-y-4">

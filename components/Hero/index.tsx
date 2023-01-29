@@ -6,7 +6,7 @@ import { Introduction, IntroductionProps } from './components';
 
 export * from './components';
 
-const Hero: React.FC<IntroductionProps & { locale: 'en' | 'es' }> = (props) => {
+const Hero: React.FC<IntroductionProps> = (props) => {
   return (
     <Layout
       id="hero"
@@ -18,7 +18,6 @@ const Hero: React.FC<IntroductionProps & { locale: 'en' | 'es' }> = (props) => {
       navbar={{
         className: 'bg-gradient-to-r from-[#d8c0aa] to-[#c6c1b5] lg:white',
       }}
-      locale={props.locale}
     >
       <Introduction {...props} />
     </Layout>

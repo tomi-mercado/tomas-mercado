@@ -1,3 +1,5 @@
+import { useLocale } from 'contexts/locale';
+
 import React from 'react';
 import { AiOutlineGlobal } from 'react-icons/ai';
 
@@ -7,6 +9,19 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 import { Text } from '@components';
+
+interface NavbarProps {
+  className?: string;
+}
+
+interface NavbarLinkProps {
+  sectionName: string;
+  text: string;
+}
+
+interface UpdateLocaleButtonProps {
+  className?: string;
+}
 
 export const links = (locale: 'en' | 'es') => [
   {
@@ -46,16 +61,6 @@ export const links = (locale: 'en' | 'es') => [
   },
 ];
 
-interface NavbarProps {
-  className?: string;
-  locale: 'en' | 'es';
-}
-
-interface NavbarLinkProps {
-  sectionName: string;
-  text: string;
-}
-
 const NavbarLink: React.FC<NavbarLinkProps> = ({ sectionName, text }) => (
   <Link href={`?current-section=${sectionName}`}>
     <Text as="p" variant="p2">
@@ -64,11 +69,36 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({ sectionName, text }) => (
   </Link>
 );
 
-const Navbar: React.FC<NavbarProps> = ({ className, locale }) => {
+const UpdateLocaleButton: React.FC<UpdateLocaleButtonProps> = ({
+  className,
+}) => {
+  const { locale } = useLocale();
+
+  return (
+    <Link
+      href="/"
+      locale={locale === 'en' ? 'es' : 'en'}
+      className={classNames([
+        'flex space-x-2 items-center p-1 border border-black',
+        className,
+      ])}
+    >
+      <AiOutlineGlobal />
+
+      <Text as="p" variant="p3">
+        {locale.toUpperCase()}
+      </Text>
+    </Link>
+  );
+};
+
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
+  const { locale } = useLocale();
+
   return (
     <div
       className={classNames([
-        'py-4 px-6 flex items-center justify-center sm:justify-between w-full',
+        'py-4 px-6 flex items-center justify-between w-full',
         className,
       ])}
     >
@@ -98,18 +128,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, locale }) => {
           return <NavbarLink key={link.sectionName} {...link} />;
         })}
 
-        <Link
-          href="/"
-          locale={locale === 'en' ? 'es' : 'en'}
-          className="flex space-x-2 items-center p-1 border border-black"
-        >
-          <AiOutlineGlobal />
-
-          <Text as="p" variant="p3">
-            {locale.toUpperCase()}
-          </Text>
-        </Link>
+        <UpdateLocaleButton />
       </div>
+
+      <UpdateLocaleButton className="block sm:hidden" />
     </div>
   );
 };
