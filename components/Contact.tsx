@@ -34,28 +34,24 @@ const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
 
 const SocialMedia: React.FC = () => {
   return (
-    <div className="flex flex-col space-y-3">
-      <div className="w-[300px]">
-        <div className="grid grid-cols-[1fr,5fr] gap-y-2">
-          <SocialMediaItem
-            icon={<BsLinkedin size={36} />}
-            link="https://linkedin.com/in/tomas-mercado"
-            text="/tomas-mercado"
-          />
+    <div className="grid grid-cols-[1fr,5fr] gap-y-2 w-[300px] self-start">
+      <SocialMediaItem
+        icon={<BsLinkedin size={36} />}
+        link="https://linkedin.com/in/tomas-mercado"
+        text="/tomas-mercado"
+      />
 
-          <SocialMediaItem
-            icon={<BsGithub size={36} />}
-            link="https://github.com/tomi-mercado"
-            text="/tomi-mercado"
-          />
+      <SocialMediaItem
+        icon={<BsGithub size={36} />}
+        link="https://github.com/tomi-mercado"
+        text="/tomi-mercado"
+      />
 
-          <SocialMediaItem
-            icon={<IoMdMail size={36} />}
-            link="mailto:tmercadoslp@gmail.com"
-            text="tmercadoslp@gmail.com"
-          />
-        </div>
-      </div>
+      <SocialMediaItem
+        icon={<IoMdMail size={36} />}
+        link="mailto:tmercadoslp@gmail.com"
+        text="tmercadoslp@gmail.com"
+      />
     </div>
   );
 };
@@ -71,15 +67,13 @@ const Contact: React.FC<ContactProps> = ({ title, description }) => {
       }}
     >
       <div className="flex flex-col space-y-4 items-center px-6 lg:px-8 py-4 md:min-h-[inherit] h-full md:justify-center lg:h-[80%]">
-        <div className="flex flex-col space-y-4">
-          <Text variant="h3" underline>
-            {title}
-          </Text>
+        <Text variant="h3" underline>
+          {title}
+        </Text>
 
-          <Text>{description}</Text>
+        <Text>{description}</Text>
 
-          <SocialMedia />
-        </div>
+        <SocialMedia />
       </div>
     </Layout>
   );
