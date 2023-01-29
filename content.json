@@ -218,7 +218,7 @@
       "meetButtonLabel": "Conoce",
       "nextProjectButtonLabel": "Siguiente proyecto",
       "previousProjectButtonLabel": "Proyecto anterior",
-      "note": "Varios proyectos en los que he participado no están publicados por cuestiones de privacidad. Puedes conocerlos en mi sección de Proyectos en LinkedIn. También hay side projects que no he publicado aquí pero puedes conocerlos en mi sección de Respositorios en GitHub.",
+      "note": "Varios proyectos en los que he participado no están publicados por cuestiones de privacidad. Puedes conocerlos en mi sección de Proyectos en LinkedIn. También hay side projects que no he publicado aquí pero puedes conocerlos en mi sección de Repositorios en GitHub.",
       "projects": [
         {
           "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.Con ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente."

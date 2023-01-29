@@ -66,7 +66,7 @@ const parseNote = (note: string): ReactNode => {
             return (
               <Link
                 key={`note-${index}`}
-                href="https://github.com/tomi-mercado/repositories"
+                href="https://github.com/tomi-mercado?tab=repositories"
                 target="_blank"
                 rel="noreferrer"
                 style={{
