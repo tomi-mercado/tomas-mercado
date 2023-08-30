@@ -16,8 +16,6 @@ import {
   Hero,
   IntroductionProps,
   OpacityChangeSections,
-  Projects,
-  ProjectsProps,
   links,
 } from '@components';
 
@@ -84,7 +82,6 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       <LocaleProvider locale={locale}>
         <HomeContainer linkIds={linkIds}>
           <Hero {...(content.hero as IntroductionProps)} />
-          <Projects {...(content.projects as ProjectsProps)} />
           <Experience {...(content.experience as ExperienceProps)} />
           <About {...(content.about as AboutProps)} />
           <Contact {...(content.contact as ContactProps)} />

@@ -32,13 +32,6 @@ export const links = (locale: 'en' | 'es') => [
     }[locale],
   },
   {
-    sectionName: 'projects',
-    text: {
-      en: 'Projects',
-      es: 'Proyectos',
-    }[locale],
-  },
-  {
     sectionName: 'experience',
     text: {
       en: 'Experience',

@@ -157,33 +157,6 @@
     }
   },
   "en": {
-    "projects": {
-      "backButtonLabel": "Back to projects",
-      "title": "Projects",
-      "description": "In this section, you will find a selection of my most notable web development projects. Each project showcases my ability to create visually stunning, user-friendly websites and web applications that meet the needs of my clients and users.",
-      "buttonLabel": "See my projects",
-      "meetButtonLabel": "Meet",
-      "note": "Several projects I have participated in are not published due to privacy concerns. You can learn about them in my Projects section on LinkedIn. There are also side projects that I have not published here, but you can learn about them in my Repositories section on GitHub.",
-      "nextProjectButtonLabel": "Next project",
-      "previousProjectButtonLabel": "Previous project",
-      "projects": [
-        {
-          "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.With that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
-        },
-        {
-          "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses."
-        },
-        {
-          "description": "RMBL is an online web game where participants are randomly assigned a soccer team in every minute of a live match. Every action of the match earns points, and users can add or subtract from their opponent's score using boosters. A daily, weekly, and overall ranking is generated where prizes can be won."
-        },
-        {
-          "description": "Classic game of Hangman. Available only in Spanish. Use an API that generates random words. The game is responsive, and it is available for mobile devices. Counts with a dark mode."
-        },
-        {
-          "description": "Aerolab challenge. A web application that allows users to redeem points for products. The application is responsive, and it is available for mobile devices."
-        }
-      ]
-    },
     "experience": {
       "title": "Experience",
       "description": "As a web developer with 2+ years of experience in the field, I have had the opportunity to work on some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile apps to developing internal systems and implementing automation solutions.",
@@ -210,33 +183,6 @@
     }
   },
   "es": {
-    "projects": {
-      "title": "Proyectos",
-      "description": "En esta sección, encontrarás una selección de mis proyectos más destacados. Cada proyecto muestra mi capacidad para crear sitios web y aplicaciones web visualmente impresionantes y fáciles de usar que satisfacen las necesidades de mis clientes y usuarios.",
-      "buttonLabel": "Mira mis proyectos",
-      "backButtonLabel": "Volver a proyectos",
-      "meetButtonLabel": "Conoce",
-      "nextProjectButtonLabel": "Siguiente proyecto",
-      "previousProjectButtonLabel": "Proyecto anterior",
-      "note": "Varios proyectos en los que he participado no están publicados por cuestiones de privacidad. Puedes conocerlos en mi sección de Proyectos en LinkedIn. También hay side projects que no he publicado aquí pero puedes conocerlos en mi sección de Repositorios en GitHub.",
-      "projects": [
-        {
-          "description": "Utel es una universidad online mexicana que ofrece carreras, cursos y maestrías en línea para más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un único lugar.Con ese objetivo, se construyó un CMS dinámico, que permite construir páginas del sitio de forma rápida y sencilla, a la vez que permite administrar los procesos de inscripción de forma eficiente."
-        },
-        {
-          "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y medio tiempo en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios inscribirse a los cursos."
-        },
-        {
-          "description": "RMBL es un juego web en línea donde los participantes tienen asignado en cada minuto un equipo de fútbol al azar de un partido que se juega en vivo. Cada acción del partido genera puntos, y los usuarios pueden sumar más o restarle a su rival utilizando sus boosters. Se genera un ranking diario, semanal y total donde se pueden ganar premios."
-        },
-        {
-          "description": "Juego clásico del Ahorcado. Disponible únicamente en español. Usa una API que genera palabras al azar. El juego es responsive, y está disponible para dispositivos móviles. Cuenta con un modo oscuro."
-        },
-        {
-          "description": "Challenge de Aerolab. Una aplicación web que permite a los usuarios canjear puntos por productos. La aplicación es responsive, y está disponible para dispositivos móviles."
-        }
-      ]
-    },
     "experience": {
       "title": "Experiencia",
       "description": "Como desarrollador web con 2+ años de experiencia en el campo, he tenido la oportunidad de trabajar en algunas de las empresas más innovadoras de mi área. Mi experiencia abarca una variedad de proyectos, desde la creación de sitios web y aplicaciones móviles hasta el desarrollo de sistemas internos y la implementación de soluciones de automatización.",
