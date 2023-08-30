@@ -12,7 +12,7 @@ const About: React.FC<AboutProps> = ({ title, description }) => {
     <Layout
       id="about"
       image={{
-        src: '/tomas-mercado.jpeg',
+        src: '/tomas-mercado.jpg',
         alt: 'Tomas Mercado photo',
         className: 'object-contain lg:object-cover lg:object-top',
       }}
