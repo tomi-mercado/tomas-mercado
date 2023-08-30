@@ -29,6 +29,17 @@ export interface ExperienceProps {
   experiences: Experience[];
 }
 
+const replaceYearsExperience = (description: string) => {
+  const startDate = new Date('2020-08-03:');
+  const endDate = new Date();
+
+  const years = endDate.getFullYear() - startDate.getFullYear();
+
+  const strToUse = `${years}+`;
+
+  return description.replace('[yearsExperience]', strToUse);
+};
+
 const Experience: React.FC<ExperienceProps> = ({
   title,
   description,
@@ -63,7 +74,7 @@ const Experience: React.FC<ExperienceProps> = ({
   const contentsProps: (ContentProps & { image: SideProps['images'][0] })[] = [
     {
       title,
-      description,
+      description: replaceYearsExperience(description),
       image,
       rightButton: {
         label: buttonLabel,

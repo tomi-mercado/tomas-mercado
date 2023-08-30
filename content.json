@@ -159,7 +159,7 @@
   "en": {
     "experience": {
       "title": "Experience",
-      "description": "As a web developer with 2+ years of experience in the field, I have had the opportunity to work on some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile apps to developing internal systems and implementing automation solutions.",
+      "description": "As a web developer with [yearsExperience] years of experience in the field, I have had the opportunity to work on some of the most innovative companies in my area. My experience encompasses a variety of projects, from creating websites and mobile apps to developing internal systems and implementing automation solutions.",
       "presentText": "Present",
       "buttonLabel": "Where I was working",
       "nextButtonLabel": "Next",
@@ -185,7 +185,7 @@
   "es": {
     "experience": {
       "title": "Experiencia",
-      "description": "Como desarrollador web con 2+ años de experiencia en el campo, he tenido la oportunidad de trabajar en algunas de las empresas más innovadoras de mi área. Mi experiencia abarca una variedad de proyectos, desde la creación de sitios web y aplicaciones móviles hasta el desarrollo de sistemas internos y la implementación de soluciones de automatización.",
+      "description": "Como desarrollador web con [yearsExperience] años de experiencia en el campo, he tenido la oportunidad de trabajar en algunas de las empresas más innovadoras de mi área. Mi experiencia abarca una variedad de proyectos, desde la creación de sitios web y aplicaciones móviles hasta el desarrollo de sistemas internos y la implementación de soluciones de automatización.",
       "presentText": "Actualidad",
       "buttonLabel": "Dónde he trabajado",
       "nextButtonLabel": "Siguiente",
