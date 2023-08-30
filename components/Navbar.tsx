@@ -95,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         className,
       ])}
     >
-      <div className="flex space-x-2 w-fit items-center">
+      <Link href="/" className="flex space-x-2 w-fit items-center">
         <div className="relative w-[50px] h-[50px]">
           <Image
             src="/logo.png"
@@ -114,7 +114,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         >
           Tomás Mercado
         </Text>
-      </div>
+      </Link>
 
       <div className="hidden sm:flex items-center space-x-3">
         {links(locale)?.map((link) => {
