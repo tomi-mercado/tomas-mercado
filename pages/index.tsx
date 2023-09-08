@@ -1,23 +1,7 @@
 import { LocaleProvider } from 'contexts/locale';
-import useWindowSize from 'hooks/useWindowSize';
-
-import { ReactNode } from 'react';
 
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-
-import {
-  About,
-  AboutProps,
-  Contact,
-  ContactProps,
-  Experience,
-  ExperienceProps,
-  Hero,
-  IntroductionProps,
-  OpacityChangeSections,
-  links,
-} from '@components';
 
 import content from '../content.json';
 
@@ -38,30 +22,7 @@ interface HomeProps {
   locale: 'en' | 'es';
 }
 
-interface HomeContainerProps {
-  children: ReactNode;
-  linkIds: string[];
-}
-
-const HomeContainer: React.FC<HomeContainerProps> = ({ children, linkIds }) => {
-  const { width } = useWindowSize();
-
-  const isMobile = width < 1024;
-
-  if (isMobile) {
-    return <>{children}</>;
-  }
-
-  return (
-    <OpacityChangeSections navbarIds={linkIds}>
-      {children}
-    </OpacityChangeSections>
-  );
-};
-
 const Home: NextPage<HomeProps> = ({ content, locale }) => {
-  const linkIds = links(locale).map((link) => link.sectionName);
-
   const title = 'Tomás Mercado - Developer';
   const description = {
     en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
@@ -80,12 +41,7 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       </Head>
 
       <LocaleProvider locale={locale}>
-        <HomeContainer linkIds={linkIds}>
-          <Hero {...(content.hero as IntroductionProps)} />
-          <Experience {...(content.experience as ExperienceProps)} />
-          <About {...(content.about as AboutProps)} />
-          <Contact {...(content.contact as ContactProps)} />
-        </HomeContainer>
+        <div>Omg bye bye</div>
       </LocaleProvider>
     </>
   );
