@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-type TomBotStatus = 'iddle' | 'loading' | 'success' | 'error';
+export type TomBotStatus = 'iddle' | 'loading' | 'success' | 'error';
 
 const useChatbot = () => {
   // Chatbot
