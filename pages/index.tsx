@@ -1,4 +1,6 @@
+import Introduction from 'components/Introduction';
 import { LocaleProvider } from 'contexts/locale';
+import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import {
   FaGithub as GithubIcon,
@@ -9,7 +11,6 @@ import { MdEmail as EmailIcon } from 'react-icons/md';
 
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import content from '../content.json';
@@ -30,21 +31,6 @@ interface HomeProps {
   content: LanguageContent;
   locale: 'en' | 'es';
 }
-
-const necessaryKey = '[yearsExperience]';
-const startDate = new Date('2020-08-03:');
-const today = new Date();
-const replaceYearsExperience = (text: string) => {
-  if (!text.includes(necessaryKey)) {
-    throw new Error(
-      `The text passed to replaceYearsExperience must include the string "${necessaryKey}"`,
-    );
-  }
-
-  const years = today.getFullYear() - startDate.getFullYear();
-
-  return text.replace(necessaryKey, `${years}+`);
-};
 
 const Home: NextPage<HomeProps> = ({ content, locale }) => {
   const title = 'Tomás Mercado - Developer';
@@ -68,29 +54,11 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
 
       <LocaleProvider locale={locale}>
         <div className="max-w-6xl p-6 flex flex-col gap-4 items-center text-center">
-          <h2 className="text-4xl">
-            Morniiiing!
-            <br /> ☀️ {`I'm`}{' '}
-            <span className="underline -underline-offset-8 decoration-primary">
-              Tom
-            </span>{' '}
-            👋🏻
-          </h2>
-
-          <Image
-            src="/tomas-mercado.jpg"
-            alt="A picture of Tomás Mercado smiling"
-            width={150}
-            height={150}
-            priority
-            className="rounded-full w-[150px] h-[150px] object-cover"
+          <Introduction
+            title={content.introduction.title}
+            description={content.introduction.description}
+            image={content.introduction.image}
           />
-
-          <p className="text-lg">
-            My name is Tomas Mercado (Tom, pls) and I am a Web Developer with{' '}
-            {replaceYearsExperience('[yearsExperience]')} years of experience
-            who every day try to say hello in the most cheerful way possible.
-          </p>
 
           <div className="flex flex-col gap-2">
             <p className="text-lg">
