@@ -1,14 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 
+import useDebounce from './useDebounce';
+
 export type TomBotStatus = 'iddle' | 'loading' | 'success' | 'error';
+
+const getQuestionValueFromLocalStorage = () => {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const questionValue = localStorage.getItem('questionValue');
+
+  if (!questionValue) {
+    return '';
+  }
+
+  return questionValue;
+};
+
+const writeQuestionValueToLocalStorage = (questionValue: string) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  localStorage.setItem('questionValue', questionValue);
+};
 
 const useChatbot = () => {
   // Chatbot
   const [status, setStatus] = useState<TomBotStatus>('iddle');
-  const [questionValue, setQuestionValue] = useState('');
+  const [questionValue, setQuestionValue] = useState(
+    getQuestionValueFromLocalStorage,
+  );
   const [response, setResponse] = useState<string | null>(null);
+
+  useDebounce(
+    () => {
+      writeQuestionValueToLocalStorage(questionValue);
+    },
+    1000,
+    [questionValue],
+  );
 
   // Auth
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -21,6 +55,10 @@ const useChatbot = () => {
       document.getElementById('login-modal')?.showModal();
     }, 100);
   };
+
+  useEffect(() => {
+    setQuestionValue(getQuestionValueFromLocalStorage);
+  }, []);
 
   const actions = {
     iddle: {
