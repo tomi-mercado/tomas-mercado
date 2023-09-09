@@ -4,6 +4,8 @@ import translate from 'chatbot/translate';
 
 import { NextApiHandler } from 'next';
 
+const DEBUGGING = true;
+
 const handler: NextApiHandler = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -21,6 +23,10 @@ const handler: NextApiHandler = async (req, res) => {
 
   if (prompt.length > 280) {
     return res.status(400).json({ message: 'Prompt too long' });
+  }
+
+  if (DEBUGGING) {
+    return res.status(200).json({ response: 'Hello!' });
   }
 
   try {
