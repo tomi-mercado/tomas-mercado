@@ -1,5 +1,8 @@
+import remarkGfm from 'remark-gfm';
+
 import React, { useEffect, useState } from 'react';
 import { FaPaperPlane as SendIcon } from 'react-icons/fa';
+import ReactMarkdown from 'react-markdown';
 
 interface TomBotProps {
   description: string;
@@ -186,10 +189,13 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
             success: (
               <NotIddleWrapper className="flex-col">
                 <p>
-                  🙎 You: <br /> - {questionValue}
+                  🙎 You: <br /> {questionValue}
                 </p>
                 <p>
-                  🤖 TomBot: <br /> - {response}
+                  🤖 TomBot: <br />
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {`${response}`}
+                  </ReactMarkdown>
                 </p>
                 <button
                   className="btn btn-primary btn-xs self-end"
