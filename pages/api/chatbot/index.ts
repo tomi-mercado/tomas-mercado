@@ -6,7 +6,7 @@ import { getCredits, getUser, updateCredits } from 'services/auth';
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const DEBUGGING = true;
+const DEBUGGING = false;
 
 const isCurrentlyGettingResponse: { [userId: string]: boolean } = {};
 

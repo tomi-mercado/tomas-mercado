@@ -26,27 +26,29 @@ const Success: React.FC<SuccessProps> = ({
   const you = user?.name || 'You';
 
   return (
-    <NotIddleWrapper className="flex-col">
+    <NotIddleWrapper className="flex-col gap-4">
       <p>
-        <span className="flex gap-1">
+        <span className="flex gap-1 items-center">
           {user?.picture ? (
             <Image
               src={user.picture}
               alt={user.name || 'Google profile image'}
-              width={16}
-              height={16}
-              className="rounded-full object-cover"
+              width={24}
+              height={24}
+              className="rounded-full object-cover w-6 h-6"
             />
           ) : (
             <>🙎</>
           )}
-          {you}:
+          {you}
         </span>{' '}
-        {questionValue}
+        <span className="italic">{questionValue}</span>
       </p>
+
       <p>
-        🤖 TomBot: <br />
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        🤖 TomBot
+        <br />
+        <ReactMarkdown remarkPlugins={[remarkGfm]} className="italic">
           {`${response}`}
         </ReactMarkdown>
       </p>

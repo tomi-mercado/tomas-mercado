@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { QueryObserverResult } from 'react-query';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 
@@ -36,7 +37,9 @@ const cleanQuestionValueFromLocalStorage = () => {
   localStorage.removeItem('questionValue');
 };
 
-const useChatbot = () => {
+const useChatbot = (
+  refetchCredits: () => Promise<QueryObserverResult<number, unknown>>,
+) => {
   // Chatbot
   const [status, setStatus] = useState<TomBotStatus>('iddle');
   const [questionValue, setQuestionValue] = useState(
@@ -96,6 +99,7 @@ const useChatbot = () => {
           }
 
           const data = (await r.json()) as { response: string };
+          await refetchCredits();
           actions.loading.onSuccess(data.response);
         } catch (e) {
           actions.loading.onError();
