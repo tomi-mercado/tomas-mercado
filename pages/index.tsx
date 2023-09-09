@@ -47,24 +47,26 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       </Head>
 
       <LocaleProvider locale={locale}>
-        <div className="max-w-6xl p-6 flex flex-col gap-4 items-center text-center">
-          <Introduction
-            title={content.introduction.title}
-            description={content.introduction.description}
-            image={content.introduction.image}
-          />
+        <div className="w-full flex justify-center min-h-screen items-center">
+          <div className="max-w-6xl p-6 flex flex-col gap-4 items-center text-center">
+            <Introduction
+              title={content.introduction.title}
+              description={content.introduction.description}
+              image={content.introduction.image}
+            />
 
-          <TomBot
-            description={content.tombot.description}
-            placeholder={content.tombot.placeholder}
-          />
+            <TomBot
+              description={content.tombot.description}
+              placeholder={content.tombot.placeholder}
+            />
 
-          <Contact
-            description={content.contact.description}
-            email={content.contact.email}
-            github={content.contact.github}
-            linkedin={content.contact.linkedin}
-          />
+            <Contact
+              description={content.contact.description}
+              email={content.contact.email}
+              github={content.contact.github}
+              linkedin={content.contact.linkedin}
+            />
+          </div>
         </div>
       </LocaleProvider>
     </>
