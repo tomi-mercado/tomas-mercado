@@ -24,6 +24,7 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   try {
+    throw new Error('ups');
     const userLanguage = await detectLanguage(prompt);
     const translatedPrompt = await translate(prompt, userLanguage, 'english');
     const response = await getResponse(translatedPrompt);

@@ -1,8 +1,13 @@
 import remarkGfm from 'remark-gfm';
 
 import React, { useEffect, useState } from 'react';
-import { FaPaperPlane as SendIcon } from 'react-icons/fa';
+import {
+  FaGoogle as GoogleIcon,
+  FaPaperPlane as SendIcon,
+} from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
+
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 interface TomBotProps {
   description: string;
@@ -61,11 +66,26 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
   const [questionValue, setQuestionValue] = useState('');
   const loadingMessage = useLoadingMessage(status);
   const [response, setResponse] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user, isLoading: loadingAuth } = useUser();
+
+  const openLoginRequiredModal = () => {
+    setIsModalOpen(true);
+    setTimeout(() => {
+      // @ts-expect-error
+      document.getElementById('login-modal')?.showModal();
+    }, 100);
+  };
 
   const actions = {
     iddle: {
       onSubmit: async () => {
         if (!questionValue) {
+          return;
+        }
+
+        if (!user) {
+          openLoginRequiredModal();
           return;
         }
 
@@ -156,75 +176,97 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
       className="flex flex-col gap-2"
       onSubmit={(event) => {
         event.preventDefault();
+
         getAction('submit')?.();
       }}
     >
       <p className="text-lg">{description} 🤖</p>
 
-      <div className="relative min-h-[150px]">
-        {
+      {loadingAuth && <p>Loading your data...</p>}
+      {!loadingAuth && (
+        <div className="relative min-h-[150px]">
           {
-            iddle: (
-              <>
-                <textarea
-                  className="textarea textarea-primary w-full pr-10 no-scroll h-full min-h-[inherit]"
-                  placeholder={placeholder}
-                  value={questionValue}
-                  onChange={(event) => setQuestionValue(event.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-square btn-xs absolute bottom-4 right-3"
-                >
-                  <SendIcon />
-                </button>
-              </>
-            ),
-            loading: (
-              <NotIddleWrapper>
-                <span className="loading loading-spinner block" />
-                <p>{loadingMessage}</p>
-              </NotIddleWrapper>
-            ),
-            success: (
-              <NotIddleWrapper className="flex-col">
-                <p>
-                  🙎 You: <br /> {questionValue}
-                </p>
-                <p>
-                  🤖 TomBot: <br />
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {`${response}`}
-                  </ReactMarkdown>
-                </p>
-                <button
-                  className="btn btn-primary btn-xs self-end"
-                  onClick={() => {
-                    getAction('again')?.();
-                  }}
-                >
-                  Ask again (3 remaining)
-                </button>
-              </NotIddleWrapper>
-            ),
-            error: (
-              <NotIddleWrapper className="border-error flex-col">
-                <p className="text-center">
-                  TomBot is not available right now 😢
-                </p>
-                <button
-                  className="btn btn-primary btn-xs self-end"
-                  onClick={() => {
-                    getAction('retry')?.();
-                  }}
-                >
-                  Retry
-                </button>
-              </NotIddleWrapper>
-            ),
-          }[status]
-        }
-      </div>
+            {
+              iddle: (
+                <>
+                  <textarea
+                    className="textarea textarea-primary w-full pr-10 no-scroll h-full min-h-[inherit]"
+                    placeholder={placeholder}
+                    value={questionValue}
+                    onChange={(event) => setQuestionValue(event.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-square btn-xs absolute bottom-4 right-3"
+                  >
+                    <SendIcon />
+                  </button>
+                </>
+              ),
+              loading: (
+                <NotIddleWrapper>
+                  <span className="loading loading-spinner block" />
+                  <p>{loadingMessage}</p>
+                </NotIddleWrapper>
+              ),
+              success: (
+                <NotIddleWrapper className="flex-col">
+                  <p>
+                    🙎 You: <br /> {questionValue}
+                  </p>
+                  <p>
+                    🤖 TomBot: <br />
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {`${response}`}
+                    </ReactMarkdown>
+                  </p>
+                  <button
+                    className="btn btn-primary btn-xs self-end"
+                    onClick={() => {
+                      getAction('again')?.();
+                    }}
+                  >
+                    Ask again (3 remaining)
+                  </button>
+                </NotIddleWrapper>
+              ),
+              error: (
+                <NotIddleWrapper className="border-error flex-col">
+                  <p className="text-center">
+                    TomBot is not available right now 😢
+                  </p>
+                  <button
+                    className="btn btn-primary btn-xs self-end"
+                    onClick={() => {
+                      getAction('retry')?.();
+                    }}
+                  >
+                    Retry
+                  </button>
+                </NotIddleWrapper>
+              ),
+            }[status]
+          }
+        </div>
+      )}
+
+      {isModalOpen && (
+        <dialog id="login-modal" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">
+              You are almost ready to ask TomBot 🤖
+            </h3>
+            <p className="py-4">You need to be logged in to ask.</p>
+            <div className="modal-action">
+              <button className="btn btn-error">Close</button>
+              <a className="btn btn-primary" href="/api/auth/login">
+                <GoogleIcon />
+                Login with Google
+              </a>
+            </div>
+          </div>
+        </dialog>
+      )}
     </form>
   );
 };

@@ -1,3 +1,4 @@
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { Lato } from '@next/font/google';
 import type { AppProps } from 'next/app';
 
@@ -9,7 +10,7 @@ const lato = Lato({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <UserProvider>
       <style jsx global>
         {`
           :root {
@@ -18,6 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </style>
       <Component {...pageProps} />
-    </>
+    </UserProvider>
   );
 }
