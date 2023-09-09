@@ -21,6 +21,7 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
     questionValue,
     response,
     isLoginModalOpen,
+    user,
     setQuestionValue,
     getAction,
   } = useChatbot();
@@ -42,6 +43,7 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
         response={response}
         getAction={getAction}
         remaining={5}
+        user={user}
       />
     ) : null,
     error: <Error onRetryClick={() => getAction('retry')?.()} />,

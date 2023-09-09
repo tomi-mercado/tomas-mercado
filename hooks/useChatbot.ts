@@ -28,6 +28,14 @@ const writeQuestionValueToLocalStorage = (questionValue: string) => {
   localStorage.setItem('questionValue', questionValue);
 };
 
+const cleanQuestionValueFromLocalStorage = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  localStorage.removeItem('questionValue');
+};
+
 const useChatbot = () => {
   // Chatbot
   const [status, setStatus] = useState<TomBotStatus>('iddle');
@@ -107,6 +115,7 @@ const useChatbot = () => {
       onNewQuestion: () => {
         setStatus('iddle');
         setQuestionValue('');
+        cleanQuestionValueFromLocalStorage();
         setResponse(null);
       },
     },
@@ -155,6 +164,7 @@ const useChatbot = () => {
   };
 
   return {
+    user,
     loadingAuth,
     status,
     questionValue,
