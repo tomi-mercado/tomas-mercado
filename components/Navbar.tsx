@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
   const { user } = useUser();
 
   return (
-    <header className="w-full flex justify-center bg-base-300">
+    <header className="w-full flex justify-center bg-base-300 fixed">
       <div className="navbar max-w-6xl px-6 justify-between">
         <Link href="/" className="flex gap-2 items-center">
           <Image

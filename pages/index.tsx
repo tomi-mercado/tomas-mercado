@@ -49,7 +49,7 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       <LocaleProvider locale={locale}>
         <Navbar />
 
-        <div className="w-full flex justify-center min-h-screen items-center">
+        <div className="w-full flex justify-center min-h-screen items-center pt-[105px] md:pt-[95px]">
           <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
             <Introduction
               title={content.introduction.title}
