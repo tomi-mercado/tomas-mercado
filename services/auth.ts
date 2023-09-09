@@ -1,3 +1,6 @@
+import { getSession } from '@auth0/nextjs-auth0';
+import { NextApiRequest, NextApiResponse } from 'next';
+
 export interface AccessToken {
   token_type: 'Bearer';
   expires_in: number;
@@ -123,3 +126,40 @@ export async function patchAuth0User(
 
   return user;
 }
+
+export const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getSession(req, res);
+
+  if (!session) {
+    throw new Error('Unauthorized');
+  }
+
+  const user = await getAuth0User(session.user.sub);
+
+  return {
+    ...user,
+    userId: session.user.sub,
+  };
+};
+
+const INITIAL_CREDITS = 5;
+
+export const getCredits = async (user: Awaited<ReturnType<typeof getUser>>) => {
+  let credits = user.app_metadata?.credits;
+  if (credits === undefined) {
+    credits = INITIAL_CREDITS;
+
+    try {
+      await patchAuth0User(user.userId, {
+        app_metadata: {
+          credits,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      throw new Error('Something went wrong adding inital credits to the user');
+    }
+  }
+
+  return credits;
+};
