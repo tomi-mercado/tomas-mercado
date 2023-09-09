@@ -3,12 +3,11 @@ import Introduction from 'components/Introduction';
 import Navbar from 'components/Navbar';
 import TomBot from 'components/TomBot';
 import { LocaleProvider } from 'contexts/locale';
+import { readFile } from 'fs/promises';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-
-import content from '../content.json';
 
 type ObjectInfo = Record<string, any>;
 
@@ -77,7 +76,8 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
-  const parsedContent: Content = JSON.parse(JSON.stringify(content));
+  const content = await readFile('content.json', 'utf-8');
+  const parsedContent: Content = JSON.parse(content);
 
   //select the language specific content
   const languageContent = parsedContent[locale as 'en' | 'es'];
