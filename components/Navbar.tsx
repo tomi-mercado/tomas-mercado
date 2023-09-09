@@ -39,6 +39,7 @@ const Navbar: React.FC = () => {
             style={{
               filter: 'invert(1)',
             }}
+            className="w-auto"
           />
           <span className="md:text-xl">Tomás Mercado</span>
         </Link>

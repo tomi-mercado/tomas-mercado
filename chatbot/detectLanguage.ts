@@ -1,4 +1,4 @@
-import { getCompletion } from 'services';
+import { getCompletion } from 'services/openai';
 
 const detectLanguage = async (text: string) => {
   const response = await getCompletion([

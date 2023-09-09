@@ -1,4 +1,4 @@
-import { getCompletion } from 'services';
+import { getCompletion } from 'services/openai';
 
 const translate = async (
   text: string,

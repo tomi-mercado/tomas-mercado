@@ -1,4 +1,4 @@
-import { getCompletion } from 'services';
+import { getCompletion } from 'services/openai';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 const getTomAge = () => {
