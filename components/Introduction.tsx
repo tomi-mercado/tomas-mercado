@@ -37,7 +37,7 @@ const Introduction: React.FC<IntroductionProps> = ({
         src={image.src}
         alt={image.alt}
         width={150}
-        height={150}
+        height={100}
         priority
         className="rounded-full w-[150px] h-[150px] object-cover"
       />

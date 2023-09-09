@@ -50,7 +50,7 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
         <Navbar />
 
         <div className="w-full flex justify-center min-h-screen items-center">
-          <div className="max-w-6xl p-6 pt-0 flex flex-col gap-4 items-center text-center">
+          <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
             <Introduction
               title={content.introduction.title}
               description={content.introduction.description}
