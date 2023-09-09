@@ -150,11 +150,7 @@ export const getCredits = async (user: Awaited<ReturnType<typeof getUser>>) => {
     credits = INITIAL_CREDITS;
 
     try {
-      await patchAuth0User(user.userId, {
-        app_metadata: {
-          credits,
-        },
-      });
+      await updateCredits(user.userId, credits);
     } catch (error) {
       console.error(error);
       throw new Error('Something went wrong adding inital credits to the user');
@@ -163,3 +159,10 @@ export const getCredits = async (user: Awaited<ReturnType<typeof getUser>>) => {
 
   return credits;
 };
+
+export const updateCredits = async (userId: string, credits: number) =>
+  patchAuth0User(userId, {
+    app_metadata: {
+      credits,
+    },
+  });
