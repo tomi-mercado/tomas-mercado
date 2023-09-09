@@ -11,3 +11,7 @@ body {
     zoom: 0.88;
   }
 }
+
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}

@@ -1,7 +1,16 @@
 import { LocaleProvider } from 'contexts/locale';
 
+import {
+  FaGithub as GithubIcon,
+  FaLinkedin as LinkedinIcon,
+  FaPaperPlane as SendIcon,
+} from 'react-icons/fa';
+import { MdEmail as EmailIcon } from 'react-icons/md';
+
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import content from '../content.json';
 
@@ -58,7 +67,60 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       </Head>
 
       <LocaleProvider locale={locale}>
-        <div>Omg bye bye</div>
+        <div className="max-w-6xl p-6 flex flex-col gap-4 items-center text-center">
+          <h2 className="text-4xl">
+            Morniiiing!
+            <br /> ☀️ {`I'm`}{' '}
+            <span className="underline -underline-offset-8 decoration-primary">
+              Tom
+            </span>{' '}
+            👋🏻
+          </h2>
+
+          <Image
+            src="/tomas-mercado.jpg"
+            alt="A picture of Tomás Mercado smiling"
+            width={150}
+            height={150}
+            priority
+            className="rounded-full w-[150px] h-[150px] object-cover"
+          />
+
+          <p className="text-lg">
+            My name is Tomas Mercado (Tom, pls) and I am a Web Developer with{' '}
+            {replaceYearsExperience('[yearsExperience]')} years of experience
+            who every day try to say hello in the most cheerful way possible.
+          </p>
+
+          <div className="flex flex-col gap-2">
+            <p className="text-lg">
+              Resolve your questions about me with the TomBot 🤖
+            </p>
+            <div className="relative">
+              <textarea
+                className="textarea textarea-primary w-full pr-10 no-scroll"
+                placeholder="Ask anything about Tom..."
+              />
+              <button className="btn btn-primary btn-square btn-xs absolute bottom-[50%] top-[50%] transform translate-y-[-50%] right-2">
+                <SendIcon />
+              </button>
+            </div>
+          </div>
+
+          <p className="text-lg">You can reach me at </p>
+
+          <div className="flex gap-4 items-center justify-between">
+            <Link href="https://www.linkedin.com/in/tomas-mercado">
+              <LinkedinIcon className="text-4xl" />
+            </Link>
+            <Link href="https://www.github.com/tomi-mercado">
+              <GithubIcon className="text-4xl" />
+            </Link>
+            <a href="mailto:tmercadoslp@gmail.com">
+              <EmailIcon className="text-4xl" />
+            </a>
+          </div>
+        </div>
       </LocaleProvider>
     </>
   );
