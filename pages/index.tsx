@@ -1,17 +1,11 @@
+import Contact from 'components/Contact';
 import Introduction from 'components/Introduction';
+import TomBot from 'components/TomBot';
 import { LocaleProvider } from 'contexts/locale';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
-import {
-  FaGithub as GithubIcon,
-  FaLinkedin as LinkedinIcon,
-  FaPaperPlane as SendIcon,
-} from 'react-icons/fa';
-import { MdEmail as EmailIcon } from 'react-icons/md';
-
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import content from '../content.json';
 
@@ -60,34 +54,17 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
             image={content.introduction.image}
           />
 
-          <div className="flex flex-col gap-2">
-            <p className="text-lg">
-              Resolve your questions about me with the TomBot 🤖
-            </p>
-            <div className="relative">
-              <textarea
-                className="textarea textarea-primary w-full pr-10 no-scroll"
-                placeholder="Ask anything about Tom..."
-              />
-              <button className="btn btn-primary btn-square btn-xs absolute bottom-[50%] top-[50%] transform translate-y-[-50%] right-2">
-                <SendIcon />
-              </button>
-            </div>
-          </div>
+          <TomBot
+            description={content.tombot.description}
+            placeholder={content.tombot.placeholder}
+          />
 
-          <p className="text-lg">You can reach me at </p>
-
-          <div className="flex gap-4 items-center justify-between">
-            <Link href="https://www.linkedin.com/in/tomas-mercado">
-              <LinkedinIcon className="text-4xl" />
-            </Link>
-            <Link href="https://www.github.com/tomi-mercado">
-              <GithubIcon className="text-4xl" />
-            </Link>
-            <a href="mailto:tmercadoslp@gmail.com">
-              <EmailIcon className="text-4xl" />
-            </a>
-          </div>
+          <Contact
+            description={content.contact.description}
+            email={content.contact.email}
+            github={content.contact.github}
+            linkedin={content.contact.linkedin}
+          />
         </div>
       </LocaleProvider>
     </>
