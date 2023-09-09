@@ -53,29 +53,44 @@ const NotIddleWrapper: React.FC<{
   </div>
 );
 
-const TESTING_TIMEOUT = 3000;
-
 const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
   const [status, setStatus] = useState<TomBotStatus>('iddle');
   const [questionValue, setQuestionValue] = useState('');
   const loadingMessage = useLoadingMessage(status);
+  const [response, setResponse] = useState<string | null>(null);
 
   const actions = {
     iddle: {
-      onSubmit: () => {
+      onSubmit: async () => {
         if (!questionValue) {
           return;
         }
 
         setStatus('loading');
 
-        setTimeout(() => {
-          actions.loading.onSuccess();
-        }, TESTING_TIMEOUT);
+        try {
+          const r = await fetch('/api/chatbot', {
+            method: 'POST',
+            body: JSON.stringify({ prompt: questionValue }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (!r.ok) {
+            throw new Error('Error');
+          }
+
+          const data = (await r.json()) as { response: string };
+          actions.loading.onSuccess(data.response);
+        } catch (e) {
+          actions.loading.onError();
+        }
       },
     },
     loading: {
-      onSuccess: () => {
+      onSuccess: (response: string) => {
+        setResponse(response);
         setStatus('success');
       },
       onError: () => {
@@ -86,14 +101,12 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
       onNewQuestion: () => {
         setStatus('iddle');
         setQuestionValue('');
+        setResponse(null);
       },
     },
     error: {
       onRetry: () => {
-        setStatus('loading');
-        setTimeout(() => {
-          actions.loading.onSuccess();
-        }, TESTING_TIMEOUT);
+        actions.iddle.onSubmit();
       },
     },
   };
@@ -173,10 +186,10 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
             success: (
               <NotIddleWrapper className="flex-col">
                 <p>
-                  You: <br /> - {questionValue}
+                  🙎 You: <br /> - {questionValue}
                 </p>
                 <p>
-                  TomBot: <br /> - A nice response here!
+                  🤖 TomBot: <br /> - {response}
                 </p>
                 <button
                   className="btn btn-primary btn-xs self-end"

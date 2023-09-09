@@ -23,17 +23,25 @@ const handler: NextApiHandler = async (req, res) => {
     return res.status(400).json({ message: 'Prompt too long' });
   }
 
-  const userLanguage = await detectLanguage(prompt);
-  const translatedPrompt = await translate(prompt, userLanguage, 'english');
-  const response = await getResponse(translatedPrompt);
+  try {
+    const userLanguage = await detectLanguage(prompt);
+    const translatedPrompt = await translate(prompt, userLanguage, 'english');
+    const response = await getResponse(translatedPrompt);
 
-  if (userLanguage === 'english') {
-    return res.status(200).json({ response });
+    if (userLanguage === 'english') {
+      return res.status(200).json({ response });
+    }
+
+    const translatedResponse = await translate(
+      response,
+      'english',
+      userLanguage,
+    );
+
+    return res.status(200).json({ response: translatedResponse });
+  } catch (e) {
+    return res.status(500).json({ message: 'Internal server error' });
   }
-
-  const translatedResponse = await translate(response, 'english', userLanguage);
-
-  return res.status(200).json({ response: translatedResponse });
 };
 
 export default handler;
