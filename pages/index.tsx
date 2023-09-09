@@ -22,12 +22,29 @@ interface HomeProps {
   locale: 'en' | 'es';
 }
 
+const necessaryKey = '[yearsExperience]';
+const startDate = new Date('2020-08-03:');
+const today = new Date();
+const replaceYearsExperience = (text: string) => {
+  if (!text.includes(necessaryKey)) {
+    throw new Error(
+      `The text passed to replaceYearsExperience must include the string "${necessaryKey}"`,
+    );
+  }
+
+  const years = today.getFullYear() - startDate.getFullYear();
+
+  return text.replace(necessaryKey, `${years}+`);
+};
+
 const Home: NextPage<HomeProps> = ({ content, locale }) => {
   const title = 'Tomás Mercado - Developer';
-  const description = {
-    en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
-    es: 'Sitio web de portafolio de Tomás Mercado, Desarrollador Full Stack con más de 2+ años de experiencia',
-  }[locale];
+  const description = replaceYearsExperience(
+    {
+      en: 'Website of Tomás Mercado, Full Stack Developer with more than [yearsExperience] years of experience',
+      es: 'Sitio web de Tomás Mercado, Desarrollador Full Stack con más de [yearsExperience] años de experiencia',
+    }[locale],
+  );
 
   return (
     <>
