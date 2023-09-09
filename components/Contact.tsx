@@ -31,7 +31,7 @@ const Contact: React.FC<ContactProps> = ({
         <Link href={github} target="_blank">
           <GithubIcon className="text-4xl" />
         </Link>
-        <a href={email}>
+        <a href={`mailto:${email}`}>
           <EmailIcon className="text-4xl" />
         </a>
       </div>
