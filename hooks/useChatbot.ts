@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { QueryObserverResult } from 'react-query';
+import { useQuery } from 'react-query';
 
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 import useDebounce from './useDebounce';
 
-export type TomBotStatus = 'iddle' | 'loading' | 'success' | 'error';
+export type TomBotStatus =
+  | 'iddle'
+  | 'loading'
+  | 'loadingUserInfo'
+  | 'success'
+  | 'error'
+  | 'noCredits';
 
 const getQuestionValueFromLocalStorage = () => {
   if (typeof window === 'undefined') {
@@ -37,15 +43,39 @@ const cleanQuestionValueFromLocalStorage = () => {
   localStorage.removeItem('questionValue');
 };
 
-const useChatbot = (
-  refetchCredits: () => Promise<QueryObserverResult<number, unknown>>,
-) => {
+const useChatbot = () => {
   // Chatbot
   const [status, setStatus] = useState<TomBotStatus>('iddle');
   const [questionValue, setQuestionValue] = useState(
     getQuestionValueFromLocalStorage,
   );
   const [response, setResponse] = useState<string | null>(null);
+
+  const { data: credits, refetch: refetchCredits } = useQuery({
+    queryFn: async () => {
+      setStatus('loadingUserInfo');
+
+      const r = await fetch('/api/chatbot/credits');
+      const response = (await r.json()) as
+        | { credits: number }
+        | { error: string };
+
+      if (!r.ok) {
+        const errorResponse = response as { error: string };
+        throw new Error(errorResponse.error);
+      }
+
+      const successResponse = response as { credits: number };
+      return successResponse.credits;
+    },
+    onError: () => {
+      actions.loading.onError();
+    },
+    onSuccess: () => {
+      setStatus('iddle');
+    },
+    cacheTime: 0,
+  });
 
   useDebounce(
     () => {
@@ -57,13 +87,20 @@ const useChatbot = (
 
   // Auth
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { user, isLoading: loadingAuth } = useUser();
+  const { user, isLoading: loadingAuth, error: errorAuth } = useUser();
 
   const openLoginRequiredModal = () => {
     setIsLoginModalOpen(true);
     setTimeout(() => {
       // @ts-expect-error
       document.getElementById('login-modal')?.showModal();
+    }, 100);
+  };
+
+  const openNoCreditsModal = () => {
+    setTimeout(() => {
+      // @ts-expect-error
+      document.getElementById('no-credits-modal')?.showModal();
     }, 100);
   };
 
@@ -80,6 +117,12 @@ const useChatbot = (
 
         if (!user) {
           openLoginRequiredModal();
+          return;
+        }
+
+        if (credits === 0) {
+          setStatus('noCredits');
+          openNoCreditsModal();
           return;
         }
 
@@ -169,11 +212,12 @@ const useChatbot = (
 
   return {
     user,
-    loadingAuth,
-    status,
+    status: loadingAuth ? 'loadingUserInfo' : errorAuth ? 'error' : status,
     questionValue,
     response,
     isLoginModalOpen,
+    credits,
+    openLoginRequiredModal,
     setQuestionValue,
     getAction,
   };

@@ -2,12 +2,12 @@ import useChatbot from 'hooks/useChatbot';
 import useLoadingMessage from 'hooks/useLoadingMessage';
 
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import ErrorComponent from './components/Error';
 import Iddle from './components/Iddle';
 import Loading from './components/Loading';
 import ModalLoginRequired from './components/ModalLoginRequired';
+import ModalNoCredits from './components/ModalNoCredits';
 import Success from './components/Success';
 
 interface TomBotProps {
@@ -17,38 +17,15 @@ interface TomBotProps {
 
 const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
   const {
-    data: credits,
-    error: errorCredits,
-    isLoading: loadingCredits,
-    refetch: refetchCredits,
-  } = useQuery({
-    queryFn: async () => {
-      const r = await fetch('/api/chatbot/credits');
-      const response = (await r.json()) as
-        | { credits: number }
-        | { error: string };
-
-      if (!r.ok) {
-        const errorResponse = response as { error: string };
-        throw new Error(errorResponse.error);
-      }
-
-      const successResponse = response as { credits: number };
-      return successResponse.credits;
-    },
-    cacheTime: 0,
-  });
-
-  const {
-    loadingAuth,
     status,
     questionValue,
     response,
     isLoginModalOpen,
     user,
+    credits,
     setQuestionValue,
     getAction,
-  } = useChatbot(refetchCredits);
+  } = useChatbot();
 
   const loadingMessage = useLoadingMessage(status);
 
@@ -72,6 +49,17 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
         />
       ) : null,
     error: <ErrorComponent onRetryClick={() => getAction('retry')?.()} />,
+    noCredits: (
+      <>
+        <Iddle
+          onChange={(event) => setQuestionValue(event.target.value)}
+          placeholder={placeholder}
+          questionValue={questionValue}
+        />
+        <ModalNoCredits />
+      </>
+    ),
+    loadingUserInfo: <Loading message="Loading your data..." />,
   };
 
   return (
@@ -86,14 +74,11 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
       <div className="flex flex-col gap-1">
         <p className="text-lg">{description} 🤖</p>
         <p className="text-xs text-gray-500">
-          Keep in mind that you only 5 questions available.
+          Keep in mind that you only have 5 questions available.
         </p>
       </div>
 
-      {(loadingAuth || loadingCredits) && <p>Loading your data...</p>}
-      {!loadingAuth && (
-        <div className="relative min-h-[150px]">{renderByStatus[status]}</div>
-      )}
+      <div className="relative min-h-[150px]">{renderByStatus[status]}</div>
 
       {isLoginModalOpen && <ModalLoginRequired />}
     </form>
