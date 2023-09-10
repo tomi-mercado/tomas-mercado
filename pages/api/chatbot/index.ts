@@ -9,6 +9,21 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const DEBUGGING = false;
 
 const isCurrentlyGettingResponse: { [userId: string]: boolean } = {};
+const responsesCache: Record<string, string> = {};
+
+const preResponse = async (
+  userId: string,
+  credits: number,
+  prompt?: string,
+  response?: string,
+) => {
+  await updateCredits(userId, credits - 1);
+  isCurrentlyGettingResponse[userId] = false;
+
+  if (prompt && response) {
+    responsesCache[prompt] = response;
+  }
+};
 
 const handler = withApiAuthRequired(
   async (req: NextApiRequest, res: NextApiResponse) => {
@@ -45,14 +60,20 @@ const handler = withApiAuthRequired(
       return res.status(429).json({ message: 'Too many requests' });
     }
 
+    isCurrentlyGettingResponse[user.userId] = true;
+
+    if (responsesCache[prompt]) {
+      await preResponse(user.userId, credits);
+      return res.status(200).json({ response: responsesCache[prompt] });
+    }
+
     try {
       const userLanguage = await detectLanguage(prompt);
       const translatedPrompt = await translate(prompt, userLanguage, 'english');
       const response = await getResponse(translatedPrompt);
 
       if (userLanguage === 'english') {
-        await updateCredits(user.userId, credits - 1);
-        isCurrentlyGettingResponse[user.userId] = false;
+        await preResponse(user.userId, credits, prompt, response);
         return res.status(200).json({ response });
       }
 
@@ -62,8 +83,7 @@ const handler = withApiAuthRequired(
         userLanguage,
       );
 
-      await updateCredits(user.userId, credits - 1);
-      isCurrentlyGettingResponse[user.userId] = false;
+      await preResponse(user.userId, credits, prompt, translatedResponse);
       return res.status(200).json({ response: translatedResponse });
     } catch (e) {
       return res.status(500).json({ message: 'Internal server error' });

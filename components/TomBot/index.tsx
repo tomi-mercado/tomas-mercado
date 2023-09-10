@@ -47,7 +47,7 @@ const TomBot: React.FC = () => {
     ),
     loading: <Loading message={loadingMessage} />,
     success:
-      response && credits ? (
+      response && credits !== undefined ? (
         <Success
           questionValue={questionValue}
           response={response}
