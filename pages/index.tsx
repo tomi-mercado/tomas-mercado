@@ -2,6 +2,7 @@ import Contact from 'components/Contact';
 import Introduction from 'components/Introduction';
 import Navbar from 'components/Navbar';
 import TomBot from 'components/TomBot';
+import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
 import { readFile } from 'fs/promises';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
@@ -11,7 +12,7 @@ import Head from 'next/head';
 
 type ObjectInfo = Record<string, any>;
 
-interface LanguageContent {
+export interface LanguageContent {
   [section: string]: ObjectInfo;
 }
 
@@ -47,29 +48,24 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       </Head>
 
       <LocaleProvider locale={locale}>
-        <Navbar />
+        <ContentProvider content={content}>
+          <Navbar />
 
-        <div className="w-full flex justify-center min-h-screen items-center pt-[105px] md:pt-[95px]">
-          <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
-            <Introduction
-              title={content.introduction.title}
-              description={content.introduction.description}
-              image={content.introduction.image}
-            />
+          <div className="w-full flex justify-center min-h-screen items-center pt-[105px] md:pt-[95px]">
+            <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
+              <Introduction />
 
-            <TomBot
-              description={content.tombot.description}
-              placeholder={content.tombot.placeholder}
-            />
+              <TomBot />
 
-            <Contact
-              description={content.contact.description}
-              email={content.contact.email}
-              github={content.contact.github}
-              linkedin={content.contact.linkedin}
-            />
+              <Contact
+                description={content.contact.description}
+                email={content.contact.email}
+                github={content.contact.github}
+                linkedin={content.contact.linkedin}
+              />
+            </div>
           </div>
-        </div>
+        </ContentProvider>
       </LocaleProvider>
     </>
   );

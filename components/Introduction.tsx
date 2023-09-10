@@ -1,27 +1,17 @@
+import { useContent } from 'contexts/content';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import React from 'react';
 
 import Image from 'next/image';
 
-export interface IntroductionProps {
-  title: {
-    greeting: string;
-    iAm: string;
-    name: string;
-  };
-  description: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-}
+const Introduction: React.FC = () => {
+  const {
+    content: {
+      introduction: { title, description, image },
+    },
+  } = useContent();
 
-const Introduction: React.FC<IntroductionProps> = ({
-  title,
-  description,
-  image,
-}) => {
   return (
     <>
       <h2 className="text-4xl">

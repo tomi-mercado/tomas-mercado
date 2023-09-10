@@ -1,17 +1,20 @@
+import { useContent } from 'contexts/content';
+
 import React from 'react';
 import { FaPaperPlane as SendIcon } from 'react-icons/fa';
 
 interface IddleProps {
-  placeholder: string;
   questionValue: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const Iddle: React.FC<IddleProps> = ({
-  onChange,
-  placeholder,
-  questionValue,
-}) => {
+const Iddle: React.FC<IddleProps> = ({ onChange, questionValue }) => {
+  const {
+    content: {
+      tombot: { placeholder },
+    },
+  } = useContent();
+
   return (
     <>
       <textarea

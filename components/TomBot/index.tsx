@@ -1,5 +1,7 @@
+import { useContent } from 'contexts/content';
 import useChatbot from 'hooks/useChatbot';
 import useLoadingMessage from 'hooks/useLoadingMessage';
+import replaceMaxQuestions from 'utils/replaceMaxQuestions';
 
 import React from 'react';
 
@@ -10,12 +12,7 @@ import ModalLoginRequired from './components/ModalLoginRequired';
 import ModalNoCredits from './components/ModalNoCredits';
 import Success from './components/Success';
 
-interface TomBotProps {
-  description: string;
-  placeholder: string;
-}
-
-const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
+const TomBot: React.FC = () => {
   const {
     status,
     questionValue,
@@ -27,13 +24,24 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
     getAction,
   } = useChatbot();
 
-  const loadingMessage = useLoadingMessage(status);
+  const {
+    content: {
+      tombot: {
+        description,
+        loadingMessages,
+        loadingYourData,
+        aclaration,
+        maxQuestions,
+      },
+    },
+  } = useContent();
+
+  const loadingMessage = useLoadingMessage(status, loadingMessages);
 
   const renderByStatus = {
     iddle: (
       <Iddle
         onChange={(event) => setQuestionValue(event.target.value)}
-        placeholder={placeholder}
         questionValue={questionValue}
       />
     ),
@@ -53,13 +61,12 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
       <>
         <Iddle
           onChange={(event) => setQuestionValue(event.target.value)}
-          placeholder={placeholder}
           questionValue={questionValue}
         />
         <ModalNoCredits />
       </>
     ),
-    loadingUserInfo: <Loading message="Loading your data..." />,
+    loadingUserInfo: <Loading message={loadingYourData} />,
   };
 
   return (
@@ -74,7 +81,7 @@ const TomBot: React.FC<TomBotProps> = ({ description, placeholder }) => {
       <div className="flex flex-col gap-1">
         <p className="text-lg">{description} 🤖</p>
         <p className="text-xs text-gray-500">
-          Keep in mind that you only have 5 questions available.
+          {replaceMaxQuestions(aclaration, maxQuestions)}
         </p>
       </div>
 

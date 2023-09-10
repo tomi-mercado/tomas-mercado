@@ -1,3 +1,5 @@
+import { useContent } from 'contexts/content';
+
 import React from 'react';
 
 import NotIddleWrapper from './NotIddleWrapper';
@@ -7,14 +9,19 @@ interface ErrorProps {
 }
 
 const Error: React.FC<ErrorProps> = ({ onRetryClick }) => {
+  const {
+    content: {
+      tombot: { notAvailable, retry },
+    },
+  } = useContent();
   return (
     <NotIddleWrapper className="border-error flex-col">
-      <p className="text-center">TomBot is not available right now 😢</p>
+      <p className="text-center">{notAvailable} 😢</p>
       <button
         className="btn btn-primary btn-xs self-end"
         onClick={onRetryClick}
       >
-        Retry
+        {retry}
       </button>
     </NotIddleWrapper>
   );

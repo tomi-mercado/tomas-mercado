@@ -1,5 +1,7 @@
+import { useContent } from 'contexts/content';
 import useChatbot from 'hooks/useChatbot';
 import remarkGfm from 'remark-gfm';
+import replaceRemainingQuestions from 'utils/replaceRemainingQuestions';
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -23,6 +25,11 @@ const Success: React.FC<SuccessProps> = ({
   getAction,
   remaining,
 }) => {
+  const {
+    content: {
+      tombot: { askAgain },
+    },
+  } = useContent();
   const you = user?.name || 'You';
 
   return (
@@ -58,7 +65,7 @@ const Success: React.FC<SuccessProps> = ({
           getAction('again')?.();
         }}
       >
-        Ask again ({remaining} remaining)
+        {replaceRemainingQuestions(askAgain, remaining)}
       </button>
     </NotIddleWrapper>
   );

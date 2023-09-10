@@ -2,21 +2,13 @@ import { useEffect, useState } from 'react';
 
 import { TomBotStatus } from './useChatbot';
 
-const loadingMessages = [
-  'TomBot is generating an answer...',
-  'TomBot is thinking...',
-  'TomBot is calculating...',
-  'TomBot is searching for an answer...',
-  'TomBot is looking for an answer...',
-];
-
-const getRandomLoadingMessage = () => {
+const getRandomLoadingMessage = (loadingMessages: string[]) => {
   return loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
 };
 
-const useLoadingMessage = (status: TomBotStatus) => {
+const useLoadingMessage = (status: TomBotStatus, loadingMessages: string[]) => {
   const [loadingMessage, setLoadingMessage] = useState(
-    getRandomLoadingMessage(),
+    getRandomLoadingMessage(loadingMessages),
   );
 
   useEffect(() => {
@@ -24,14 +16,14 @@ const useLoadingMessage = (status: TomBotStatus) => {
 
     if (status === 'loading') {
       interval = setInterval(() => {
-        setLoadingMessage(getRandomLoadingMessage());
+        setLoadingMessage(getRandomLoadingMessage(loadingMessages));
       }, 1000);
     } else {
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [status]);
+  }, [status, loadingMessages]);
 
   return loadingMessage;
 };

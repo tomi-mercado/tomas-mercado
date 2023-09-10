@@ -4,6 +4,9 @@
       "email": "tmercadoslp@gmail.com",
       "linkedin": "https://www.linkedin.com/in/tomas-mercado/",
       "github": "https://github.com/tomi-mercado"
+    },
+    "tombot": {
+      "maxQuestions": 5
     }
   },
   "en": {
@@ -21,10 +24,30 @@
     },
     "tombot": {
       "description": "Resolve your questions about me with the TomBot",
-      "placeholder": "Ask anything about Tom..."
+      "placeholder": "Ask anything about Tom...",
+      "aclaration": "Keep in mind that you only have [maxQuestions] questions available.",
+      "loadingYourData": "Loading your data...",
+      "loadingMessages": [
+        "TomBot is generating an answer...",
+        "TomBot is thinking...",
+        "TomBot is calculating...",
+        "TomBot is searching for an answer..."
+      ],
+      "askAgain": "Ask again ([remaining] remaining)",
+      "notAvailable": "TomBot is not available right now",
+      "noQuestionsLeft": "You have no questions left to ask to TomBot",
+      "noQuestionLeftDescription": "If you want to ask more questions, you can send me a message on my email",
+      "emailMe": "Email me",
+      "retry": "Retry",
+      "almostReady": "You are almost ready to ask TomBot",
+      "needLogin": "You need to be logged in to ask.",
+      "loginWithGoogle": "Login with Google"
     },
     "contact": {
       "description": "You can reach me at"
+    },
+    "common": {
+      "close": "Close"
     }
   },
   "es": {
@@ -42,10 +65,30 @@
     },
     "tombot": {
       "description": "Resuelve tus dudas sobre mi con el TomBot",
-      "placeholder": "Pregunta cualquier cosa sobre Tom..."
+      "placeholder": "Pregunta cualquier cosa sobre Tom...",
+      "aclaration": "Ten en cuenta que solo tienes [maxQuestions] preguntas disponibles.",
+      "loadingYourData": "Cargando tus datos...",
+      "loadingMessages": [
+        "TomBot está generando una respuesta...",
+        "TomBot está pensando...",
+        "TomBot está calculando...",
+        "TomBot está buscando una respuesta..."
+      ],
+      "askAgain": "Preguntar de nuevo ([remaining] restantes)",
+      "notAvailable": "TomBot no está disponible en este momento",
+      "noQuestionsLeft": "No te quedan preguntas para hacerle a TomBot",
+      "noQuestionLeftDescription": "Si quieres hacer más preguntas, puedes enviarme un mensaje a mi email",
+      "emailMe": "Envíame un email",
+      "retry": "Reintentar",
+      "almostReady": "Estás casi listo para preguntarle a TomBot",
+      "needLogin": "Necesitas estar logueado para preguntar.",
+      "loginWithGoogle": "Login con Google"
     },
     "contact": {
       "description": "Puedes contactarme en"
+    },
+    "common": {
+      "close": "Cerrar"
     }
   }
 }

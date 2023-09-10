@@ -61,6 +61,11 @@ const useChatbot = () => {
         | { error: string };
 
       if (!r.ok) {
+        if (r.status === 401) {
+          setStatus('iddle');
+          return undefined;
+        }
+
         const errorResponse = response as { error: string };
         throw new Error(errorResponse.error);
       }
@@ -181,6 +186,8 @@ const useChatbot = () => {
           return actions.iddle.onSubmit;
         case 'error':
           return actions.error.onRetry;
+        case 'noCredits':
+          return actions.iddle.onSubmit;
         default:
           throw new Error(
             `Action ${action} is not available on status ${status}`,
