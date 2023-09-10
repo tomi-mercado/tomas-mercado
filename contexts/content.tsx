@@ -1,13 +1,13 @@
-import { LanguageContent } from 'utils/contentValidator';
+import { HomeContent } from 'utils/content/homeContentValidation';
 
 import React, { createContext, useContext } from 'react';
 
 interface ContentContextProps {
-  content: LanguageContent;
+  content: HomeContent;
 }
 
 interface ContentProviderProps {
-  content: LanguageContent;
+  content: HomeContent;
   children: React.ReactNode;
 }
 

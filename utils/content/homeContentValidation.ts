@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const schema = z.object({
+export const homeSchema = z.object({
   userMenu: z.object({
     welcome: z.string(),
   }),
@@ -51,4 +51,4 @@ export const schema = z.object({
   }),
 });
 
-export type LanguageContent = z.infer<typeof schema>;
+export type HomeContent = z.infer<typeof homeSchema>;

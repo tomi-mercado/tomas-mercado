@@ -1,6 +1,6 @@
 import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
-import { LanguageContent } from 'utils/contentValidator';
+import { HomeContent } from 'utils/content/homeContentValidation';
 
 import React from 'react';
 
@@ -12,7 +12,7 @@ import Navbar from './Navbar';
 interface PageLayoutProps {
   title: string;
   description: string;
-  content: LanguageContent;
+  content: HomeContent;
   locale: 'en' | 'es';
   children: React.ReactNode;
 }

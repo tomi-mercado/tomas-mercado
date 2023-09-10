@@ -2,6 +2,8 @@ import { useContent } from 'contexts/content';
 
 import React from 'react';
 
+import Link from 'next/link';
+
 import SectionContainer from './SectionContainer';
 import UnderlinedText from './UnderlinedText';
 
@@ -18,7 +20,9 @@ const ProjectsSection: React.FC = () => {
         <UnderlinedText>{title}</UnderlinedText>
       </h3>
       <p>{description}</p>
-      <button className="btn btn-primary">{CTA}</button>
+      <Link href="/projects" className="btn btn-primary">
+        {CTA}
+      </Link>
     </SectionContainer>
   );
 };

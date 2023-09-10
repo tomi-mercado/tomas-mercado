@@ -8,6 +8,12 @@ body {
 
 @media (max-width: 345px) {
   body {
+    zoom: 0.7;
+  }
+}
+
+@media (min-width: 346px and max-width: 360px) {
+  body {
     zoom: 0.88;
   }
 }
