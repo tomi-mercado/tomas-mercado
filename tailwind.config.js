@@ -15,7 +15,7 @@ module.exports = {
     themes: [
       'dark',
       {
-        yep: {
+        tomTheme: {
           primary: '#ffffff',
           'primary-focus': '#e6e6e6',
           'primary-content': '#000000',
