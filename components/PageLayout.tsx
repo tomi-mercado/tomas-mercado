@@ -39,7 +39,7 @@ function PageLayout<Schema extends z.ZodObject<z.ZodRawShape>>({
       <LocaleProvider locale={locale}>
         <ContentProvider content={content}>
           <Navbar />
-          <div className="grow pt-[64px]">{children}</div>
+          <div className="flex flex-col grow pt-[64px]">{children}</div>
           <Footer />
         </ContentProvider>
       </LocaleProvider>
