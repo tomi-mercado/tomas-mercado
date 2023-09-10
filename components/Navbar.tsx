@@ -66,10 +66,13 @@ const Navbar: React.FC = () => {
                 className="menu menu-lg dropdown-content z-[1] p-3 shadow bg-base-200 rounded-box min-w-[240px] gap-2"
               >
                 <p>Welcome, {user.name || user.nickname || 'User'}</p>
-                <a href="/api/auth/logout" className="btn btn-secondary btn-xs">
+                <Link
+                  href="/api/auth/logout"
+                  className="btn btn-secondary btn-xs"
+                >
                   <MdLogout />
                   Logout
-                </a>
+                </Link>
               </div>
             </div>
           )}

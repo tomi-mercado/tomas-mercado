@@ -3,6 +3,8 @@ import { useContent } from 'contexts/content';
 import React from 'react';
 import { MdEmail as EmailIcon } from 'react-icons/md';
 
+import Link from 'next/link';
+
 const ModalNoCredits: React.FC = () => {
   const {
     content: {
@@ -21,10 +23,10 @@ const ModalNoCredits: React.FC = () => {
           <form method="dialog">
             <button className="btn btn-error">{close}</button>
           </form>
-          <a className="btn btn-primary" href={`mailto:${email}`}>
+          <Link className="btn btn-primary" href={`mailto:${email}`}>
             <EmailIcon />
             {emailMe}
-          </a>
+          </Link>
         </div>
       </div>
     </dialog>

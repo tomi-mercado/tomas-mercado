@@ -3,6 +3,8 @@ import { useContent } from 'contexts/content';
 import React from 'react';
 import { FaGoogle as GoogleIcon } from 'react-icons/fa';
 
+import Link from 'next/link';
+
 const ModalLoginRequired: React.FC = () => {
   const {
     content: {
@@ -20,10 +22,10 @@ const ModalLoginRequired: React.FC = () => {
           <form method="dialog">
             <button className="btn btn-error">{close}</button>
           </form>
-          <a className="btn btn-primary" href="/api/auth/login">
+          <Link className="btn btn-primary" href="/api/auth/login">
             <GoogleIcon />
             {loginWithGoogle}
-          </a>
+          </Link>
         </div>
       </div>
     </dialog>
