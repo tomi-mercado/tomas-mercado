@@ -71,21 +71,23 @@ const TomBot: React.FC = () => {
 
   return (
     <form
-      className="flex flex-col gap-3"
+      className="flex flex-col gap-3 w-full items-center"
       onSubmit={(event) => {
         event.preventDefault();
 
         getAction('submit')?.();
       }}
     >
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-full items-center">
         <p className="text-lg">{description} 🤖</p>
         <p className="text-xs text-gray-500">
           {replaceMaxQuestions(aclaration, maxQuestions)}
         </p>
       </div>
 
-      <div className="relative min-h-[150px]">{renderByStatus[status]}</div>
+      <div className="relative min-h-[150px] max-w-xl w-full flex justify-center">
+        {renderByStatus[status]}
+      </div>
 
       {isLoginModalOpen && <ModalLoginRequired />}
     </form>

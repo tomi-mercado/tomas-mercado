@@ -157,8 +157,29 @@ const useChatbot = () => {
     },
     loading: {
       onSuccess: (response: string) => {
-        setResponse(response);
         setStatus('success');
+        // Simulate typing
+        const splitResponse = response.split('');
+        let i = 0;
+        setResponse(() => splitResponse[0]);
+        const interval = setInterval(() => {
+          setResponse((prev) => {
+            if (!prev) {
+              return splitResponse[i];
+            }
+
+            if (!splitResponse[i]) {
+              return prev;
+            }
+
+            return prev + splitResponse[i];
+          });
+          i++;
+
+          if (i === splitResponse.length) {
+            clearInterval(interval);
+          }
+        }, 5);
       },
       onError: () => {
         setStatus('error');
@@ -220,7 +241,7 @@ const useChatbot = () => {
 
   return {
     user,
-    status: loadingAuth ? 'loadingUserInfo' : errorAuth ? 'error' : status,
+    status,
     questionValue,
     response,
     isLoginModalOpen,

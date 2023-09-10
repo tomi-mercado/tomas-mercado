@@ -45,7 +45,7 @@ const getResponse = (prompt: string) => {
         
         If you don't know the answers, just say "I'm sorry, I won't be able to answer that. Maybe you can send him an email at tmercadoslp@gmail.com"
         
-        Be kind and nice. You can use emojis and markdown to make your messages more friendly.
+        Be kind and nice. You can use emojis and markdown to make your messages more friendly. Do not extend too much your response, be concise.
         Respond in Markdown.`,
     },
     {

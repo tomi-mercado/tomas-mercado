@@ -33,7 +33,7 @@ const Success: React.FC<SuccessProps> = ({
   const you = user?.name || 'You';
 
   return (
-    <NotIddleWrapper className="flex-col gap-4">
+    <NotIddleWrapper className="flex-col gap-4 items-start">
       <p>
         <span className="flex gap-1 items-center">
           {user?.picture ? (
