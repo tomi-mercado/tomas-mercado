@@ -75,6 +75,7 @@ const useChatbot = () => {
       setStatus('iddle');
     },
     cacheTime: 0,
+    refetchOnWindowFocus: false,
   });
 
   useDebounce(
