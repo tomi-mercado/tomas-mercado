@@ -1,21 +1,24 @@
+import { useContent } from 'contexts/content';
+
 import React from 'react';
 
 import SectionContainer from './SectionContainer';
 import UnderlinedText from './UnderlinedText';
 
 const ProjectsSection: React.FC = () => {
+  const {
+    content: {
+      projects: { title, description, CTA },
+    },
+  } = useContent();
+
   return (
     <SectionContainer>
       <h3 className="text-3xl">
-        <UnderlinedText>Projects</UnderlinedText>
+        <UnderlinedText>{title}</UnderlinedText>
       </h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, aperiam
-        nisi? Delectus voluptates quia, officia atque dolor voluptatibus rerum
-        deleniti exercitationem molestias perferendis doloribus necessitatibus
-        mollitia vel impedit optio saepe!
-      </p>
-      <button className="btn btn-primary">Go to Projects</button>
+      <p>{description}</p>
+      <button className="btn btn-primary">{CTA}</button>
     </SectionContainer>
   );
 };

@@ -13,7 +13,7 @@ const SectionContainer: React.FC<{
         className,
       )}
     >
-      <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
+      <div className="max-w-3xl px-6 flex flex-col gap-4 items-center text-center">
         {children}
       </div>
     </div>

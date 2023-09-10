@@ -32,7 +32,7 @@ const Introduction: React.FC = () => {
         className="rounded-full w-[150px] h-[150px] object-cover"
       />
 
-      <p className="text-lg w-3/4">{description}</p>
+      <p className="text-lg">{description}</p>
     </>
   );
 };

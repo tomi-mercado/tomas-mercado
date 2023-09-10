@@ -44,10 +44,22 @@
       "loginWithGoogle": "Login with Google"
     },
     "contact": {
-      "description": "You can reach me at"
+      "title": "Contact",
+      "description": "Get in touch with me, I'll be happy to talk to you! If you are a developer, please feel free to contact me if you have any questions or suggestions, or even send me your code to talk about it!",
+      "reachMe": "You can reach me at"
     },
     "common": {
       "close": "Close"
+    },
+    "footer": {
+      "madeWith": "Made with",
+      "byMe": "by Tom",
+      "seeSourceCode": "See source code"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Check out some of my side and professional projects. You will be able to see the technologies used, the code and the live demo of many of them.",
+      "CTA": "Go to Projects"
     }
   },
   "es": {
@@ -85,10 +97,22 @@
       "loginWithGoogle": "Login con Google"
     },
     "contact": {
-      "description": "Puedes contactarme en"
+      "title": "Contacto",
+      "description": "Ponte en contacto conmigo, ¡estaré encantado de hablar contigo! Si sos dev, ¡no dudes en contactarme si tienes alguna pregunta o sugerencia, o incluso envíame tu código y charlemos sobre él!",
+      "reachMe": "Puedes contactarme en"
     },
     "common": {
       "close": "Cerrar"
+    },
+    "footer": {
+      "madeWith": "Hecho con",
+      "byMe": "por Tom",
+      "seeSourceCode": "Ver el código"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "description": "Mira algunos de mis proyectos personales y profesionales. Podrás ver las tecnologías utilizadas, el código y la demo en vivo de muchos de ellos.",
+      "CTA": "Ir a Proyectos"
     }
   }
 }

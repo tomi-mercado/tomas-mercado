@@ -15,23 +15,18 @@ import UnderlinedText from './UnderlinedText';
 const Contact: React.FC = () => {
   const {
     content: {
-      contact: { description, email, github, linkedin },
+      contact: { title, description, reachMe, email, github, linkedin },
     },
   } = useContent();
 
   return (
     <SectionContainer>
       <h3 className="text-3xl">
-        <UnderlinedText>Contact</UnderlinedText>
+        <UnderlinedText>{title}</UnderlinedText>
       </h3>
 
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi harum
-        aperiam, aut earum repellat consectetur dolorum non, architecto
-        distinctio nemo corporis ea sed. Voluptate in dolorum, perferendis
-        possimus reiciendis nisi?
-      </p>
-      <p className="text-lg">{description}</p>
+      <p>{description}</p>
+      <p className="text-lg">{reachMe}</p>
 
       <div className="flex gap-4 items-center justify-between">
         <Link href={linkedin} target="_blank">
