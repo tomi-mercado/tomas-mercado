@@ -1,6 +1,6 @@
 import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
-import { LanguageContent } from 'pages';
+import { LanguageContent } from 'utils/contentValidator';
 
 import React from 'react';
 

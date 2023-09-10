@@ -1,4 +1,4 @@
-import { LanguageContent } from 'pages';
+import { LanguageContent } from 'utils/contentValidator';
 
 import React, { createContext, useContext } from 'react';
 

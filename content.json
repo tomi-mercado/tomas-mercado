@@ -10,6 +10,9 @@
     }
   },
   "en": {
+    "userMenu": {
+      "welcome": "Welcome"
+    },
     "introduction": {
       "title": {
         "greeting": "Morniiiing!",
@@ -63,6 +66,9 @@
     }
   },
   "es": {
+    "userMenu": {
+      "welcome": "Bienvenido"
+    },
     "introduction": {
       "title": {
         "greeting": "Buen díiiia",

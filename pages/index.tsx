@@ -5,20 +5,17 @@ import ProjectsSection from 'components/ProjectsSection';
 import SectionContainer from 'components/SectionContainer';
 import TomBot from 'components/TomBot';
 import { readFile } from 'fs/promises';
+import { LanguageContent, schema } from 'utils/contentValidator';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { GetStaticProps, NextPage } from 'next';
 
 type ObjectInfo = Record<string, any>;
 
-export interface LanguageContent {
-  [section: string]: ObjectInfo;
-}
-
 interface Content {
-  es: LanguageContent;
-  en: LanguageContent;
-  common: LanguageContent;
+  es: ObjectInfo;
+  en: ObjectInfo;
+  common: ObjectInfo;
 }
 
 interface HomeProps {
@@ -123,9 +120,11 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
     }
   }
 
+  const typedLanguageContent = schema.parse(languageContent);
+
   return {
     props: {
-      content: languageContent,
+      content: typedLanguageContent,
       locale: locale as 'en' | 'es',
     },
   };

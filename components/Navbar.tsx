@@ -1,3 +1,4 @@
+import { useContent } from 'contexts/content';
 import { useLocale } from 'contexts/locale';
 
 import React from 'react';
@@ -26,6 +27,11 @@ const UpdateLocaleButton: React.FC = () => {
 
 const Navbar: React.FC = () => {
   const { user } = useUser();
+  const {
+    content: {
+      userMenu: { welcome },
+    },
+  } = useContent();
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">
@@ -65,7 +71,9 @@ const Navbar: React.FC = () => {
                 tabIndex={0}
                 className="menu menu-lg dropdown-content z-[1] p-3 shadow bg-base-200 rounded-box min-w-[240px] gap-2"
               >
-                <p>Welcome, {user.name || user.nickname || 'User'}</p>
+                <p>
+                  {welcome}, {user.name || user.nickname || 'User'}
+                </p>
                 <Link
                   href="/api/auth/logout"
                   className="btn btn-secondary btn-xs"
