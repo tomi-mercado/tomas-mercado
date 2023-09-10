@@ -1,5 +1,5 @@
 import { useContent } from 'contexts/content';
-import replaceYearsExperience from 'utils/replaceYearsExperience';
+import { useReplaceYearsExperienceOnClient } from 'utils/replaceYearsExperience';
 
 import React from 'react';
 
@@ -8,9 +8,10 @@ import Image from 'next/image';
 const Introduction: React.FC = () => {
   const {
     content: {
-      introduction: { title, description, image },
+      introduction: { title, description: desc, image },
     },
   } = useContent();
+  const description = useReplaceYearsExperienceOnClient(desc);
 
   return (
     <>
@@ -32,7 +33,7 @@ const Introduction: React.FC = () => {
         className="rounded-full w-[150px] h-[150px] object-cover"
       />
 
-      <p className="text-lg">{replaceYearsExperience(description)}</p>
+      <p className="text-lg">{description}</p>
     </>
   );
 };
