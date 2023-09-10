@@ -11,7 +11,7 @@ const ModalLoginRequired: React.FC = () => {
       common: { close },
       tombot: { almostReady, needLogin, loginWithGoogle },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <dialog id="login-modal" className="modal">

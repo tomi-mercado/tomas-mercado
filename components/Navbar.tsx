@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     content: {
       userMenu: { welcome },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">

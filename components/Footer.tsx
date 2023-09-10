@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       contact: { github },
       footer: { madeWith, byMe, seeSourceCode },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <footer className="w-full flex justify-center items-center py-6 bg-base-200">

@@ -1,0 +1,29 @@
+{
+  "common": {
+    "contact": {
+      "email": "tmercadoslp@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/tomas-mercado/",
+      "github": "https://github.com/tomi-mercado"
+    }
+  },
+  "en": {
+    "userMenu": {
+      "welcome": "Welcome"
+    },
+    "footer": {
+      "madeWith": "Made with",
+      "byMe": "by Tom",
+      "seeSourceCode": "See source code"
+    }
+  },
+  "es": {
+    "userMenu": {
+      "welcome": "Bienvenido"
+    },
+    "footer": {
+      "madeWith": "Hecho con",
+      "byMe": "por Tom",
+      "seeSourceCode": "Ver el código"
+    }
+  }
+}

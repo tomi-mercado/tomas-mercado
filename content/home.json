@@ -1,18 +1,10 @@
 {
   "common": {
-    "contact": {
-      "email": "tmercadoslp@gmail.com",
-      "linkedin": "https://www.linkedin.com/in/tomas-mercado/",
-      "github": "https://github.com/tomi-mercado"
-    },
     "tombot": {
       "maxQuestions": 5
     }
   },
   "en": {
-    "userMenu": {
-      "welcome": "Welcome"
-    },
     "introduction": {
       "title": {
         "greeting": "Morniiiing!",
@@ -54,11 +46,6 @@
     "common": {
       "close": "Close"
     },
-    "footer": {
-      "madeWith": "Made with",
-      "byMe": "by Tom",
-      "seeSourceCode": "See source code"
-    },
     "projects": {
       "title": "Projects",
       "description": "Check out some of my side and professional projects. You will be able to see the technologies used, the code and the live demo of many of them.",
@@ -66,9 +53,6 @@
     }
   },
   "es": {
-    "userMenu": {
-      "welcome": "Bienvenido"
-    },
     "introduction": {
       "title": {
         "greeting": "Buen díiiia",
@@ -109,11 +93,6 @@
     },
     "common": {
       "close": "Cerrar"
-    },
-    "footer": {
-      "madeWith": "Hecho con",
-      "byMe": "por Tom",
-      "seeSourceCode": "Ver el código"
     },
     "projects": {
       "title": "Proyectos",

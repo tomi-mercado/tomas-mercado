@@ -3,6 +3,8 @@ import { z } from 'zod';
 
 import { GetStaticProps } from 'next';
 
+import { commonContentSchema } from './commonContentValidation';
+
 type BasePageProps<Content extends z.ZodRawShape> = {
   pageName: string;
   locale: 'en' | 'es';
@@ -22,8 +24,8 @@ function getContentGetStaticProps<
   contentPath: string,
   contentSchema: z.ZodObject<Schema>,
   customFn?: (
-    props: BasePageProps<Schema>,
-  ) => BasePageProps<Schema> & AddedProps,
+    props: BasePageProps<Schema & typeof commonContentSchema>,
+  ) => BasePageProps<Schema & typeof commonContentSchema> & AddedProps,
 ) {
   return (async ({ locale: localeParam }) => {
     let locale: 'en' | 'es';
@@ -50,9 +52,11 @@ function getContentGetStaticProps<
         pageName: name,
         content,
         locale,
-      },
+      } as BasePageProps<Schema & typeof commonContentSchema>,
     };
-  }) as GetStaticProps<BasePageProps<Schema> & AddedProps>;
+  }) as GetStaticProps<
+    BasePageProps<Schema & typeof commonContentSchema> & AddedProps
+  >;
 }
 
 export default getContentGetStaticProps;

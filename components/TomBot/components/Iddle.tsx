@@ -13,7 +13,7 @@ const Iddle: React.FC<IddleProps> = ({ onChange, questionValue }) => {
     content: {
       tombot: { placeholder },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <>

@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
     content: {
       contact: { title, description, reachMe, email, github, linkedin },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <SectionContainer>

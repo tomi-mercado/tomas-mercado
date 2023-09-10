@@ -1,4 +1,5 @@
 import { readFile } from 'fs/promises';
+import { commonContentSchema } from 'utils/content/commonContentValidation';
 import { z } from 'zod';
 
 type ObjectInfo = Record<string, any>;
@@ -15,30 +16,38 @@ async function readContent<Schema extends z.ZodRawShape>(
   schema: z.ZodObject<Schema>,
 ) {
   const content = await readFile(path, 'utf-8');
+  const commonContent = await readFile('content/common.json', 'utf-8');
+
+  const parsedCommonContent: Content = JSON.parse(commonContent);
   const parsedContent: Content = JSON.parse(content);
 
-  //select the language specific content
-  const languageContent = parsedContent[locale as 'en' | 'es'];
+  const mergedContent: Content = {
+    es: { ...parsedContent.es, ...parsedCommonContent.es },
+    en: { ...parsedContent.en, ...parsedCommonContent.en },
+    common: { ...parsedContent.common, ...parsedCommonContent.common },
+  };
 
+  //select the language specific content
+  const languageContent = mergedContent[locale as 'en' | 'es'];
   //iterate over the common sections of the content
-  for (const section in parsedContent.common) {
+  for (const section in mergedContent.common) {
     //if the section doesn't exist in the language content, add it from common
     if (!languageContent[section]) {
-      languageContent[section] = parsedContent.common[section];
+      languageContent[section] = mergedContent.common[section];
       continue;
     }
 
     //iterate over the keys in the common section
-    for (const key in parsedContent.common[section]) {
+    for (const key in mergedContent.common[section]) {
       //if the key doesn't exist in the language section, add it from common
       if (!languageContent[section][key]) {
-        languageContent[section][key] = parsedContent.common[section][key];
+        languageContent[section][key] = mergedContent.common[section][key];
         continue;
       }
 
       //if the key is a string, update it with the common version
       if (typeof languageContent[section][key] === 'string') {
-        languageContent[section][key] = parsedContent.common[section][key];
+        languageContent[section][key] = mergedContent.common[section][key];
         continue;
       }
 
@@ -47,7 +56,7 @@ async function readContent<Schema extends z.ZodRawShape>(
         const languageContentArray = languageContent[section][
           key
         ] as ObjectInfo[];
-        const commonContentArray = parsedContent.common[section][
+        const commonContentArray = mergedContent.common[section][
           key
         ] as ObjectInfo[];
 
@@ -67,7 +76,7 @@ async function readContent<Schema extends z.ZodRawShape>(
         const languageContentObject = languageContent[section][
           key
         ] as ObjectInfo;
-        const commonContentObject = parsedContent.common[section][
+        const commonContentObject = mergedContent.common[section][
           key
         ] as ObjectInfo;
 
@@ -82,7 +91,8 @@ async function readContent<Schema extends z.ZodRawShape>(
     }
   }
 
-  const typedLanguageContent = schema.parse(languageContent);
+  const deepMergedSchema = commonContentSchema.merge(schema);
+  const typedLanguageContent = deepMergedSchema.parse(languageContent);
 
   return typedLanguageContent;
 }

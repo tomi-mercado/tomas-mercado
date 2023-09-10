@@ -12,7 +12,7 @@ const ProjectsSection: React.FC = () => {
     content: {
       projects: { title, description, CTA },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <SectionContainer>

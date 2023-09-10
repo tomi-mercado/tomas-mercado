@@ -29,7 +29,7 @@ const Success: React.FC<SuccessProps> = ({
     content: {
       tombot: { askAgain },
     },
-  } = useContent();
+  } = useContent('Home');
   const you = user?.name || 'You';
 
   return (

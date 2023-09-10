@@ -12,7 +12,7 @@ const Introduction: React.FC = () => {
     content: {
       introduction: { title, description: desc, image },
     },
-  } = useContent();
+  } = useContent('Home');
   const description = useReplaceYearsExperienceOnClient(desc);
 
   return (

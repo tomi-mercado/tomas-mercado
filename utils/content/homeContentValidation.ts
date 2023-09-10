@@ -1,9 +1,6 @@
 import { z } from 'zod';
 
 export const homeSchema = z.object({
-  userMenu: z.object({
-    welcome: z.string(),
-  }),
   introduction: z.object({
     title: z.object({
       greeting: z.string(),
@@ -39,11 +36,6 @@ export const homeSchema = z.object({
     github: z.string(),
   }),
   common: z.object({ close: z.string() }),
-  footer: z.object({
-    madeWith: z.string(),
-    byMe: z.string(),
-    seeSourceCode: z.string(),
-  }),
   projects: z.object({
     title: z.string(),
     description: z.string(),

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#__next {
+  @apply flex flex-col min-h-screen;
+}
+
 body {
   margin: 0;
 }

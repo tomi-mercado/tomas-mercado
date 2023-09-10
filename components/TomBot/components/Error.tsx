@@ -13,7 +13,7 @@ const Error: React.FC<ErrorProps> = ({ onRetryClick }) => {
     content: {
       tombot: { notAvailable, retry },
     },
-  } = useContent();
+  } = useContent('Home');
   return (
     <NotIddleWrapper className="border-error flex-col">
       <p className="text-center">{notAvailable} 😢</p>

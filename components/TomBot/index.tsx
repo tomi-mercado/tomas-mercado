@@ -34,7 +34,7 @@ const TomBot: React.FC = () => {
         maxQuestions,
       },
     },
-  } = useContent();
+  } = useContent('Home');
 
   const loadingMessage = useLoadingMessage(status, loadingMessages);
 

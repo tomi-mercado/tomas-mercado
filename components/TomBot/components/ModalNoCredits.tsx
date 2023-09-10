@@ -12,7 +12,7 @@ const ModalNoCredits: React.FC = () => {
       common: { close },
       tombot: { noQuestionsLeft, noQuestionLeftDescription, emailMe },
     },
-  } = useContent();
+  } = useContent('Home');
 
   return (
     <dialog id="no-credits-modal" className="modal">

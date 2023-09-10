@@ -30,7 +30,7 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       content={content}
       locale={locale}
     >
-      <SectionContainer className="min-h-[90vh]">
+      <SectionContainer className="py-12 min-h-[85vh]">
         <Introduction />
         <TomBot />
       </SectionContainer>

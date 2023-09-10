@@ -1,6 +1,7 @@
 import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
-import { HomeContent } from 'utils/content/homeContentValidation';
+import { GetPageProps } from 'utils/content/getContentGetStaticProps';
+import { z } from 'zod';
 
 import React from 'react';
 
@@ -9,21 +10,21 @@ import Head from 'next/head';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
-interface PageLayoutProps {
+type PageLayoutProps<Schema extends z.ZodObject<z.ZodRawShape>> = {
   title: string;
   description: string;
-  content: HomeContent;
+  content: GetPageProps<Schema>['content'];
   locale: 'en' | 'es';
   children: React.ReactNode;
-}
+};
 
-const PageLayout: React.FC<PageLayoutProps> = ({
+function PageLayout<Schema extends z.ZodObject<z.ZodRawShape>>({
   title,
   description,
   content,
   locale,
   children,
-}) => {
+}: PageLayoutProps<Schema>) {
   return (
     <>
       <Head>
@@ -38,12 +39,12 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       <LocaleProvider locale={locale}>
         <ContentProvider content={content}>
           <Navbar />
-          {children}
+          <div className="grow pt-[64px]">{children}</div>
           <Footer />
         </ContentProvider>
       </LocaleProvider>
     </>
   );
-};
+}
 
 export default PageLayout;

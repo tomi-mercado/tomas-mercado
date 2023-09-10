@@ -1,30 +1,51 @@
-import { HomeContent } from 'utils/content/homeContentValidation';
+import { commonContentSchema } from 'utils/content/commonContentValidation';
+import { GetPageProps } from 'utils/content/getContentGetStaticProps';
+import { homeSchema } from 'utils/content/homeContentValidation';
+import { projectsSchema } from 'utils/content/projectsContentValidation';
+import { z } from 'zod';
 
 import React, { createContext, useContext } from 'react';
 
-interface ContentContextProps {
-  content: HomeContent;
-}
+type ContentContextProps<
+  Schema extends z.ZodObject<z.ZodRawShape> = z.ZodObject<z.ZodRawShape>,
+> = {
+  content: GetPageProps<Schema>['content'];
+};
 
-interface ContentProviderProps {
-  content: HomeContent;
+type ContentProviderProps<Schema extends z.ZodObject<z.ZodRawShape>> = {
+  content: GetPageProps<Schema>['content'];
   children: React.ReactNode;
-}
+};
 
 const ContentContext = createContext<ContentContextProps | null>(null);
 
-export const ContentProvider: React.FC<ContentProviderProps> = ({
+export function ContentProvider<Schema extends z.ZodObject<z.ZodRawShape>>({
   children,
   content,
-}) => {
+}: ContentProviderProps<Schema>) {
   return (
     <ContentContext.Provider value={{ content }}>
       {children}
     </ContentContext.Provider>
   );
-};
+}
 
-export const useContent = () => {
+type GetSchemaUnion<
+  T extends z.ZodObject<z.ZodRawShape>,
+  Z extends z.ZodObject<z.ZodRawShape>,
+> = z.ZodObject<z.mergeTypes<T, Z>['shape']>;
+
+export function useContent(
+  name: 'Projects',
+): ContentContextProps<
+  GetSchemaUnion<typeof projectsSchema, typeof commonContentSchema>
+>;
+export function useContent(
+  name: 'Home',
+): ContentContextProps<
+  GetSchemaUnion<typeof homeSchema, typeof commonContentSchema>
+>;
+export function useContent(_: 'Home' | 'Projects') {
   const content = useContext(ContentContext);
 
   if (!content) {
@@ -32,4 +53,4 @@ export const useContent = () => {
   }
 
   return content;
-};
+}
