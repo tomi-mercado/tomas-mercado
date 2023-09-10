@@ -1,17 +1,13 @@
 import Contact from 'components/Contact';
-import Footer from 'components/Footer';
 import Introduction from 'components/Introduction';
-import Navbar from 'components/Navbar';
+import PageLayout from 'components/PageLayout';
 import ProjectsSection from 'components/ProjectsSection';
 import SectionContainer from 'components/SectionContainer';
 import TomBot from 'components/TomBot';
-import { ContentProvider } from 'contexts/content';
-import { LocaleProvider } from 'contexts/locale';
 import { readFile } from 'fs/promises';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
 
 type ObjectInfo = Record<string, any>;
 
@@ -40,33 +36,21 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
   );
 
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content="/logo.png" />
-      </Head>
+    <PageLayout
+      title={title}
+      description={description}
+      content={content}
+      locale={locale}
+    >
+      <SectionContainer className="min-h-[90vh]">
+        <Introduction />
+        <TomBot />
+      </SectionContainer>
 
-      <LocaleProvider locale={locale}>
-        <ContentProvider content={content}>
-          <Navbar />
+      <ProjectsSection />
 
-          <SectionContainer className="min-h-[90vh]">
-            <Introduction />
-            <TomBot />
-          </SectionContainer>
-
-          <ProjectsSection />
-
-          <Contact />
-
-          <Footer />
-        </ContentProvider>
-      </LocaleProvider>
-    </>
+      <Contact />
+    </PageLayout>
   );
 };
 
