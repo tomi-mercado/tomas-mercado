@@ -1,81 +1,41 @@
 import React from 'react';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { IoMdMail } from 'react-icons/io';
+import {
+  FaGithub as GithubIcon,
+  FaLinkedin as LinkedinIcon,
+} from 'react-icons/fa';
+import { MdEmail as EmailIcon } from 'react-icons/md';
 
-import { Layout, Text } from '@components';
+import Link from 'next/link';
 
-interface SocialMediaItemProps {
-  icon: React.ReactNode;
-  link: string;
-  text: string;
-}
-
-export interface ContactProps {
-  title: string;
+interface ContactProps {
   description: string;
+  linkedin: string;
+  github: string;
+  email: string;
 }
 
-const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
-  icon,
-  link,
-  text,
+const Contact: React.FC<ContactProps> = ({
+  description,
+  email,
+  github,
+  linkedin,
 }) => {
   return (
     <>
-      <a href={link} referrerPolicy="no-referrer">
-        {icon}
-      </a>
-      <a href={link} referrerPolicy="no-referrer">
-        <Text>{text}</Text>
-      </a>
-    </>
-  );
-};
+      <p className="text-lg">{description}</p>
 
-const SocialMedia: React.FC = () => {
-  return (
-    <div className="grid grid-cols-[1fr,5fr] gap-y-2 w-[300px] self-start">
-      <SocialMediaItem
-        icon={<BsLinkedin size={36} />}
-        link="https://linkedin.com/in/tomas-mercado"
-        text="/tomas-mercado"
-      />
-
-      <SocialMediaItem
-        icon={<BsGithub size={36} />}
-        link="https://github.com/tomi-mercado"
-        text="/tomi-mercado"
-      />
-
-      <SocialMediaItem
-        icon={<IoMdMail size={36} />}
-        link="mailto:tmercadoslp@gmail.com"
-        text="tmercadoslp@gmail.com"
-      />
-    </div>
-  );
-};
-
-const Contact: React.FC<ContactProps> = ({ title, description }) => {
-  return (
-    <Layout
-      id="contact"
-      image={{
-        src: '/contact-side-image.png',
-        alt: 'Illustration of an eye and phone',
-        className: 'object-contain',
-      }}
-    >
-      <div className="flex flex-col space-y-4 items-center px-6 lg:px-8 py-4 md:min-h-[inherit] h-full md:justify-center lg:h-[80%]">
-        <Text variant="h3" underline>
-          {title}
-        </Text>
-
-        <Text>{description}</Text>
-
-        <SocialMedia />
+      <div className="flex gap-4 items-center justify-between">
+        <Link href={linkedin} target="_blank">
+          <LinkedinIcon className="text-4xl" />
+        </Link>
+        <Link href={github} target="_blank">
+          <GithubIcon className="text-4xl" />
+        </Link>
+        <Link href={`mailto:${email}`}>
+          <EmailIcon className="text-4xl" />
+        </Link>
       </div>
-    </Layout>
+    </>
   );
 };
 

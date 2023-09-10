@@ -1,29 +1,18 @@
+import Contact from 'components/Contact';
+import Introduction from 'components/Introduction';
+import Navbar from 'components/Navbar';
+import TomBot from 'components/TomBot';
+import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
-import useWindowSize from 'hooks/useWindowSize';
-
-import { ReactNode } from 'react';
+import { readFile } from 'fs/promises';
+import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 
-import {
-  About,
-  AboutProps,
-  Contact,
-  ContactProps,
-  Experience,
-  ExperienceProps,
-  Hero,
-  IntroductionProps,
-  OpacityChangeSections,
-  links,
-} from '@components';
-
-import content from '../content.json';
-
 type ObjectInfo = Record<string, any>;
 
-interface LanguageContent {
+export interface LanguageContent {
   [section: string]: ObjectInfo;
 }
 
@@ -38,35 +27,14 @@ interface HomeProps {
   locale: 'en' | 'es';
 }
 
-interface HomeContainerProps {
-  children: ReactNode;
-  linkIds: string[];
-}
-
-const HomeContainer: React.FC<HomeContainerProps> = ({ children, linkIds }) => {
-  const { width } = useWindowSize();
-
-  const isMobile = width < 1024;
-
-  if (isMobile) {
-    return <>{children}</>;
-  }
-
-  return (
-    <OpacityChangeSections navbarIds={linkIds}>
-      {children}
-    </OpacityChangeSections>
-  );
-};
-
 const Home: NextPage<HomeProps> = ({ content, locale }) => {
-  const linkIds = links(locale).map((link) => link.sectionName);
-
   const title = 'Tomás Mercado - Developer';
-  const description = {
-    en: 'Portfolio website of Tomás Mercado, Full Stack Developer with more than 2+ years of experience',
-    es: 'Sitio web de portafolio de Tomás Mercado, Desarrollador Full Stack con más de 2+ años de experiencia',
-  }[locale];
+  const description = replaceYearsExperience(
+    {
+      en: 'Website of Tomás Mercado, Full Stack Developer with more than [yearsExperience] years of experience',
+      es: 'Sitio web de Tomás Mercado, Desarrollador Full Stack con más de [yearsExperience] años de experiencia',
+    }[locale],
+  );
 
   return (
     <>
@@ -80,19 +48,32 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
       </Head>
 
       <LocaleProvider locale={locale}>
-        <HomeContainer linkIds={linkIds}>
-          <Hero {...(content.hero as IntroductionProps)} />
-          <Experience {...(content.experience as ExperienceProps)} />
-          <About {...(content.about as AboutProps)} />
-          <Contact {...(content.contact as ContactProps)} />
-        </HomeContainer>
+        <ContentProvider content={content}>
+          <Navbar />
+
+          <div className="w-full flex justify-center min-h-screen items-center pt-[105px] md:pt-[95px]">
+            <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
+              <Introduction />
+
+              <TomBot />
+
+              <Contact
+                description={content.contact.description}
+                email={content.contact.email}
+                github={content.contact.github}
+                linkedin={content.contact.linkedin}
+              />
+            </div>
+          </div>
+        </ContentProvider>
       </LocaleProvider>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
-  const parsedContent: Content = JSON.parse(JSON.stringify(content));
+  const content = await readFile('content.json', 'utf-8');
+  const parsedContent: Content = JSON.parse(content);
 
   //select the language specific content
   const languageContent = parsedContent[locale as 'en' | 'es'];
