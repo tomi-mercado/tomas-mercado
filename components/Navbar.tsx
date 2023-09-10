@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
   const { user } = useUser();
 
   return (
-    <header className="w-full flex justify-center bg-base-300 fixed">
+    <header className="w-full flex justify-center bg-base-300 fixed z-10">
       <div className="navbar max-w-6xl px-6 justify-between">
         <Link href="/" className="flex gap-2 items-center">
           <Image
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
             }}
             className="w-auto"
           />
-          <span className="md:text-xl">Tomás Mercado</span>
+          <h1 className="md:text-xl">Tomás Mercado</h1>
         </Link>
 
         <div className="flex gap-4 items-center">

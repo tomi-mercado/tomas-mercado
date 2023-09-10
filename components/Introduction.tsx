@@ -5,6 +5,8 @@ import React from 'react';
 
 import Image from 'next/image';
 
+import UnderlinedText from './UnderlinedText';
+
 const Introduction: React.FC = () => {
   const {
     content: {
@@ -16,12 +18,9 @@ const Introduction: React.FC = () => {
   return (
     <>
       <h2 className="text-4xl">
-        {title.greeting}
-        <br /> ☀️ {title.iAm}{' '}
-        <span className="underline -underline-offset-8 decoration-primary">
-          {title.name}
-        </span>{' '}
-        👋🏻
+        <span className="text-2xl">{title.greeting}</span>
+        <br />
+        {title.iAm} <UnderlinedText>{title.name}</UnderlinedText> 👋🏻
       </h2>
 
       <Image
@@ -33,7 +32,7 @@ const Introduction: React.FC = () => {
         className="rounded-full w-[150px] h-[150px] object-cover"
       />
 
-      <p className="text-lg">{description}</p>
+      <p className="text-lg w-3/4">{description}</p>
     </>
   );
 };

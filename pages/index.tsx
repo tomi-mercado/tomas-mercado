@@ -1,6 +1,9 @@
 import Contact from 'components/Contact';
+import Footer from 'components/Footer';
 import Introduction from 'components/Introduction';
 import Navbar from 'components/Navbar';
+import ProjectsSection from 'components/ProjectsSection';
+import SectionContainer from 'components/SectionContainer';
 import TomBot from 'components/TomBot';
 import { ContentProvider } from 'contexts/content';
 import { LocaleProvider } from 'contexts/locale';
@@ -51,20 +54,16 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
         <ContentProvider content={content}>
           <Navbar />
 
-          <div className="w-full flex justify-center min-h-screen items-center pt-[105px] md:pt-[95px]">
-            <div className="max-w-6xl px-6 flex flex-col gap-4 items-center text-center">
-              <Introduction />
+          <SectionContainer className="min-h-[90vh]">
+            <Introduction />
+            <TomBot />
+          </SectionContainer>
 
-              <TomBot />
+          <ProjectsSection />
 
-              <Contact
-                description={content.contact.description}
-                email={content.contact.email}
-                github={content.contact.github}
-                linkedin={content.contact.linkedin}
-              />
-            </div>
-          </div>
+          <Contact />
+
+          <Footer />
         </ContentProvider>
       </LocaleProvider>
     </>
