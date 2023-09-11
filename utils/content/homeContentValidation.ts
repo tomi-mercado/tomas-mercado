@@ -3,7 +3,15 @@ import { z } from 'zod';
 export const homeSchema = z.object({
   introduction: z.object({
     title: z.object({
-      greeting: z.string(),
+      // greeting: z.string(),
+      //       greetingMorning
+      // greetingAfternoon
+      // greetingEvening
+      // greetingNight
+      greetingMorning: z.string(),
+      greetingAfternoon: z.string(),
+      greetingEvening: z.string(),
+      greetingNight: z.string(),
       iAm: z.string(),
       name: z.string(),
     }),

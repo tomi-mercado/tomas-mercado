@@ -7,7 +7,10 @@
   "en": {
     "introduction": {
       "title": {
-        "greeting": "Morniiiing!",
+        "greetingMorning": "Morning!",
+        "greetingAfternoon": "Good afternoon!",
+        "greetingEvening": "Good evening!",
+        "greetingNight": "Good night!",
         "iAm": "I'm",
         "name": "Tom"
       },
@@ -15,7 +18,7 @@
         "src": "/tomas-mercado.jpg",
         "alt": "Tomás Mercado smiling"
       },
-      "description": "My name is Tomas Mercado (Tom, pls) and I am a Web Developer with [yearsExperience] years of experience who every day try to learn something new, and say hello in the most cheerful way possible."
+      "description": "My name is Tomas Mercado (Tom, pls) and I am a Web Developer with [yearsExperience] years of experience who every day try to learn something new. The food is pizza 🍕, the club is Quilmes [quilmesLogo], and the code is TypeScript [typescriptLogo]"
     },
     "tombot": {
       "description": "Resolve your questions about me with the TomBot",
@@ -55,7 +58,10 @@
   "es": {
     "introduction": {
       "title": {
-        "greeting": "Buen díiiia",
+        "greetingMorning": "Buen día!",
+        "greetingAfternoon": "Buenas tardes!",
+        "greetingEvening": "Buenas tardes!",
+        "greetingNight": "Buenas noches!",
         "iAm": "Soy",
         "name": "Tom"
       },
@@ -63,7 +69,7 @@
         "src": "/tomas-mercado.jpg",
         "alt": "Tomás Mercado sonriendo"
       },
-      "description": "Mi nombre es Tomás Mercado (Tom, por favor) y soy un Desarrollador Web con [yearsExperience] años de experiencia que todos los días intenta aprender algo nuevo, y saludar de la manera más alegre que se le ocurre."
+      "description": "Mi nombre es Tomás Mercado (Tom, por favor) y soy un Desarrollador Web con [yearsExperience] años de experiencia que todos los días intenta aprender algo nuevo. La comida es pizza 🍕, el club es Quilmes [quilmesLogo], y el código es TypeScript [typescriptLogo]"
     },
     "tombot": {
       "description": "Resuelve tus dudas sobre mi con el TomBot",
