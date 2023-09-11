@@ -10,9 +10,9 @@ const Intro = () => {
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <h1 className="text-center w-full text-3xl">
+      <h2 className="text-center w-full text-3xl">
         <UnderlinedText>{title}</UnderlinedText>
-      </h1>
+      </h2>
       <p className="text-center w-full text-sm lg:text-base">{description}</p>
     </div>
   );
