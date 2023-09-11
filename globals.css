@@ -25,3 +25,15 @@ body {
 .no-scroll::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes left-to-right-and-right-to-left {
+  0% {
+    object-position: 0 0;
+  }
+  50% {
+    object-position: 100% 0;
+  }
+  100% {
+    object-position: 0 0;
+  }
+}

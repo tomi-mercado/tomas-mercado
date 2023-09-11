@@ -8,13 +8,16 @@ import { MdLogout } from 'react-icons/md';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const UpdateLocaleButton: React.FC = () => {
   const { locale } = useLocale();
+  const router = useRouter();
+  const currentPath = router.asPath;
 
   return (
     <Link
-      href="/"
+      href={currentPath}
       locale={locale === 'en' ? 'es' : 'en'}
       className="flex space-x-2 items-center"
     >

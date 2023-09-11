@@ -9,6 +9,10 @@ module.exports = {
       fontFamily: {
         sans: ['var(--lato-font)', ...fontFamily.serif],
       },
+      animation: {
+        'left-to-right-and-right-to-left':
+          'left-to-right-and-right-to-left 10s ease-in-out infinite',
+      },
     },
   },
   daisyui: {

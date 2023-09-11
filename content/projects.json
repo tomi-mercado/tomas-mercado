@@ -1,8 +1,108 @@
 {
+  "common": {
+    "projects": [
+      {
+        "title": "Utel CMS",
+        "url": "https://utel.edu.mx",
+        "images": {
+          "icon": {
+            "isImage": true,
+            "content": "/projects/utel-favicon.ico"
+          },
+          "appImage": {
+            "content": "/projects/utel-app-img.png"
+          }
+        },
+        "associatedWith": "Aerolab"
+      },
+      {
+        "title": "Henry Website",
+        "url": "https://soyhenry.com",
+        "images": {
+          "icon": {
+            "isImage": true,
+            "content": "/projects/henry-favicon.ico"
+          },
+          "appImage": {
+            "content": "/projects/henry-app-img.png"
+          }
+        },
+        "associatedWith": "Henry"
+      },
+      {
+        "title": "Hangman (side project)",
+        "url": "https://el-ahorcado.vercel.app/",
+        "githubUrl": "https://github.com/tomi-mercado/el-ahorcado",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "😵"
+          },
+          "appImage": {
+            "content": "/projects/hangman-app-img.png"
+          }
+        }
+      },
+      {
+        "title": "Redeem App (Aerolab challenge)",
+        "url": "https://redeem-app.vercel.app/",
+        "githubUrl": "https://github.com/tomi-mercado/redeem-app",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "🎁"
+          },
+          "appImage": {
+            "content": "/projects/redeem-app-img.png"
+          }
+        }
+      }
+    ]
+  },
   "en": {
-    "title": "Projects"
+    "main": {
+      "title": "Projects",
+      "description": "Get some of my projects at random to have a look at them",
+      "getProject": "Get a project!",
+      "getAnotherProject": "Get another project",
+      "waitingProject": "Hold on to your chair, I'm picking an amazing project for you to see..."
+    },
+    "projects": [
+      {
+        "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.With that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
+      },
+      {
+        "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses."
+      },
+      {
+        "description": "Classic game of Hangman. Available only in Spanish. Use an API that generates random words. The game is responsive, and it is available for mobile devices. Counts with a dark mode."
+      },
+      {
+        "description": "Aerolab challenge. A web application that allows users to redeem points for products. The application is responsive, and it is available for mobile devices."
+      }
+    ]
   },
   "es": {
-    "title": "Proyectos"
+    "main": {
+      "title": "Proyectos",
+      "description": "Obten alguno de mis proyectos al azar para echarles un ojo",
+      "getProject": "Ver un proyecto!",
+      "getAnotherProject": "Ver otro proyecto",
+      "waitingProject": "Agárrate a tu silla, estoy eligiendo un proyecto increíble para que veas..."
+    },
+    "projects": [
+      {
+        "description": "Utel es una universidad en línea mexicana que ofrece carreras, cursos y maestrías en línea a más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un solo lugar. Con ese objetivo en mente, se construyó un CMS dinámico, que permite la creación rápida y fácil de páginas web, al tiempo que permite una gestión eficiente de los procesos de inscripción."
+      },
+      {
+        "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y parcial en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios solicitar los cursos."
+      },
+      {
+        "description": "Juego clásico del ahorcado. Disponible solo en español. Utiliza una API que genera palabras aleatorias. El juego es responsive, y está disponible para dispositivos móviles. Cuenta con un modo oscuro."
+      },
+      {
+        "description": "Challenge de Aerolab. Una aplicación web que permite a los usuarios canjear puntos por productos. La aplicación es responsive, y está disponible para dispositivos móviles."
+      }
+    ]
   }
 }

@@ -1,5 +1,9 @@
 import PageLayout from 'components/PageLayout';
-import { twMerge } from 'tailwind-merge';
+import Actions from 'components/Projects/Actions';
+import Intro from 'components/Projects/Intro';
+import ProjectImage from 'components/Projects/ProjectImage';
+import ProjectInfo from 'components/Projects/ProjectInfo';
+import { ProjectsProvider, useProjects } from 'contexts/projects';
 import getContentGetStaticProps, {
   GetPageProps,
 } from 'utils/content/getContentGetStaticProps';
@@ -9,45 +13,14 @@ import React from 'react';
 
 type ProjectsProps = GetPageProps<typeof projectsSchema>;
 
-const Intro = () => {
-  return (
-    <div className="w-full flex flex-col gap-2">
-      <h1 className="text-center w-full text-3xl">Proyectos</h1>
-      <p className="text-center w-full">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </p>
-    </div>
-  );
-};
+const DesktopActions = () => {
+  const { selectedProject } = useProjects();
 
-const ProjectInfo: React.FC<{ className?: string }> = ({ className }) => {
-  return (
-    <div
-      className={twMerge(
-        'text-center w-full flex-1 flex items-center',
-        className,
-      )}
-    >
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum
-        aliquam quam facilis id cumque, alias voluptatibus est facere nisi
-        reprehenderit, consequatur vero fugit aut distinctio repellendus
-        corrupti dignissimos ut neque.
-      </p>
-    </div>
-  );
-};
+  if (!selectedProject) {
+    return null;
+  }
 
-const Actions: React.FC<{ className?: string }> = ({ className }) => {
-  return (
-    <div
-      className={twMerge('flex gap-2 items-center justify-center', className)}
-    >
-      <button className="">Holis</button>
-      <button className="">Holis</button>
-      <button className="">Holis</button>
-    </div>
-  );
+  return <Actions className="justify-end" />;
 };
 
 const Projects: React.FC<ProjectsProps> = ({ content, locale }) => {
@@ -67,26 +40,27 @@ const Projects: React.FC<ProjectsProps> = ({ content, locale }) => {
       description={description}
       locale={locale}
     >
-      <div className="p-6 flex flex-col flex-1 lg:flex-row lg:flex-0 max-w-6xl self-center lg:gap-6">
-        <div className="flex gap-4 justify-between lg:hidden">
-          <div className="w-28 h-28 shrink-0 bg-red-500 rounded-full" />
-          <Intro />
-        </div>
-
-        <ProjectInfo className="lg:hidden" />
-
-        <Actions className="lg:hidden" />
-
-        <div className="hidden lg:flex flex-1 w-1/2 bg-red-500" />
-        <div className="hidden lg:flex flex-1 w-1/2">
-          <div className="w-full flex flex-col gap-2 py-10">
+      <ProjectsProvider projects={content.projects}>
+        <div className="p-6 flex flex-col flex-1 lg:flex-row lg:flex-0 max-w-6xl self-center gap-6 w-full">
+          {/* Mobile */}
+          <div className="flex gap-4 justify-between lg:hidden">
+            <ProjectImage viewport="mobile" />
             <Intro />
-            <ProjectInfo />
+          </div>
+          <ProjectInfo className="lg:hidden" />
+          <Actions className="lg:hidden flex-col" />
 
-            <Actions className="justify-end" />
+          {/* Desktop */}
+          <ProjectImage viewport="desktop" />
+          <div className="hidden lg:flex flex-1 w-1/2">
+            <div className="w-full flex flex-col gap-2 py-10">
+              <Intro />
+              <ProjectInfo />
+              <DesktopActions />
+            </div>
           </div>
         </div>
-      </div>
+      </ProjectsProvider>
     </PageLayout>
   );
 };

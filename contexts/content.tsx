@@ -33,16 +33,15 @@ export function ContentProvider<Schema extends z.ZodObject<z.ZodRawShape>>({
 export type GetSchemaUnion<
   T extends z.ZodObject<z.ZodRawShape>,
   Z extends z.ZodObject<z.ZodRawShape>,
-> = z.ZodObject<z.mergeTypes<T, Z>['shape']>;
+> = z.ZodObject<z.mergeTypes<Z, T>['shape']> &
+  z.ZodObject<z.mergeTypes<T, Z>['shape']>;
 
-export function useContent(
-  name: 'Projects',
-): ContentContextProps<
+export function useContent(name: 'Projects'): ContentContextProps<
+  // @ts-expect-error This is too much for me to handle
   GetSchemaUnion<typeof projectsSchema, typeof commonContentSchema>
 >;
-export function useContent(
-  name: 'Home',
-): ContentContextProps<
+export function useContent(name: 'Home'): ContentContextProps<
+  // @ts-expect-error This is too much for me to handle
   GetSchemaUnion<typeof homeSchema, typeof commonContentSchema>
 >;
 export function useContent(_: 'Home' | 'Projects') {
