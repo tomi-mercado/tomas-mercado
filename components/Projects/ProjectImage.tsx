@@ -59,14 +59,19 @@ const ProjectImage: React.FC<{
   );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRandomProjectImage(getRandomProjectImage(projects));
-    }, 100);
+    let interval: NodeJS.Timeout | null = null;
 
-    if (status !== 'loading') {
-      clearInterval(interval);
-      return;
+    if (status === 'loading') {
+      interval = setInterval(() => {
+        setRandomProjectImage(getRandomProjectImage(projects));
+      }, 10);
     }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
   }, [projects, status]);
 
   if (viewport === 'mobile') {
@@ -108,12 +113,18 @@ const ProjectImage: React.FC<{
 
       {status === 'projectSelected' && selectedProject && (
         <>
-          <Image
-            src={selectedProject.images.appImage.content}
-            alt={selectedProject.title}
-            fill
-            className="absolute object-cover brightness-50 rounded-md animate-left-to-right-and-right-to-left"
-          />
+          {projects.map((project, i) => (
+            <Image
+              key={`${project.title}-${i}`}
+              src={project.images.appImage.content}
+              alt={project.title}
+              fill
+              className="absolute object-cover brightness-50 rounded-md animate-left-to-right-and-right-to-left"
+              style={{
+                opacity: project.title === selectedProject.title ? 1 : 0,
+              }}
+            />
+          ))}
           <Icon image={selectedProject.images.icon} className="absolute" />
         </>
       )}
