@@ -11,21 +11,13 @@ type BasePageProps<Content extends z.ZodRawShape> = {
   content: z.infer<z.ZodObject<Content>>;
 };
 
-export type GetPageProps<
-  Content extends z.ZodObject<z.ZodRawShape>,
-  AddedProps = Record<string, any>,
-> = BasePageProps<Content['shape']> & AddedProps;
+export type GetPageProps<Content extends z.ZodObject<z.ZodRawShape>> =
+  BasePageProps<Content['shape']>;
 
-function getContentGetStaticProps<
-  Schema extends z.ZodRawShape,
-  AddedProps extends Record<string, any>,
->(
+function getContentGetStaticProps<Schema extends z.ZodRawShape>(
   name: string,
   contentPath: string,
   contentSchema: z.ZodObject<Schema>,
-  customFn?: (
-    props: BasePageProps<Schema & typeof commonContentSchema>,
-  ) => BasePageProps<Schema & typeof commonContentSchema> & AddedProps,
 ) {
   return (async ({ locale: localeParam }) => {
     let locale: 'en' | 'es';
@@ -43,10 +35,6 @@ function getContentGetStaticProps<
 
     const content = await readContent(contentPath, locale, contentSchema);
 
-    if (customFn) {
-      return customFn({ pageName: name, locale, content });
-    }
-
     return {
       props: {
         pageName: name,
@@ -54,9 +42,7 @@ function getContentGetStaticProps<
         locale,
       } as BasePageProps<Schema & typeof commonContentSchema>,
     };
-  }) as GetStaticProps<
-    BasePageProps<Schema & typeof commonContentSchema> & AddedProps
-  >;
+  }) as GetStaticProps<BasePageProps<Schema & typeof commonContentSchema>>;
 }
 
 export default getContentGetStaticProps;
