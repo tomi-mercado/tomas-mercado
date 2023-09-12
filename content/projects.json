@@ -30,7 +30,7 @@
         "associatedWith": "Henry"
       },
       {
-        "title": "Hangman (side project)",
+        "title": "Hangman Game",
         "url": "https://el-ahorcado.vercel.app/",
         "githubUrl": "https://github.com/tomi-mercado/el-ahorcado",
         "images": {
@@ -56,6 +56,48 @@
             "content": "/projects/redeem-app-img.png"
           }
         }
+      },
+      {
+        "title": "Ex país",
+        "url": "https://ex-pais.vercel.app",
+        "githubUrl": "https://github.com/tomi-mercado/ex-pais",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "📉"
+          },
+          "appImage": {
+            "content": "/projects/ex-pais-img.png"
+          }
+        }
+      },
+      {
+        "title": "Crypto Things",
+        "url": "https://crypto-things.vercel.app/",
+        "githubUrl": "https://github.com/tomi-mercado/crypto-things",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "🕯️"
+          },
+          "appImage": {
+            "content": "/projects/crypto-things-img.png"
+          }
+        }
+      },
+      {
+        "title": "Typesense vector store for Langchain",
+        "url": "https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/typesense",
+        "githubUrl": "https://github.com/langchain-ai/langchainjs/pull/1244",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "🦜️"
+          },
+          "appImage": {
+            "content": "/projects/typesense-vector-store-img.png"
+          }
+        }
       }
     ]
   },
@@ -79,6 +121,15 @@
       },
       {
         "description": "Aerolab challenge. A web application that allows users to redeem points for products. The application is responsive, and it is available for mobile devices."
+      },
+      {
+        "description": "App to calculate the inflation of Argentina in a given period of time, based on official data. The app is responsive, and it is available for mobile devices."
+      },
+      {
+        "description": "App to calculate your profit or loss in a given period of time, based on the price of a cryptocurrency. The app is responsive, and it is available for mobile devices."
+      },
+      {
+        "description": "Open source contribution to Langchain, integrating Typesense as a vector store to save, update, delete and search vectors, providing a fast and scalable way to use this search engine to do a similarity search."
       }
     ]
   },
@@ -102,6 +153,15 @@
       },
       {
         "description": "Challenge de Aerolab. Una aplicación web que permite a los usuarios canjear puntos por productos. La aplicación es responsive, y está disponible para dispositivos móviles."
+      },
+      {
+        "description": "App para calcular la inflación de Argentina en un período de tiempo determinado, basada en datos oficiales. La app es responsive, y está disponible para dispositivos móviles."
+      },
+      {
+        "description": "App para calcular tu ganancia o pérdida en un período de tiempo determinado, basada en el precio de una criptomoneda. La app es responsive, y está disponible para dispositivos móviles."
+      },
+      {
+        "description": "Contribución open source a Langchain, integrando Typesense como vector store para guardar, actualizar, eliminar y buscar vectores, proporcionando una forma rápida y escalable de usar este motor de búsqueda para realizar una similarity search."
       }
     ]
   }
