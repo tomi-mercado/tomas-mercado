@@ -33,6 +33,7 @@ export const projectsSchema = z.object({
     getProject: z.string(),
     getAnotherProject: z.string(),
     waitingProject: z.string(),
+    notOpenSource: z.string(),
   }),
   projects: z.array(z.union([sideProjectSchema, professionalProjectSchema])),
 });

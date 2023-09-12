@@ -16,7 +16,7 @@ const Actions: React.FC<{ className?: string }> = ({ className }) => {
   const { selectedProject, handleChangeProject } = useProjects();
   const {
     content: {
-      main: { getAnotherProject },
+      main: { getAnotherProject, notOpenSource },
     },
   } = useContent('Projects');
 
@@ -26,15 +26,26 @@ const Actions: React.FC<{ className?: string }> = ({ className }) => {
     >
       {selectedProject && (
         <>
-          {isSideProject(selectedProject) && (
+          {isSideProject(selectedProject) ? (
             <Link
+              target="_blank"
               href={selectedProject.githubUrl}
               className="btn w-full lg:w-auto btn-secondary"
             >
               <FaGithub /> Source code
             </Link>
+          ) : (
+            <div
+              className="tooltip tooltip-bottom tooltip-secondary"
+              data-tip={notOpenSource}
+            >
+              <button className="btn btn-secondary btn-disabled">
+                <FaGithub /> Source code
+              </button>
+            </div>
           )}
           <Link
+            target="_blank"
             href={selectedProject.url}
             className="btn w-full lg:w-auto btn-secondary"
           >

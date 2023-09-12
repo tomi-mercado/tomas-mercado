@@ -107,7 +107,8 @@
       "description": "Get some of my projects at random to have a look at them",
       "getProject": "Get a project!",
       "getAnotherProject": "Get another project",
-      "waitingProject": "Hold on to your chair, I'm picking an amazing project for you to see..."
+      "waitingProject": "Hold on to your chair, I'm picking an amazing project for you to see...",
+      "notOpenSource": "Sorry, this project is not open source"
     },
     "projects": [
       {
@@ -139,7 +140,8 @@
       "description": "Obten alguno de mis proyectos al azar para echarles un ojo",
       "getProject": "Ver un proyecto!",
       "getAnotherProject": "Ver otro proyecto",
-      "waitingProject": "Agárrate a tu silla, estoy eligiendo un proyecto increíble para que veas..."
+      "waitingProject": "Agárrate a tu silla, estoy eligiendo un proyecto increíble para que veas...",
+      "notOpenSource": "Lo siento, este proyecto no es open source"
     },
     "projects": [
       {
