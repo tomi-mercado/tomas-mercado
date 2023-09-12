@@ -2,7 +2,7 @@ import { useContent } from 'contexts/content';
 import getTimeOfDay from 'utils/getTimeOfDay';
 import { useReplaceYearsExperienceOnClient } from 'utils/replaceYearsExperience';
 
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { SiTypescript } from 'react-icons/si';
 
 import Image from 'next/image';
@@ -41,6 +41,7 @@ const replacerDescription = (
   );
 };
 
+const TIME_TO_SWAP = 5000;
 const SwapImage: React.FC = () => {
   const [swap, setSwap] = useState(false);
   const {
@@ -49,17 +50,28 @@ const SwapImage: React.FC = () => {
     },
   } = useContent('Home');
 
+  const lastSwapTime = useRef(Date.now());
+
+  const toggleSwap = () => {
+    setSwap((prev) => !prev);
+    lastSwapTime.current = Date.now();
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setSwap((prev) => !prev);
-    }, 10000);
+      if (Date.now() - lastSwapTime.current < TIME_TO_SWAP) {
+        return;
+      }
+
+      toggleSwap();
+    }, TIME_TO_SWAP);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <label className="swap swap-flip cursor-default">
-      <input type="checkbox" checked={swap} />
+    <label className="swap swap-flip">
+      <input type="checkbox" checked={swap} onChange={toggleSwap} />
 
       <div className="swap-on">
         <div className="rounded-full w-[160px] h-[160px] bg-secondary relative">
