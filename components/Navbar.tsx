@@ -45,9 +45,6 @@ const Navbar: React.FC = () => {
             alt="Tomas Mercado Logo"
             width={36}
             height={36}
-            style={{
-              filter: 'invert(1)',
-            }}
             className="w-auto"
           />
           <h1 className="md:text-xl">Tomás Mercado</h1>
