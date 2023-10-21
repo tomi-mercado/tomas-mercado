@@ -36,7 +36,8 @@ export default async function RootLayout({
           {/* @ts-expect-error */}
           <Navbar locale={locale} />
           <div className="flex flex-col grow pt-[64px]">{children}</div>
-          <Footer />
+          {/* @ts-expect-error */}
+          <Footer locale={locale} />
         </Providers>
       </body>
     </html>
