@@ -1,7 +1,6 @@
 'use client';
 
-import { useContent } from 'contexts/content';
-import { useLocale } from 'contexts/locale';
+import { CommonContent } from 'utils/content/commonContentValidation';
 
 import React from 'react';
 import { AiOutlineGlobal } from 'react-icons/ai';
@@ -10,16 +9,18 @@ import { MdLogout } from 'react-icons/md';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 const UpdateLocaleButton: React.FC = () => {
-  const { locale } = useLocale();
-  const currentPath = usePathname();
+  const { locale } = useParams();
+
+  if (typeof locale !== 'string') {
+    return null;
+  }
 
   return (
     <Link
-      href={currentPath || '/'}
-      locale={locale === 'en' ? 'es' : 'en'}
+      href={locale === 'en' ? '/es' : '/en'}
       className="flex space-x-2 items-center"
     >
       <AiOutlineGlobal />
@@ -29,13 +30,16 @@ const UpdateLocaleButton: React.FC = () => {
   );
 };
 
-const Navbar: React.FC = () => {
+interface NavbarClientProps {
+  content: CommonContent;
+}
+
+const NavbarClient: React.FC<NavbarClientProps> = ({
+  content: {
+    userMenu: { welcome },
+  },
+}) => {
   const { user } = useUser();
-  const {
-    content: {
-      userMenu: { welcome },
-    },
-  } = useContent('Home');
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">
@@ -91,4 +95,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default NavbarClient;
