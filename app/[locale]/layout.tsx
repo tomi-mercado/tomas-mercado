@@ -3,6 +3,7 @@ import Navbar from 'components/Navbar';
 import Providers from 'components/Providers';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
+import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { Metadata } from 'next';
 import { Lato } from 'next/font/google';
@@ -19,16 +20,14 @@ export async function generateMetadata({
 }: {
   params: { locale: 'en' | 'es' };
 }): Promise<Metadata> {
-  const startDate = new Date(2020, 8, 3);
-  const today = new Date();
-  const years = today.getFullYear() - startDate.getFullYear();
-
   return {
     title: 'Tomás Mercado - Developer',
-    description: {
-      en: `Website of Tomás Mercado, Full Stack Developer with more than ${years}+ years of experience`,
-      es: `Sitio web de Tomás Mercado, Desarrollador Full Stack con más de ${years}+ años de experiencia`,
-    }[params.locale],
+    description: replaceYearsExperience(
+      {
+        en: `Website of Tomás Mercado, Full Stack Developer with more than [yearsExperience] years of experience`,
+        es: `Sitio web de Tomás Mercado, Desarrollador Full Stack con más de [yearsExperience] años de experiencia`,
+      }[params.locale],
+    ),
   };
 }
 

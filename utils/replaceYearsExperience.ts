@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+'server-only';
 
 const necessaryKey = '[yearsExperience]';
 const startDate = new Date(2020, 8, 3);
@@ -16,16 +16,6 @@ const replaceYearsExperience = (text?: string) => {
   }
 
   return text.replace(necessaryKey, `${years}+`);
-};
-
-export const useReplaceYearsExperienceOnClient = (text: string) => {
-  const [yearsExperience, setYearsExperience] = useState<string>('');
-
-  useEffect(() => {
-    setYearsExperience(replaceYearsExperience(text));
-  }, [text]);
-
-  return yearsExperience;
 };
 
 export default replaceYearsExperience;
