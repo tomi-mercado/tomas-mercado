@@ -1,3 +1,4 @@
+import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import Providers from 'components/Providers';
 import readContent from 'services/content';
@@ -5,7 +6,7 @@ import { homeSchema } from 'utils/content/homeContentValidation';
 
 import { Lato } from 'next/font/google';
 
-import '../globals.css';
+import '../../globals.css';
 
 export const metadata = {
   title: 'Next.js',
@@ -28,10 +29,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} data-theme="tomTheme" className={lato.className}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <Providers content={content} locale={locale}>
           <Navbar />
-          Holis!
+          <div className="flex flex-col grow pt-[64px]">{children}</div>
+          <Footer />
         </Providers>
       </body>
     </html>

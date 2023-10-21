@@ -1,3 +1,5 @@
+'use client';
+
 import { useContent } from 'contexts/content';
 
 import React from 'react';
