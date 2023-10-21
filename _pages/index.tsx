@@ -3,7 +3,7 @@ import Introduction from 'components/Introduction';
 import PageLayout from 'components/PageLayout';
 import ProjectsSection from 'components/ProjectsSection';
 import SectionContainer from 'components/SectionContainer';
-import TomBot from 'components/TomBot';
+import Tombot from 'components/TomBot';
 import getContentGetStaticProps, {
   GetPageProps,
 } from 'utils/content/getContentGetStaticProps';
@@ -32,7 +32,7 @@ const Home: NextPage<HomeProps> = ({ content, locale }) => {
     >
       <SectionContainer className="py-12 min-h-[85vh]">
         <Introduction />
-        <TomBot />
+        <Tombot />
       </SectionContainer>
 
       <ProjectsSection />

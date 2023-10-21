@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { TomBotStatus } from './useChatbot';
-
 const getRandomLoadingMessage = (loadingMessages: string[]) => {
   return loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
 };
 
-const useLoadingMessage = (status: TomBotStatus, loadingMessages: string[]) => {
+const useLoadingMessage = (isOn: boolean, loadingMessages: string[]) => {
   const [loadingMessage, setLoadingMessage] = useState(
     getRandomLoadingMessage(loadingMessages),
   );
@@ -14,7 +12,7 @@ const useLoadingMessage = (status: TomBotStatus, loadingMessages: string[]) => {
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined = undefined;
 
-    if (status === 'loading') {
+    if (isOn) {
       interval = setInterval(() => {
         setLoadingMessage(getRandomLoadingMessage(loadingMessages));
       }, 1000);
@@ -23,7 +21,7 @@ const useLoadingMessage = (status: TomBotStatus, loadingMessages: string[]) => {
     }
 
     return () => clearInterval(interval);
-  }, [status, loadingMessages]);
+  }, [isOn, loadingMessages]);
 
   return loadingMessage;
 };

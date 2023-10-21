@@ -15,14 +15,14 @@ interface SuccessProps {
   questionValue: string;
   response: string;
   remaining: number;
-  getAction: ReturnType<typeof useChatbot>['getAction'];
+  onRetry: () => void;
 }
 
 const Success: React.FC<SuccessProps> = ({
   user,
   questionValue,
   response,
-  getAction,
+  onRetry,
   remaining,
 }) => {
   const {
@@ -59,12 +59,7 @@ const Success: React.FC<SuccessProps> = ({
           {`${response}`}
         </ReactMarkdown>
       </p>
-      <button
-        className="btn btn-primary btn-xs self-end"
-        onClick={() => {
-          getAction('again')?.();
-        }}
-      >
+      <button className="btn btn-primary btn-xs self-end" onClick={onRetry}>
         {replaceRemainingQuestions(askAgain, remaining)}
       </button>
     </NotIddleWrapper>
