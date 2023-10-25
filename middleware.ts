@@ -1,6 +1,6 @@
 import { NextMiddleware } from 'next/server';
 
-let locales = ['en', 'es'];
+const locales = ['en', 'es'];
 
 export const middleware: NextMiddleware = (request) => {
   // Check if there is any supported locale in the pathname
