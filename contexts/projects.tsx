@@ -1,3 +1,5 @@
+'use client';
+
 import { Project } from 'utils/content/projectsContentValidation';
 
 import React, { createContext, useContext, useRef, useState } from 'react';

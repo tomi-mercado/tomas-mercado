@@ -1,4 +1,5 @@
-import { useContent } from 'contexts/content';
+'use client';
+
 import { useProjects } from 'contexts/projects';
 import { twMerge } from 'tailwind-merge';
 
@@ -6,13 +7,12 @@ import React from 'react';
 
 const ProjectInfo: React.FC<{
   className?: string;
-}> = ({ className }) => {
+  texts: {
+    getProject: string;
+    waitingProject: string;
+  };
+}> = ({ texts: { getProject, waitingProject }, className }) => {
   const { selectedProject, handleChangeProject, status } = useProjects();
-  const {
-    content: {
-      main: { getProject, waitingProject },
-    },
-  } = useContent('Projects');
 
   return (
     <div

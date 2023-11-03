@@ -1,13 +1,13 @@
 import UnderlinedText from 'components/UnderlinedText';
-import { useContent } from 'contexts/content';
 
-const Intro = () => {
-  const {
-    content: {
-      main: { title, description },
-    },
-  } = useContent('Projects');
-
+const Intro = ({
+  texts: { title, description },
+}: {
+  texts: {
+    title: string;
+    description: string;
+  };
+}) => {
   return (
     <div className="w-full flex flex-col gap-2">
       <h2 className="text-center w-full text-3xl">
