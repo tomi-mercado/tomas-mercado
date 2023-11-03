@@ -1,7 +1,7 @@
 'use client';
 
 import useChatbot from 'hooks/useChatbot';
-import { askToTombot } from 'server-actions';
+import useLoadingMessage from 'hooks/useLoadingMessage';
 import { HomeContent } from 'utils/content/homeContentValidation';
 import replaceMaxQuestions from 'utils/replaceMaxQuestions';
 
@@ -9,13 +9,20 @@ import React from 'react';
 
 import ErrorComponent from './components/Error';
 import Iddle from './components/Iddle';
+import Loading from './components/Loading';
 import ModalLoginRequired from './components/ModalLoginRequired';
 import ModalNoCredits from './components/ModalNoCredits';
 import Success from './components/Success';
 
 interface TombotClientProps {
   content: HomeContent;
+  /**
+   * If undefined, the user is not logged in or there was an error loading the credits
+   */
   credits: number | undefined;
+  /**
+   * If true, the user is logged in but there was an error loading the credits
+   */
   errorLoadingCredits?: boolean;
 }
 
@@ -25,31 +32,34 @@ const TomBotClient: React.FC<TombotClientProps> = ({
   errorLoadingCredits,
 }) => {
   const {
-    status: chatbotStatus,
+    status,
     questionValue,
     response,
     isLoginModalOpen,
-    user,
     setQuestionValue,
     actions,
   } = useChatbot({
-    credits,
+    credits: {
+      amount: credits,
+      error: errorLoadingCredits || false,
+    },
   });
-  const status = errorLoadingCredits ? 'error' : chatbotStatus;
 
   const {
     tombot: { description, loadingMessages, aclaration, maxQuestions },
   } = content;
 
-  // const loadingMessage = useLoadingMessage(isPending, loadingMessages)
+  const loadingMessage = useLoadingMessage(
+    status === 'loading',
+    loadingMessages,
+  );
 
   const renderByStatus = {
-    // loading: <Loading message={loadingMessage} />,
+    loading: <Loading message={loadingMessage} />,
     iddle: (
       <Iddle
         onChange={(event) => setQuestionValue(event.target.value)}
         questionValue={questionValue}
-        loadingMessages={loadingMessages}
       />
     ),
     success:
@@ -59,7 +69,6 @@ const TomBotClient: React.FC<TombotClientProps> = ({
           response={response}
           onRetry={() => actions.success.onNewQuestion()}
           remaining={credits}
-          user={user}
         />
       ) : null,
     error: <ErrorComponent onRetryClick={() => actions.error.onRetry()} />,
@@ -68,7 +77,6 @@ const TomBotClient: React.FC<TombotClientProps> = ({
         <Iddle
           onChange={(event) => setQuestionValue(event.target.value)}
           questionValue={questionValue}
-          loadingMessages={loadingMessages}
         />
         <ModalNoCredits />
       </>
@@ -78,20 +86,9 @@ const TomBotClient: React.FC<TombotClientProps> = ({
   return (
     <form
       className="flex flex-col gap-3 w-full items-center"
-      // @ts-expect-error
-      action={async (formData) => {
-        const isSubmittable = actions.iddle.onSubmit();
-
-        if (!isSubmittable) {
-          return;
-        }
-
-        try {
-          const response = await askToTombot(formData);
-          actions.loading.onSuccess(response);
-        } catch (e) {
-          actions.loading.onError();
-        }
+      onSubmit={(e) => {
+        e.preventDefault();
+        actions.iddle.submit();
       }}
     >
       <div className="flex flex-col gap-1 w-full items-center">

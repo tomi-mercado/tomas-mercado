@@ -88,26 +88,10 @@ const preResponse = async (
   }
 };
 
-const validatePrompt = (prompt: FormDataEntryValue | null) => {
-  if (!prompt) {
-    throw new Error('Missing prompt');
-  }
-
-  if (typeof prompt !== 'string') {
-    throw new Error('Prompt should be a string');
-  }
-
-  if (prompt.length > 280) {
-    throw new Error('Prompt too long');
-  }
-
-  return prompt;
-};
-
 const isCurrentlyGettingResponse: Record<string, boolean> = {};
 const responsesCache: Record<string, string> = {};
 
-export const askToTombot = async (formData: FormData) => {
+export const askToTombot = async (prompt: string) => {
   const session = await getSession();
 
   if (!session) {
@@ -117,11 +101,10 @@ export const askToTombot = async (formData: FormData) => {
   const user = await getAuth0User(session.user.sub);
   const credits = await getCredits(user);
 
-  const prompt = validatePrompt(formData.get('question'));
-
   if (true) {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    return 'Buenas buenas,,';
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    revalidatePath('/');
+    return prompt;
   }
 
   if (credits < 1) {

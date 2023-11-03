@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import { askToTombot } from 'server-actions';
 
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { useEffect, useState, useTransition } from 'react';
 
 import useDebounce from './useDebounce';
 
-export type TomBotStatus = 'iddle' | 'success' | 'error' | 'noCredits';
+export type TomBotStatus =
+  | 'iddle'
+  | 'success'
+  | 'error'
+  | 'noCredits'
+  | 'loading';
 
 const getQuestionValueFromLocalStorage = () => {
   if (typeof window === 'undefined') {
@@ -37,7 +42,10 @@ const cleanQuestionValueFromLocalStorage = () => {
 };
 
 interface UseChatbotArgs {
-  credits: number | undefined;
+  credits: {
+    amount: number | undefined;
+    error: boolean;
+  };
 }
 
 const useChatbot = ({ credits }: UseChatbotArgs) => {
@@ -47,6 +55,8 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
     getQuestionValueFromLocalStorage,
   );
   const [response, setResponse] = useState<string | null>(null);
+
+  const [isLoading, startTransition] = useTransition();
 
   useDebounce(
     () => {
@@ -58,7 +68,6 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
 
   // Auth
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { user } = useUser();
 
   const openLoginRequiredModal = () => {
     setIsLoginModalOpen(true);
@@ -81,52 +90,39 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
 
   const actions = {
     iddle: {
-      onSubmit: () => {
+      submit: () => {
         if (!questionValue) {
-          return false;
+          return;
         }
 
-        if (!user) {
+        // This means that the user is not logged in
+        if (credits.amount === undefined && !credits.error) {
           openLoginRequiredModal();
-          return false;
+          return;
         }
 
-        if (credits === 0) {
+        if (credits.amount === 0) {
           setStatus('noCredits');
           openNoCreditsModal();
-          return false;
+          return;
         }
 
-        return true;
+        startTransition(() => {
+          (async () => {
+            try {
+              const response = await askToTombot(questionValue);
+              actions.loading.onSuccess(response);
+            } catch (error) {
+              actions.loading.onError();
+            }
+          })();
+        });
       },
     },
     loading: {
       onSuccess: (response: string) => {
         setStatus('success');
         setResponse(response);
-
-        // Simulate typing
-        // const splitResponse = response.split('');
-        // let i = 0;
-        // setResponse(() => splitResponse[0]);
-        // const interval = setInterval(() => {
-        //   setResponse((prev) => {
-        //     if (!prev) {
-        //       return splitResponse[i];
-        //     }
-
-        //     if (!splitResponse[i]) {
-        //       return prev;
-        //     }
-
-        //     return prev + splitResponse[i];
-        //   });
-        //   i++;
-
-        //   if (i === splitResponse.length) {
-        //     clearInterval(interval);
-        //   }
-        // }, 5);
       },
       onError: () => {
         setStatus('error');
@@ -142,14 +138,13 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
     },
     error: {
       onRetry: () => {
-        actions.iddle.onSubmit();
+        actions.iddle.submit();
       },
     },
   };
 
   return {
-    user,
-    status,
+    status: credits.error ? 'error' : isLoading ? 'loading' : status,
     questionValue,
     response,
     isLoginModalOpen,

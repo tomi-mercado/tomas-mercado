@@ -1,17 +1,16 @@
 import { useContent } from 'contexts/content';
-import useChatbot from 'hooks/useChatbot';
 import remarkGfm from 'remark-gfm';
 import replaceRemainingQuestions from 'utils/replaceRemainingQuestions';
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
 
 import NotIddleWrapper from './NotIddleWrapper';
 
 interface SuccessProps {
-  user: ReturnType<typeof useChatbot>['user'];
   questionValue: string;
   response: string;
   remaining: number;
@@ -19,7 +18,6 @@ interface SuccessProps {
 }
 
 const Success: React.FC<SuccessProps> = ({
-  user,
   questionValue,
   response,
   onRetry,
@@ -30,6 +28,7 @@ const Success: React.FC<SuccessProps> = ({
       tombot: { askAgain },
     },
   } = useContent('Home');
+  const { user } = useUser();
   const you = user?.name || 'You';
 
   return (

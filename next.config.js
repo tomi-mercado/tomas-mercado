@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-  },
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    // remotePatterns: ['lh3.googleusercontent.com'],
+    remotePatterns: [
+      {
+        hostname: 'lh3.googleusercontent.com',
+      },
+    ],
   },
 };
 
