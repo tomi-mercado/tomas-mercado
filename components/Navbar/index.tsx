@@ -1,45 +1,20 @@
-'use client';
+import { getAuth0User } from 'services/auth';
+import { readCommonContent } from 'services/content';
 
-import { CommonContent } from 'utils/content/commonContentValidation';
-
-import React from 'react';
-import { AiOutlineGlobal } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
 
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { getSession } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
-const UpdateLocaleButton: React.FC = () => {
-  const { locale } = useParams();
+import UpdateLocaleButton from './UpdateLocaleButton';
 
-  if (typeof locale !== 'string') {
-    return null;
-  }
-
-  return (
-    <Link
-      href={locale === 'en' ? '/es' : '/en'}
-      className="flex space-x-2 items-center"
-    >
-      <AiOutlineGlobal />
-
-      <p className="text-sm md:text-base">{locale.toUpperCase()}</p>
-    </Link>
-  );
-};
-
-interface NavbarClientProps {
-  content: CommonContent;
-}
-
-const NavbarClient: React.FC<NavbarClientProps> = ({
-  content: {
+const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
+  const {
     userMenu: { welcome },
-  },
-}) => {
-  const { user } = useUser();
+  } = await readCommonContent(locale);
+  const session = await getSession();
+  const user = session ? await getAuth0User(session.user.sub) : undefined;
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">
@@ -95,4 +70,4 @@ const NavbarClient: React.FC<NavbarClientProps> = ({
   );
 };
 
-export default NavbarClient;
+export default Navbar;
