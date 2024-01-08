@@ -36,20 +36,24 @@ function PageLayout<Schema extends z.ZodObject<z.ZodRawShape>>({
         <meta property="og:description" content={description} />
         <meta property="og:image" content="/logo.png" />
       </Head>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-R9WGHHDZL7"
-      />
+      {process.env.NODE_ENV === 'production' && (
+        <>
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-R9WGHHDZL7"
+          />
 
-      <Script id="google-analytics">
-        {`window.dataLayer = window.dataLayer || [];
+          <Script id="google-analytics">
+            {`window.dataLayer = window.dataLayer || [];
         function gtag(){
           dataLayer.push(arguments);  
         }
         gtag('js', new Date());
 
         gtag('config', 'G-R9WGHHDZL7');`}
-      </Script>
+          </Script>
+        </>
+      )}
 
       <LocaleProvider locale={locale}>
         <ContentProvider content={content}>
