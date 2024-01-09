@@ -51,7 +51,7 @@ const SwapImage: React.FC<{
       <div className="swap-off">
         <div className="rounded-full w-[160px] h-[160px] bg-secondary relative">
           <Image
-            src="/logo.png"
+            src="/images/logo.png"
             alt="Logo of Tom: The food is pizza, the club is Quilmes, and the code is TypeScript"
             width={184}
             height={184}
