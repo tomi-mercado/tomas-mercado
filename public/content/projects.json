@@ -7,10 +7,10 @@
         "images": {
           "icon": {
             "isImage": true,
-            "content": "/projects/utel-favicon.ico"
+            "content": "/images/projects/utel-favicon.ico"
           },
           "appImage": {
-            "content": "/projects/utel-app-img.png"
+            "content": "/images/projects/utel-app-img.png"
           }
         },
         "associatedWith": "Aerolab"
@@ -21,10 +21,10 @@
         "images": {
           "icon": {
             "isImage": true,
-            "content": "/projects/henry-favicon.ico"
+            "content": "/images/projects/henry-favicon.ico"
           },
           "appImage": {
-            "content": "/projects/henry-app-img.png"
+            "content": "/images/projects/henry-app-img.png"
           }
         },
         "associatedWith": "Henry"
@@ -39,7 +39,7 @@
             "content": "😵"
           },
           "appImage": {
-            "content": "/projects/hangman-app-img.png"
+            "content": "/images/projects/hangman-app-img.png"
           }
         }
       },
@@ -53,7 +53,7 @@
             "content": "🎁"
           },
           "appImage": {
-            "content": "/projects/redeem-app-img.png"
+            "content": "/images/projects/redeem-app-img.png"
           }
         }
       },
@@ -67,7 +67,7 @@
             "content": "📉"
           },
           "appImage": {
-            "content": "/projects/ex-pais-img.png"
+            "content": "/images/projects/ex-pais-img.png"
           }
         }
       },
@@ -81,7 +81,7 @@
             "content": "🕯️"
           },
           "appImage": {
-            "content": "/projects/crypto-things-img.png"
+            "content": "/images/projects/crypto-things-img.png"
           }
         }
       },
@@ -95,7 +95,7 @@
             "content": "🦜️"
           },
           "appImage": {
-            "content": "/projects/typesense-vector-store-img.png"
+            "content": "/images/projects/typesense-vector-store-img.png"
           }
         }
       }
