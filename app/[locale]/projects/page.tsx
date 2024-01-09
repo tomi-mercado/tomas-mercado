@@ -42,6 +42,7 @@ const Projects = async ({
         <Actions
           texts={{
             getAnotherProject: content.main.getAnotherProject,
+            notOpenSource: content.main.notOpenSource,
           }}
           className="lg:hidden flex-col"
         />
@@ -63,7 +64,10 @@ const Projects = async ({
               }}
             />
             <DesktopActions
-              texts={{ getAnotherProject: content.main.getProject }}
+              texts={{
+                getAnotherProject: content.main.getProject,
+                notOpenSource: content.main.notOpenSource,
+              }}
             />
           </div>
         </div>

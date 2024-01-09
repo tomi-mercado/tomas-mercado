@@ -16,9 +16,10 @@ const isSideProject = (project: Project): project is SideProject => {
 const Actions: React.FC<{
   texts: {
     getAnotherProject: string;
+    notOpenSource: string;
   };
   className?: string;
-}> = ({ className, texts: { getAnotherProject } }) => {
+}> = ({ className, texts: { getAnotherProject, notOpenSource } }) => {
   const { selectedProject, handleChangeProject } = useProjects();
 
   return (
@@ -27,15 +28,26 @@ const Actions: React.FC<{
     >
       {selectedProject && (
         <>
-          {isSideProject(selectedProject) && (
+          {isSideProject(selectedProject) ? (
             <Link
+              target="_blank"
               href={selectedProject.githubUrl}
               className="btn w-full lg:w-auto btn-secondary"
             >
               <FaGithub /> Source code
             </Link>
+          ) : (
+            <div
+              className="tooltip tooltip-bottom tooltip-secondary"
+              data-tip={notOpenSource}
+            >
+              <button className="btn btn-secondary btn-disabled">
+                <FaGithub /> Source code
+              </button>
+            </div>
           )}
           <Link
+            target="_blank"
             href={selectedProject.url}
             className="btn w-full lg:w-auto btn-secondary"
           >
@@ -58,6 +70,7 @@ export const DesktopActions = ({
 }: {
   texts: {
     getAnotherProject: string;
+    notOpenSource: string;
   };
 }) => {
   const { selectedProject } = useProjects();
