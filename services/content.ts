@@ -63,7 +63,7 @@ export const readCommonContent = async (locale: 'en' | 'es') => {
   return commonContentSchema.parse(languageContent);
 };
 
-const addCwd = (p: string) => path.join(process.cwd(), p);
+const addCwd = (p: string) => path.join(process.cwd(), 'public', p);
 
 async function readContent<Schema extends z.ZodRawShape>(
   path: string,
