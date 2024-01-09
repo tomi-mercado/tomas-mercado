@@ -1,4 +1,5 @@
 import { readFile } from 'fs/promises';
+import path from 'path';
 import { commonContentSchema } from 'utils/content/commonContentValidation';
 import { z } from 'zod';
 
@@ -62,7 +63,7 @@ export const readCommonContent = async (locale: 'en' | 'es') => {
   return commonContentSchema.parse(languageContent);
 };
 
-const addCwd = (path: string) => `${process.cwd()}/${path}`;
+const addCwd = (p: string) => path.join(process.cwd(), p);
 
 async function readContent<Schema extends z.ZodRawShape>(
   path: string,
@@ -70,9 +71,6 @@ async function readContent<Schema extends z.ZodRawShape>(
   schema: z.ZodObject<Schema>,
 ) {
   const content = await readFile(addCwd(path), 'utf-8');
-  console.log({
-    jej: addCwd(path),
-  });
   const commonContent = await readFile(addCwd('content/common.json'), 'utf-8');
 
   const parsedCommonContent: Content = JSON.parse(commonContent);
