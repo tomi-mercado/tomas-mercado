@@ -59,15 +59,13 @@ export const readCommonContent = async (locale: 'en' | 'es') => {
   return commonContentSchema.parse(languageContent);
 };
 
-const addCwd = (path: string) => `${process.cwd()}/${path}`;
-
 async function readContent<Schema extends z.ZodRawShape>(
   path: string,
   locale: 'en' | 'es',
   schema: z.ZodObject<Schema>,
 ) {
-  const content = await readFile(addCwd(path), 'utf-8');
-  const commonContent = await readFile(addCwd('content/common.json'), 'utf-8');
+  const content = await readFile(path, 'utf-8');
+  const commonContent = await readFile('content/common.json', 'utf-8');
 
   const parsedCommonContent: Content = JSON.parse(commonContent);
   const parsedContent: Content = JSON.parse(content);
