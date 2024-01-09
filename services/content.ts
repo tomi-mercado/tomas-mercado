@@ -70,6 +70,9 @@ async function readContent<Schema extends z.ZodRawShape>(
   schema: z.ZodObject<Schema>,
 ) {
   const content = await readFile(addCwd(path), 'utf-8');
+  console.log({
+    jej: addCwd(path),
+  });
   const commonContent = await readFile(addCwd('content/common.json'), 'utf-8');
 
   const parsedCommonContent: Content = JSON.parse(commonContent);
