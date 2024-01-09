@@ -11,7 +11,10 @@ interface Content {
 }
 
 export const readCommonContent = async (locale: 'en' | 'es') => {
-  const contentAllLocalesRaw = await readFile('content/common.json', 'utf-8');
+  const contentAllLocalesRaw = await readFile(
+    addCwd('content/common.json'),
+    'utf-8',
+  );
   const contentAllLocales = JSON.parse(contentAllLocalesRaw);
 
   const languageContent = contentAllLocales[locale];
