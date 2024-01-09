@@ -10,6 +10,55 @@ interface Content {
   common: ObjectInfo;
 }
 
+export const readCommonContent = async (locale: 'en' | 'es') => {
+  const contentAllLocalesRaw = await readFile('content/common.json', 'utf-8');
+  const contentAllLocales = JSON.parse(contentAllLocalesRaw);
+
+  const languageContent = contentAllLocales[locale];
+
+  for (const key in contentAllLocales.common) {
+    if (!languageContent[key]) {
+      languageContent[key] = contentAllLocales.common[key];
+      continue;
+    }
+
+    if (typeof languageContent[key] === 'string') {
+      languageContent[key] = contentAllLocales.common[key];
+      continue;
+    }
+
+    if (Array.isArray(languageContent[key])) {
+      const languageContentArray = languageContent[key] as ObjectInfo[];
+      const commonContentArray = contentAllLocales.common[key] as ObjectInfo[];
+
+      languageContentArray.forEach((languageContentItem, index) => {
+        for (const key in commonContentArray[index]) {
+          if (!languageContentItem[key]) {
+            languageContentItem[key] = commonContentArray[index][key];
+            continue;
+          }
+        }
+      });
+      continue;
+    }
+
+    if (typeof languageContent[key] === 'object') {
+      const languageContentObject = languageContent[key] as ObjectInfo;
+      const commonContentObject = contentAllLocales.common[key] as ObjectInfo;
+
+      for (const key in commonContentObject) {
+        if (!languageContentObject[key]) {
+          languageContentObject[key] = commonContentObject[key];
+          continue;
+        }
+      }
+      continue;
+    }
+  }
+
+  return commonContentSchema.parse(languageContent);
+};
+
 async function readContent<Schema extends z.ZodRawShape>(
   path: string,
   locale: 'en' | 'es',

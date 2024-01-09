@@ -6,9 +6,10 @@ import { FaPaperPlane as SendIcon } from 'react-icons/fa';
 interface IddleProps {
   questionValue: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: () => void;
 }
 
-const Iddle: React.FC<IddleProps> = ({ onChange, questionValue }) => {
+const Iddle: React.FC<IddleProps> = ({ onChange, onSubmit, questionValue }) => {
   const {
     content: {
       tombot: { placeholder },
@@ -22,6 +23,13 @@ const Iddle: React.FC<IddleProps> = ({ onChange, questionValue }) => {
         placeholder={placeholder}
         value={questionValue}
         onChange={onChange}
+        name="question"
+        onKeyDown={(e) => {
+          // Submit if CMD/CTRL + Enter
+          if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            onSubmit();
+          }
+        }}
       />
       <button
         type="submit"

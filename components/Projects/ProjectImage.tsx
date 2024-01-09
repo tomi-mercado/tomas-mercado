@@ -1,3 +1,5 @@
+'use client';
+
 import { useProjects } from 'contexts/projects';
 import { twMerge } from 'tailwind-merge';
 import { Project } from 'utils/content/projectsContentValidation';

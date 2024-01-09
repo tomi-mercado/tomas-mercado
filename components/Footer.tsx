@@ -1,17 +1,14 @@
-import { useContent } from 'contexts/content';
+import { readCommonContent } from 'services/content';
 
-import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 
 import Link from 'next/link';
 
-const Footer: React.FC = () => {
+const Footer = async ({ locale }: { locale: 'en' | 'es' }) => {
   const {
-    content: {
-      contact: { github },
-      footer: { madeWith, byMe, seeSourceCode },
-    },
-  } = useContent('Home');
+    contact: { github },
+    footer: { byMe, madeWith, seeSourceCode },
+  } = await readCommonContent(locale);
 
   return (
     <footer className="w-full flex justify-center items-center py-6 bg-base-200">

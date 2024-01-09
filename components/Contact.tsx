@@ -1,6 +1,6 @@
-import { useContent } from 'contexts/content';
+import readContent from 'services/content';
+import { homeSchema } from 'utils/content/homeContentValidation';
 
-import React from 'react';
 import {
   FaGithub as GithubIcon,
   FaLinkedin as LinkedinIcon,
@@ -12,12 +12,10 @@ import Link from 'next/link';
 import SectionContainer from './SectionContainer';
 import UnderlinedText from './UnderlinedText';
 
-const Contact: React.FC = () => {
+const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
   const {
-    content: {
-      contact: { title, description, reachMe, email, github, linkedin },
-    },
-  } = useContent('Home');
+    contact: { title, description, reachMe, linkedin, github, email },
+  } = await readContent('content/home.json', locale, homeSchema);
 
   return (
     <SectionContainer>

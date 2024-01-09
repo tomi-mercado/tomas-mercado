@@ -1,18 +1,19 @@
-import { useContent } from 'contexts/content';
-
-import React from 'react';
+import readContent from 'services/content';
+import { homeSchema } from 'utils/content/homeContentValidation';
 
 import Link from 'next/link';
 
 import SectionContainer from './SectionContainer';
 import UnderlinedText from './UnderlinedText';
 
-const ProjectsSection: React.FC = () => {
+interface ProjectsSectionProps {
+  locale: 'en' | 'es';
+}
+
+const ProjectsSection = async ({ locale }: ProjectsSectionProps) => {
   const {
-    content: {
-      projects: { title, description, CTA },
-    },
-  } = useContent('Home');
+    projects: { title, description, CTA },
+  } = await readContent('content/home.json', locale, homeSchema);
 
   return (
     <SectionContainer>

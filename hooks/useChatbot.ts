@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { askToTombot } from 'server-actions';
 
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { useEffect, useState, useTransition } from 'react';
 
 import useDebounce from './useDebounce';
 
 export type TomBotStatus =
   | 'iddle'
-  | 'loading'
-  | 'loadingUserInfo'
   | 'success'
   | 'error'
-  | 'noCredits';
+  | 'noCredits'
+  | 'loading';
 
 const getQuestionValueFromLocalStorage = () => {
   if (typeof window === 'undefined') {
@@ -43,45 +41,22 @@ const cleanQuestionValueFromLocalStorage = () => {
   localStorage.removeItem('questionValue');
 };
 
-const useChatbot = () => {
-  // Chatbot
+interface UseChatbotArgs {
+  credits: {
+    amount: number | undefined;
+    error: boolean;
+  };
+}
+
+const useChatbot = ({ credits }: UseChatbotArgs) => {
   const [status, setStatus] = useState<TomBotStatus>('iddle');
+
   const [questionValue, setQuestionValue] = useState(
     getQuestionValueFromLocalStorage,
   );
   const [response, setResponse] = useState<string | null>(null);
 
-  const { data: credits, refetch: refetchCredits } = useQuery({
-    queryFn: async () => {
-      setStatus('loadingUserInfo');
-
-      const r = await fetch('/api/chatbot/credits');
-      const response = (await r.json()) as
-        | { credits: number }
-        | { error: string };
-
-      if (!r.ok) {
-        if (r.status === 401) {
-          setStatus('iddle');
-          return undefined;
-        }
-
-        const errorResponse = response as { error: string };
-        throw new Error(errorResponse.error);
-      }
-
-      const successResponse = response as { credits: number };
-      return successResponse.credits;
-    },
-    onError: () => {
-      actions.loading.onError();
-    },
-    onSuccess: () => {
-      setStatus('iddle');
-    },
-    cacheTime: 0,
-    refetchOnWindowFocus: false,
-  });
+  const [isLoading, startTransition] = useTransition();
 
   useDebounce(
     () => {
@@ -93,7 +68,6 @@ const useChatbot = () => {
 
   // Auth
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { user, isLoading: loadingAuth, error: errorAuth } = useUser();
 
   const openLoginRequiredModal = () => {
     setIsLoginModalOpen(true);
@@ -116,70 +90,39 @@ const useChatbot = () => {
 
   const actions = {
     iddle: {
-      onSubmit: async () => {
+      submit: () => {
         if (!questionValue) {
           return;
         }
 
-        if (!user) {
+        // This means that the user is not logged in
+        if (credits.amount === undefined && !credits.error) {
           openLoginRequiredModal();
           return;
         }
 
-        if (credits === 0) {
+        if (credits.amount === 0) {
           setStatus('noCredits');
           openNoCreditsModal();
           return;
         }
 
-        setStatus('loading');
-
-        try {
-          const r = await fetch('/api/chatbot', {
-            method: 'POST',
-            body: JSON.stringify({ prompt: questionValue }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-
-          if (!r.ok) {
-            throw new Error('Error');
-          }
-
-          const data = (await r.json()) as { response: string };
-          await refetchCredits();
-          actions.loading.onSuccess(data.response);
-        } catch (e) {
-          actions.loading.onError();
-        }
+        startTransition(() => {
+          (async () => {
+            try {
+              const response = await askToTombot(questionValue);
+              actions.loading.onSuccess(response);
+            } catch (error) {
+              actions.loading.onError();
+            }
+          })();
+        });
       },
     },
     loading: {
       onSuccess: (response: string) => {
         setStatus('success');
-        // Simulate typing
-        const splitResponse = response.split('');
-        let i = 0;
-        setResponse(() => splitResponse[0]);
-        const interval = setInterval(() => {
-          setResponse((prev) => {
-            if (!prev) {
-              return splitResponse[i];
-            }
-
-            if (!splitResponse[i]) {
-              return prev;
-            }
-
-            return prev + splitResponse[i];
-          });
-          i++;
-
-          if (i === splitResponse.length) {
-            clearInterval(interval);
-          }
-        }, 5);
+        setResponse(response);
       },
       onError: () => {
         setStatus('error');
@@ -195,60 +138,19 @@ const useChatbot = () => {
     },
     error: {
       onRetry: () => {
-        actions.iddle.onSubmit();
+        actions.iddle.submit();
       },
     },
   };
 
-  const getAction = (action: 'submit' | 'again' | 'retry') => {
-    if (action === 'submit') {
-      switch (status) {
-        case 'iddle':
-          return actions.iddle.onSubmit;
-        case 'error':
-          return actions.error.onRetry;
-        case 'noCredits':
-          return actions.iddle.onSubmit;
-        default:
-          throw new Error(
-            `Action ${action} is not available on status ${status}`,
-          );
-      }
-    }
-
-    if (action === 'again') {
-      switch (status) {
-        case 'success':
-          return actions.success.onNewQuestion;
-        default:
-          throw new Error(
-            `Action ${action} is not available on status ${status}`,
-          );
-      }
-    }
-
-    if (action === 'retry') {
-      switch (status) {
-        case 'error':
-          return actions.error.onRetry;
-        default:
-          throw new Error(
-            `Action ${action} is not available on status ${status}`,
-          );
-      }
-    }
-  };
-
   return {
-    user,
-    status,
+    status: credits.error ? 'error' : isLoading ? 'loading' : status,
     questionValue,
     response,
     isLoginModalOpen,
-    credits,
     openLoginRequiredModal,
     setQuestionValue,
-    getAction,
+    actions,
   };
 };
 

@@ -1,40 +1,20 @@
-import { useContent } from 'contexts/content';
-import { useLocale } from 'contexts/locale';
+import { getAuth0User } from 'services/auth';
+import { readCommonContent } from 'services/content';
 
-import React from 'react';
-import { AiOutlineGlobal } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
 
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { getSession } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
-const UpdateLocaleButton: React.FC = () => {
-  const { locale } = useLocale();
-  const router = useRouter();
-  const currentPath = router.asPath;
+import UpdateLocaleButton from './UpdateLocaleButton';
 
-  return (
-    <Link
-      href={currentPath}
-      locale={locale === 'en' ? 'es' : 'en'}
-      className="flex space-x-2 items-center"
-    >
-      <AiOutlineGlobal />
-
-      <p className="text-sm md:text-base">{locale.toUpperCase()}</p>
-    </Link>
-  );
-};
-
-const Navbar: React.FC = () => {
-  const { user } = useUser();
+const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
   const {
-    content: {
-      userMenu: { welcome },
-    },
-  } = useContent('Home');
+    userMenu: { welcome },
+  } = await readCommonContent(locale);
+  const session = await getSession();
+  const user = session ? await getAuth0User(session.user.sub) : undefined;
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">

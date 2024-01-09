@@ -1,4 +1,5 @@
-import { useContent } from 'contexts/content';
+'use client';
+
 import { useProjects } from 'contexts/projects';
 import { twMerge } from 'tailwind-merge';
 import { Project, SideProject } from 'utils/content/projectsContentValidation';
@@ -12,13 +13,14 @@ const isSideProject = (project: Project): project is SideProject => {
   return 'githubUrl' in project && !('associatedWith' in project);
 };
 
-const Actions: React.FC<{ className?: string }> = ({ className }) => {
+const Actions: React.FC<{
+  texts: {
+    getAnotherProject: string;
+    notOpenSource: string;
+  };
+  className?: string;
+}> = ({ className, texts: { getAnotherProject, notOpenSource } }) => {
   const { selectedProject, handleChangeProject } = useProjects();
-  const {
-    content: {
-      main: { getAnotherProject, notOpenSource },
-    },
-  } = useContent('Projects');
 
   return (
     <div
@@ -61,6 +63,23 @@ const Actions: React.FC<{ className?: string }> = ({ className }) => {
       )}
     </div>
   );
+};
+
+export const DesktopActions = ({
+  texts,
+}: {
+  texts: {
+    getAnotherProject: string;
+    notOpenSource: string;
+  };
+}) => {
+  const { selectedProject } = useProjects();
+
+  if (!selectedProject) {
+    return null;
+  }
+
+  return <Actions texts={texts} className="justify-end" />;
 };
 
 export default Actions;

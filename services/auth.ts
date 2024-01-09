@@ -136,10 +136,7 @@ export const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const user = await getAuth0User(session.user.sub);
 
-  return {
-    ...user,
-    userId: session.user.sub,
-  };
+  return user;
 };
 
 const INITIAL_CREDITS = 5;
@@ -150,7 +147,7 @@ export const getCredits = async (user: Awaited<ReturnType<typeof getUser>>) => {
     credits = INITIAL_CREDITS;
 
     try {
-      await updateCredits(user.userId, credits);
+      await updateCredits(user.user_id, credits);
     } catch (error) {
       console.error(error);
       throw new Error('Something went wrong adding inital credits to the user');

@@ -2,8 +2,11 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{tsx,jsx}', './components/**/*.{tsx,jsx}'],
-  plugins: [require('daisyui')],
+  content: [
+    './app/**/*.{ts,tsx,js,jsx}',
+    './pages/**/*.{ts,tsx,js,jsx}',
+    './components/**/*.{ts,tsx,js,jsx}',
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -60,5 +63,5 @@ module.exports = {
       },
     ],
   },
-  mode: 'jit',
+  plugins: [require('daisyui')],
 };
