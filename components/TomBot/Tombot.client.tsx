@@ -45,6 +45,10 @@ const TomBotClient: React.FC<TombotClientProps> = ({
     },
   });
 
+  const handleSubmit = () => {
+    actions.iddle.submit();
+  };
+
   const {
     tombot: { description, loadingMessages, aclaration, maxQuestions },
   } = content;
@@ -60,6 +64,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
       <Iddle
         onChange={(event) => setQuestionValue(event.target.value)}
         questionValue={questionValue}
+        onSubmit={handleSubmit}
       />
     ),
     success:
@@ -77,6 +82,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
         <Iddle
           onChange={(event) => setQuestionValue(event.target.value)}
           questionValue={questionValue}
+          onSubmit={handleSubmit}
         />
         <ModalNoCredits />
       </>
@@ -88,7 +94,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
       className="flex flex-col gap-3 w-full items-center"
       onSubmit={(e) => {
         e.preventDefault();
-        actions.iddle.submit();
+        handleSubmit();
       }}
     >
       <div className="flex flex-col gap-1 w-full items-center">

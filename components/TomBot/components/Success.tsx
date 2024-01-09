@@ -17,6 +17,23 @@ interface SuccessProps {
   onRetry: () => void;
 }
 
+const TIME_EACH_LETTER_IN_MS = 10;
+
+const useTypingEffect = (text: string) => {
+  const [typedText, setTypedText] = React.useState('');
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setTypedText(text.slice(0, index + 1));
+      setIndex((prev) => prev + 1);
+    }, TIME_EACH_LETTER_IN_MS);
+    return () => clearTimeout(timer);
+  }, [index, text]);
+
+  return typedText;
+};
+
 const Success: React.FC<SuccessProps> = ({
   questionValue,
   response,
@@ -30,6 +47,8 @@ const Success: React.FC<SuccessProps> = ({
   } = useContent('Home');
   const { user } = useUser();
   const you = user?.name || 'You';
+
+  const typedResponse = useTypingEffect(response);
 
   return (
     <NotIddleWrapper className="flex-col gap-4 items-start">
@@ -55,7 +74,7 @@ const Success: React.FC<SuccessProps> = ({
         🤖 TomBot
         <br />
         <ReactMarkdown remarkPlugins={[remarkGfm]} className="italic">
-          {`${response}`}
+          {`${typedResponse}`}
         </ReactMarkdown>
       </p>
       <button className="btn btn-primary btn-xs self-end" onClick={onRetry}>
