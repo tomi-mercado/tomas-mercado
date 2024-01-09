@@ -21,7 +21,7 @@ const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
       <div className="navbar max-w-6xl px-6 justify-between">
         <Link href="/" className="flex gap-2 items-center">
           <Image
-            src="/logo.png"
+            src="/images/logo.png"
             alt="Tomas Mercado Logo"
             width={36}
             height={36}

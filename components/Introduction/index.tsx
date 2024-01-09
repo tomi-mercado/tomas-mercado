@@ -76,7 +76,7 @@ const Introduction = async ({ locale }: IntroductionProps) => {
             strToReplace: '[quilmesLogo]',
             replacement: (
               <Image
-                src="/quilmes.png"
+                src="/images/quilmes.png"
                 alt="Quilmes Atletico Club escudo"
                 width={16}
                 height={16}
