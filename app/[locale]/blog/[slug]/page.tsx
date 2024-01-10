@@ -1,24 +1,24 @@
 import remarkGfm from 'remark-gfm';
-import { getPost, getPosts } from 'services/posts';
+import { getPost } from 'services/posts';
 
 import Markdown from 'react-markdown';
 
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams({
-  params: { locale },
-}: {
-  params: { locale: 'en' | 'es' };
-}) {
-  const posts = await getPosts({
-    locale,
-  });
+// export async function generateStaticParams({
+//   params: { locale },
+// }: {
+//   params: { locale: 'en' | 'es' };
+// }) {
+//   const posts = await getPosts({
+//     locale,
+//   });
 
-  return posts.map((post) => ({
-    slug: post.slug,
-    locale,
-  }));
-}
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//     locale,
+//   }));
+// }
 
 export default async function Page({
   params,
