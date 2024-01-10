@@ -37,6 +37,7 @@ export const extractMetadataFromMarkdown = (markdown: string) => {
       title: z.string(),
       description: z.string(),
       locale: z.array(z.enum(['en', 'es'])).min(1),
+      date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     })
     .parse(metadataObject);
 };
@@ -61,11 +62,10 @@ export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
         const postPath = path.join(postsPath, post);
         const file = await readFile(postPath, 'utf8');
         const metadata = extractMetadataFromMarkdown(file);
-        const createdAt = await stat(postPath).then((stats) => stats.birthtime);
 
         return {
           ...metadata,
-          createdAt,
+          createdAt: new Date(`${metadata.date}:00:00`),
           slug: post.replace(/\.md$/, ''),
         };
       }),

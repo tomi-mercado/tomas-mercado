@@ -2,6 +2,7 @@
 title: Mi bebi bebi
 description: Un blog de prueba sobre mi bebi bebi
 locale: es
+date: 2024-01-10
 ---
 
 # Mi bebi bebi
