@@ -1,8 +1,7 @@
+import SectionContainer from 'components/SectionContainer';
+import UnderlinedText from 'components/UnderlinedText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
-
-import SectionContainer from './SectionContainer';
-import UnderlinedText from './UnderlinedText';
 
 const BlogSection = async ({ locale }: { locale: 'en' | 'es' }) => {
   const {

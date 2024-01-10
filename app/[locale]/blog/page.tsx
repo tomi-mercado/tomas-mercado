@@ -1,6 +1,6 @@
+import PostListItem from 'app/[locale]/blog/components/PostListItem';
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import MarkedHighlightText from 'components/MarkedHighlightText';
-import PostListItem from 'components/PostListItem';
 import { getPosts } from 'services/posts';
 
 import Image from 'next/image';

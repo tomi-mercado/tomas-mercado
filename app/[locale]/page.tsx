@@ -1,10 +1,11 @@
-import Contact from 'components/Contact';
-import Introduction from 'components/Introduction';
-import ProjectsSection from 'components/ProjectsSection';
 import SectionContainer from 'components/SectionContainer';
-import Tombot from 'components/TomBot';
 import UnderlinedText from 'components/UnderlinedText';
 import { getPosts } from 'services/posts';
+
+import Contact from './components/Contact';
+import Introduction from './components/Introduction';
+import ProjectsSection from './components/ProjectsSection';
+import TombotServer from './components/TomBot';
 
 const Home = async ({
   params: { locale },
@@ -22,7 +23,7 @@ const Home = async ({
         {/* @ts-expect-error */}
         <Introduction locale={locale} />
         {/* @ts-expect-error */}
-        <Tombot locale={locale} />
+        <TombotServer locale={locale} />
       </SectionContainer>
       {/* @ts-expect-error */}
       <ProjectsSection locale={locale} />

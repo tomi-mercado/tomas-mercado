@@ -1,7 +1,9 @@
-import Actions, { DesktopActions } from 'components/Projects/Actions';
-import Intro from 'components/Projects/Intro';
-import ProjectImage from 'components/Projects/ProjectImage';
-import ProjectInfo from 'components/Projects/ProjectInfo';
+import Actions, {
+  DesktopActions,
+} from 'app/[locale]/projects/components/Projects/Actions';
+import Intro from 'app/[locale]/projects/components/Projects/Intro';
+import ProjectImage from 'app/[locale]/projects/components/Projects/ProjectImage';
+import ProjectInfo from 'app/[locale]/projects/components/Projects/ProjectInfo';
 import { ProjectsProvider } from 'contexts/projects';
 import readContent from 'services/content';
 import { projectsSchema } from 'utils/content/projectsContentValidation';

@@ -1,3 +1,5 @@
+import SectionContainer from 'components/SectionContainer';
+import UnderlinedText from 'components/UnderlinedText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 
@@ -8,9 +10,6 @@ import {
 import { MdEmail as EmailIcon } from 'react-icons/md';
 
 import Link from 'next/link';
-
-import SectionContainer from './SectionContainer';
-import UnderlinedText from './UnderlinedText';
 
 const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
   const {

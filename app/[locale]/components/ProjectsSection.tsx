@@ -1,9 +1,8 @@
+import LinkMantainLocale from 'components/LinkMantainLocale';
+import SectionContainer from 'components/SectionContainer';
+import UnderlinedText from 'components/UnderlinedText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
-
-import LinkMantainLocale from './LinkMantainLocale';
-import SectionContainer from './SectionContainer';
-import UnderlinedText from './UnderlinedText';
 
 interface ProjectsSectionProps {
   locale: 'en' | 'es';
