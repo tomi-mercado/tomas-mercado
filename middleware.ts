@@ -9,10 +9,6 @@ export const middleware: NextMiddleware = (request) => {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
 
-  console.log({
-    pathnameHasLocale,
-  });
-
   if (pathnameHasLocale) {
     return;
   }

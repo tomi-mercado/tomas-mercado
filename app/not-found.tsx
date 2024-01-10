@@ -3,7 +3,6 @@ import LinkMantainLocale from 'components/LinkMantainLocale';
 import Image from 'next/image';
 
 export default async function NotFound() {
-  // TODO
   return (
     <div className="container py-6 flex flex-col gap-4 h-full flex-1">
       <div className="w-full h-full flex flex-col gap-6 items-center flex-1 justify-center">
