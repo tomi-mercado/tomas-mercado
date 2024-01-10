@@ -44,6 +44,14 @@ export const extractMetadataFromMarkdown = (markdown: string) => {
 const postsPath = path.join(process.cwd(), 'public', 'articles');
 
 export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
+  const postsPathExists = await stat(postsPath)
+    .then(() => true)
+    .catch(() => false);
+
+  if (!postsPathExists) {
+    return [];
+  }
+
   const posts = await readdir(postsPath);
 
   const postsWithMetadata = await Promise.all(
