@@ -24,7 +24,7 @@ También puedo usar [links](https://google.com)
 
 También puedo usar imagenes
 
-![Img con bebi](prueba-img.png)
+![Img con bebi](https://i.ibb.co/CzBX5s0/bbis.jpg)
 
 y decile a bebi q
 
