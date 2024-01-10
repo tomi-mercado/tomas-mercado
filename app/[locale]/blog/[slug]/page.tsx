@@ -5,21 +5,6 @@ import Markdown from 'react-markdown';
 
 import { notFound } from 'next/navigation';
 
-// export async function generateStaticParams({
-//   params: { locale },
-// }: {
-//   params: { locale: 'en' | 'es' };
-// }) {
-//   const posts = await getPosts({
-//     locale,
-//   });
-
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//     locale,
-//   }));
-// }
-
 export default async function Page({
   params,
 }: {
