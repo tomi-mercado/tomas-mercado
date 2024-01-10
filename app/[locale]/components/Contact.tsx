@@ -1,5 +1,5 @@
+import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
-import UnderlinedText from 'components/UnderlinedText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 
@@ -19,7 +19,7 @@ const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
   return (
     <SectionContainer>
       <h3 className="text-3xl">
-        <UnderlinedText>{title}</UnderlinedText>
+        <MarkedHighlightText>{title}</MarkedHighlightText>
       </h3>
 
       <p>{description}</p>

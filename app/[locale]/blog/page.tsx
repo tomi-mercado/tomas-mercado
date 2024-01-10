@@ -19,7 +19,9 @@ const Blog = async ({
       {posts.length === 0 && (
         <div className="w-full h-full flex flex-col gap-6 items-center flex-1 justify-center">
           <p className="text-3xl text-center">
-            There are no posts yet, please come back later!
+            There are <MarkedHighlightText>no posts yet</MarkedHighlightText>
+            <br />
+            please come back later!
           </p>
           <Image
             src="/images/blogs-emptystate.webp"

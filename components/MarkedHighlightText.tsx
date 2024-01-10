@@ -29,7 +29,7 @@ const HiglightMarker = () => (
 
 const MarkedHighlightText: React.FC<MarkedHighlightTextProps> = ({
   children,
-  highlightColor = 'before:bg-secondary',
+  highlightColor = 'before:bg-accent',
   className,
   ...props
 }) => {
@@ -39,7 +39,7 @@ const MarkedHighlightText: React.FC<MarkedHighlightTextProps> = ({
       <span
         {...props}
         className={twMerge(
-          'relative',
+          'relative z-[1]',
           'before:content-[""]',
           highlightColor,
           'before:w-[110%]',
@@ -47,10 +47,10 @@ const MarkedHighlightText: React.FC<MarkedHighlightTextProps> = ({
           'before:absolute',
           'before:-z-10',
           'before:marker-shape',
-          'before:-left-[0.1em]',
-          'before:-right-[0.1em]',
+          'before:-left-[0.2em]',
           'before:top-[0.1em]',
           'before:px-[0.5em]',
+          'before:pb-[1.2em]',
           className,
         )}
       >
