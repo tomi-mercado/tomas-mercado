@@ -21,7 +21,7 @@ const Projects = async ({
 
   return (
     <ProjectsProvider projects={content.projects}>
-      <div className="p-6 flex flex-col flex-1 lg:flex-row lg:flex-0 max-w-6xl self-center gap-6 w-full">
+      <div className="p-6 flex flex-col flex-1 lg:flex-row lg:flex-0 container gap-6 w-full">
         {/* Mobile */}
         <div className="flex gap-4 justify-between lg:hidden">
           <ProjectImage viewport="mobile" />

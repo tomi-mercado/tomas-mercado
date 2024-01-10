@@ -5,9 +5,13 @@ const locales = ['en', 'es'];
 export const middleware: NextMiddleware = (request) => {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
-  const pathnameHasLocale = locales.some(
+  const pathnameHasLocale = locales.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
+
+  console.log({
+    pathnameHasLocale,
+  });
 
   if (pathnameHasLocale) {
     return;

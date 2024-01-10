@@ -1,3 +1,4 @@
+import LinkMantainLocale from 'components/LinkMantainLocale';
 import { getAuth0User } from 'services/auth';
 import { readCommonContent } from 'services/content';
 
@@ -18,8 +19,8 @@ const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
 
   return (
     <header className="w-full flex justify-center bg-base-300 fixed z-10">
-      <div className="navbar max-w-6xl px-6 justify-between">
-        <Link href="/" className="flex gap-2 items-center">
+      <div className="navbar container justify-between">
+        <LinkMantainLocale href="/" className="flex gap-2 items-center">
           <Image
             src="/images/logo.png"
             alt="Tomas Mercado Logo"
@@ -28,7 +29,7 @@ const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
             className="w-auto"
           />
           <h1 className="md:text-xl">Tomás Mercado</h1>
-        </Link>
+        </LinkMantainLocale>
 
         <div className="flex gap-4 items-center">
           <UpdateLocaleButton />

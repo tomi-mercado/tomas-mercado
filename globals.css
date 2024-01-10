@@ -33,3 +33,9 @@ body {
     object-position: 0 0;
   }
 }
+
+@layer utilities {
+  .container {
+    @apply mx-auto px-4 max-w-6xl;
+  }
+}

@@ -1,8 +1,7 @@
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 
-import Link from 'next/link';
-
+import LinkMantainLocale from './LinkMantainLocale';
 import SectionContainer from './SectionContainer';
 import UnderlinedText from './UnderlinedText';
 
@@ -21,9 +20,9 @@ const ProjectsSection = async ({ locale }: ProjectsSectionProps) => {
         <UnderlinedText>{title}</UnderlinedText>
       </h3>
       <p>{description}</p>
-      <Link href="/projects" className="btn btn-primary">
+      <LinkMantainLocale href="/projects" className="btn btn-primary">
         {CTA}
-      </Link>
+      </LinkMantainLocale>
     </SectionContainer>
   );
 };
