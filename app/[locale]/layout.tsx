@@ -31,6 +31,28 @@ export async function generateMetadata({
   };
 }
 
+const HiglightMarker = () => (
+  <svg xmlns="//www.w3.org/2000/svg" version="1.1" className="hidden">
+    <defs>
+      <filter id="marker-shape">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0 0.15"
+          numOctaves="1"
+          result="warp"
+        />
+        <feDisplacementMap
+          xChannelSelector="R"
+          yChannelSelector="G"
+          scale="30"
+          in="SourceGraphic"
+          in2="warp"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
 export default async function RootLayout({
   children,
   params: { locale },
@@ -46,6 +68,7 @@ export default async function RootLayout({
     <html lang={locale} data-theme="tomTheme" className={lato.className}>
       <body className="flex flex-col min-h-screen">
         <Providers content={content} locale={locale}>
+          <HiglightMarker />
           {/* @ts-expect-error */}
           <Navbar locale={locale} />
           <div className="flex flex-col grow pt-[64px]">{children}</div>

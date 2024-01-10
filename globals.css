@@ -38,4 +38,21 @@ body {
   .container {
     @apply mx-auto px-4 max-w-6xl;
   }
+
+  .realistic-marker-highlight {
+    position: relative;
+  }
+  .realistic-marker-highlight:before {
+    content: '';
+    background-color: #252530;
+    width: 110%;
+    height: 1em;
+    position: absolute;
+    z-index: -1;
+    filter: url('#marker-shape');
+    left: -0.1em;
+    right: -0.1em;
+    top: 0.1em;
+    padding: 0 0.5em;
+  }
 }

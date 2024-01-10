@@ -5,8 +5,14 @@ import Markdown from 'react-markdown';
 
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams() {
-  const posts = await getPosts();
+export async function generateStaticParams({
+  params: { locale },
+}: {
+  params: { locale: 'en' | 'es' };
+}) {
+  const posts = await getPosts({
+    locale,
+  });
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -18,11 +24,12 @@ export default async function Page({
 }: {
   params: {
     slug: string;
+    locale: 'en' | 'es';
   };
 }) {
-  const { slug } = params;
+  const { slug, locale } = params;
 
-  const content = await getPost(slug);
+  const content = await getPost(slug, locale);
 
   if (!content) {
     notFound();
@@ -33,24 +40,26 @@ export default async function Page({
       remarkPlugins={[remarkGfm]}
       components={{
         h1: ({ node, ...props }) => (
-          <h1 {...props} className="text-3xl font-bold" />
+          <h1 {...props} className="text-3xl my-1 font-bold" />
         ),
         h2: ({ node, ...props }) => (
-          <h2 {...props} className="text-2xl font-bold" />
+          <h2 {...props} className="text-2xl my-1 font-bold" />
         ),
         h3: ({ node, ...props }) => (
-          <h3 {...props} className="text-xl font-bold" />
+          <h3 {...props} className="text-xl my-1 font-bold" />
         ),
         h4: ({ node, ...props }) => (
-          <h4 {...props} className="text-lg font-bold" />
+          <h4 {...props} className="text-lg my-1 font-bold" />
         ),
         h5: ({ node, ...props }) => (
-          <h5 {...props} className="text-base font-bold" />
+          <h5 {...props} className="text-base my-1 font-bold" />
         ),
         h6: ({ node, ...props }) => (
-          <h6 {...props} className="text-sm font-bold" />
+          <h6 {...props} className="text-sm my-1 font-bold" />
         ),
-        a: ({ node, ...props }) => <a {...props} className="underline" />,
+        a: ({ node, ...props }) => (
+          <a {...props} target="_blank" className="underline" />
+        ),
         hr: ({ node, ...props }) => <hr {...props} className="my-4" />,
         ul: ({ node, ...props }) => (
           <ul {...props} className="list-disc pl-4" />
