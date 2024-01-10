@@ -1,3 +1,4 @@
+import MarkedHighlightText from 'components/MarkedHighlightText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 import getTimeOfDay from 'utils/getTimeOfDay';
@@ -65,9 +66,9 @@ const Introduction = async ({ locale }: IntroductionProps) => {
         <span className="text-2xl">{greetingByTimeOfDay}</span>
         <br />
 
-        <span className="realistic-marker-highlight">
+        <MarkedHighlightText>
           {title.iAm} {title.name} 👋🏻
-        </span>
+        </MarkedHighlightText>
       </h2>
 
       <SwapImage image={image} />
