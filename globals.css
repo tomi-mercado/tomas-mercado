@@ -55,4 +55,8 @@ body {
     top: 0.1em;
     padding: 0 0.5em;
   }
+
+  .marker-shape {
+    filter: url('#marker-shape');
+  }
 }

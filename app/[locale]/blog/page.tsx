@@ -1,4 +1,5 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
+import MarkedHighlightText from 'components/MarkedHighlightText';
 import PostListItem from 'components/PostListItem';
 import { getPosts } from 'services/posts';
 
@@ -35,8 +36,8 @@ const Blog = async ({
 
       {!!posts.length && (
         <>
-          <h1 className="text-4xl realistic-marker-highlight w-fit px-2 self-center text-center sm:self-start sm:text-left">
-            Blog
+          <h1 className="text-4xl w-fit self-center text-center sm:self-start sm:text-left">
+            <MarkedHighlightText className="px-2">Blog</MarkedHighlightText>
           </h1>
 
           <ul>

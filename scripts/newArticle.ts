@@ -10,7 +10,7 @@ const main = async () => {
     message: 'Article title?',
   });
 
-  const title = z.string().min(10).max(100).parse(titlePrompt.title);
+  const title = z.string().min(3).max(100).parse(titlePrompt.title);
 
   const descriptionPrompt = await prompts({
     type: 'text',
