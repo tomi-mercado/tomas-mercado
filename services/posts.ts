@@ -55,18 +55,20 @@ export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
   const posts = await readdir(postsPath);
 
   const postsWithMetadata = await Promise.all(
-    posts.map(async (post) => {
-      const postPath = path.join(postsPath, post);
-      const file = await readFile(postPath, 'utf8');
-      const metadata = extractMetadataFromMarkdown(file);
-      const createdAt = await stat(postPath).then((stats) => stats.birthtime);
+    posts
+      .filter((post) => post.endsWith('.md'))
+      .map(async (post) => {
+        const postPath = path.join(postsPath, post);
+        const file = await readFile(postPath, 'utf8');
+        const metadata = extractMetadataFromMarkdown(file);
+        const createdAt = await stat(postPath).then((stats) => stats.birthtime);
 
-      return {
-        ...metadata,
-        createdAt,
-        slug: post.replace(/\.md$/, ''),
-      };
-    }),
+        return {
+          ...metadata,
+          createdAt,
+          slug: post.replace(/\.md$/, ''),
+        };
+      }),
   ).then((posts) =>
     posts
       .filter((post) => post.locale.includes(locale))

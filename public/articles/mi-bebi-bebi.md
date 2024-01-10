@@ -1,0 +1,31 @@
+---
+title: Mi bebi bebi
+description: Un blog de prueba sobre mi bebi bebi
+locale: es
+---
+
+# Mi bebi bebi
+
+Acá puedo escribir muchas cositas.
+
+## puedo
+
+### usar
+
+#### diferentes
+
+##### tamaños
+
+###### en los titulos
+
+También puedo usar **negrita** o _cursiva_ o ~~tachado~~
+
+También puedo usar [links](https://google.com)
+
+También puedo usar imagenes
+
+![Img con bebi](prueba-img.png)
+
+y decile a bebi q
+
+> hola bebi, te amo ❤️‍🔥
