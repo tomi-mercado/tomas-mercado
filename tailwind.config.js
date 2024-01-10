@@ -27,11 +27,11 @@ module.exports = {
           'primary-focus': '#e6e6e6',
           'primary-content': '#000000',
 
-          secondary: '#1a3056',
+          secondary: '#252530',
           'secondary-focus': '#091120',
           'secondary-content': '#ffffff',
 
-          accent: '#503447',
+          accent: '#412119',
           'accent-focus': '#32202c',
           'accent-content': '#ffffff',
 

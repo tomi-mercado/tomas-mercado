@@ -1,4 +1,4 @@
-import UnderlinedText from 'components/UnderlinedText';
+import MarkedHighlightText from 'components/MarkedHighlightText';
 
 const Intro = ({
   texts: { title, description },
@@ -11,7 +11,7 @@ const Intro = ({
   return (
     <div className="w-full flex flex-col gap-2">
       <h2 className="text-center w-full text-3xl">
-        <UnderlinedText>{title}</UnderlinedText>
+        <MarkedHighlightText>{title}</MarkedHighlightText>
       </h2>
       <p className="text-center w-full text-sm lg:text-base">{description}</p>
     </div>

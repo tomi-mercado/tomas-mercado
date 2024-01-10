@@ -1,4 +1,4 @@
-import UnderlinedText from 'components/UnderlinedText';
+import MarkedHighlightText from 'components/MarkedHighlightText';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 import getTimeOfDay from 'utils/getTimeOfDay';
@@ -65,7 +65,10 @@ const Introduction = async ({ locale }: IntroductionProps) => {
       <h2 className="text-4xl">
         <span className="text-2xl">{greetingByTimeOfDay}</span>
         <br />
-        {title.iAm} <UnderlinedText>{title.name}</UnderlinedText> 👋🏻
+
+        <MarkedHighlightText>
+          {title.iAm} {title.name} 👋🏻
+        </MarkedHighlightText>
       </h2>
 
       <SwapImage image={image} />
