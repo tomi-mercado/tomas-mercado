@@ -1,3 +1,5 @@
+import MarkedHighlightText from 'components/MarkedHighlightText';
+import SectionContainer from 'components/SectionContainer';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
 
@@ -9,9 +11,6 @@ import { MdEmail as EmailIcon } from 'react-icons/md';
 
 import Link from 'next/link';
 
-import SectionContainer from './SectionContainer';
-import UnderlinedText from './UnderlinedText';
-
 const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
   const {
     contact: { title, description, reachMe, linkedin, github, email },
@@ -20,7 +19,7 @@ const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
   return (
     <SectionContainer>
       <h3 className="text-3xl">
-        <UnderlinedText>{title}</UnderlinedText>
+        <MarkedHighlightText>{title}</MarkedHighlightText>
       </h3>
 
       <p>{description}</p>

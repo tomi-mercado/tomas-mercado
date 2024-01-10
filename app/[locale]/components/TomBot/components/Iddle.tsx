@@ -19,7 +19,7 @@ const Iddle: React.FC<IddleProps> = ({ onChange, onSubmit, questionValue }) => {
   return (
     <>
       <textarea
-        className="textarea textarea-primary w-full pr-10 no-scroll h-full min-h-[inherit]"
+        className="textarea textarea-primary w-full pr-10 no-scroll h-full min-h-[inherit] bg-secondary"
         placeholder={placeholder}
         value={questionValue}
         onChange={onChange}

@@ -53,6 +53,11 @@
       "title": "Projects",
       "description": "Check out some of my side and professional projects. You will be able to see the technologies used, the code and the live demo of many of them.",
       "CTA": "Go to Projects"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Experiences, thoughts, explanations and other things about my day to day as a developer.",
+      "CTA": "Check out my blog"
     }
   },
   "es": {
@@ -69,7 +74,7 @@
         "src": "/images/tomas-mercado.jpg",
         "alt": "Tomás Mercado sonriendo"
       },
-      "description": "Mi nombre es Tomás Mercado (Tom, por favor) y soy un Desarrollador Web con [yearsExperience] años de experiencia que todos los días intenta aprender algo nuevo. La comida es pizza 🍕, el club es Quilmes [quilmesLogo], y el código es TypeScript [typescriptLogo]"
+      "description": "Mi nombre es Tomás Mercado (Tom, por favor) y soy un Web Developer con [yearsExperience] años de experiencia que todos los días intenta aprender algo nuevo. La comida es pizza 🍕, el club es Quilmes [quilmesLogo], y el código es TypeScript [typescriptLogo]"
     },
     "tombot": {
       "description": "Resuelve tus dudas sobre mi con el TomBot",
@@ -104,6 +109,11 @@
       "title": "Proyectos",
       "description": "Mira algunos de mis proyectos personales y profesionales. Podrás ver las tecnologías utilizadas, el código y la demo en vivo de muchos de ellos.",
       "CTA": "Ir a Proyectos"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Experiencias, pensamientos, explicaciones y otras cosas sobre mi día a día como dev.",
+      "CTA": "Visita mi blog"
     }
   }
 }

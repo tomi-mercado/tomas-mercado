@@ -3,11 +3,6 @@ import { z } from 'zod';
 export const homeSchema = z.object({
   introduction: z.object({
     title: z.object({
-      // greeting: z.string(),
-      //       greetingMorning
-      // greetingAfternoon
-      // greetingEvening
-      // greetingNight
       greetingMorning: z.string(),
       greetingAfternoon: z.string(),
       greetingEvening: z.string(),
@@ -45,6 +40,11 @@ export const homeSchema = z.object({
   }),
   common: z.object({ close: z.string() }),
   projects: z.object({
+    title: z.string(),
+    description: z.string(),
+    CTA: z.string(),
+  }),
+  blog: z.object({
     title: z.string(),
     description: z.string(),
     CTA: z.string(),
