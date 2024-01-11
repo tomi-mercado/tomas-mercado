@@ -99,7 +99,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
     >
       <div className="flex flex-col gap-1 w-full items-center">
         <p className="text-lg">{description} 🤖</p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs">
           {replaceMaxQuestions(aclaration, maxQuestions)}
         </p>
       </div>
