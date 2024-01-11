@@ -26,13 +26,17 @@ const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
       <p className="text-lg">{reachMe}</p>
 
       <div className="flex gap-4 items-center justify-between">
-        <Link href={linkedin} target="_blank">
+        <Link href={linkedin} target="_blank" aria-label="LinkedIn of Tomás">
           <LinkedinIcon className="text-4xl" />
         </Link>
-        <Link href={github} target="_blank">
+        <Link href={github} target="_blank" aria-label="GitHub of Tomás">
           <GithubIcon className="text-4xl" />
         </Link>
-        <Link href={`mailto:${email}`}>
+        <Link
+          href={`mailto:${email}`}
+          target="_blank"
+          aria-label="Email of Tomás"
+        >
           <EmailIcon className="text-4xl" />
         </Link>
       </div>
