@@ -1,20 +1,15 @@
 import MarkedHighlightText from 'components/MarkedHighlightText';
-import readContent from 'services/content';
-import { homeSchema } from 'utils/content/homeContentValidation';
+import { HomeContent } from 'utils/content/homeContentValidation';
 import getTimeOfDay from 'utils/getTimeOfDay';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import SwapImage from './SwapImage';
 
-interface IntroductionProps {
-  locale: 'en' | 'es';
-}
-
-const Introduction = async ({ locale }: IntroductionProps) => {
-  const {
-    introduction: { title, image, description },
-  } = await readContent('content/home.json', locale, homeSchema);
-
+const Introduction = async ({
+  title,
+  image,
+  description,
+}: HomeContent['introduction']) => {
   const timeOfDay = getTimeOfDay();
   const greetingByTimeOfDay = {
     morning: title.greetingMorning,

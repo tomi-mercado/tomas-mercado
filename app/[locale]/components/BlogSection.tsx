@@ -1,13 +1,13 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import SectionContainer from 'components/SectionContainer';
 import UnderlinedText from 'components/UnderlinedText';
-import readContent from 'services/content';
-import { homeSchema } from 'utils/content/homeContentValidation';
+import { HomeContent } from 'utils/content/homeContentValidation';
 
-const BlogSection = async ({ locale }: { locale: 'en' | 'es' }) => {
-  const {
-    blog: { title, description, CTA },
-  } = await readContent('content/home.json', locale, homeSchema);
+const BlogSection = async ({
+  title,
+  description,
+  CTA,
+}: HomeContent['blog']) => {
   return (
     <SectionContainer className="text-center">
       <UnderlinedText className="text-3xl">{title}</UnderlinedText>

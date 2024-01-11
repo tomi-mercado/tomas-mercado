@@ -1,7 +1,6 @@
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
-import readContent from 'services/content';
-import { homeSchema } from 'utils/content/homeContentValidation';
+import { HomeContent } from 'utils/content/homeContentValidation';
 
 import {
   FaGithub as GithubIcon,
@@ -11,11 +10,14 @@ import { MdEmail as EmailIcon } from 'react-icons/md';
 
 import Link from 'next/link';
 
-const Contact = async ({ locale }: { locale: 'es' | 'en' }) => {
-  const {
-    contact: { title, description, reachMe, linkedin, github, email },
-  } = await readContent('content/home.json', locale, homeSchema);
-
+const Contact = async ({
+  title,
+  description,
+  reachMe,
+  linkedin,
+  github,
+  email,
+}: HomeContent['contact']) => {
   return (
     <SectionContainer>
       <h3 className="text-3xl">
