@@ -3,6 +3,21 @@ import LinkMantainLocale from 'components/LinkMantainLocale';
 import { ReactNode } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: 'en' | 'es'; slug: string };
+}): Promise<Metadata> {
+  return {
+    title: {
+      en: 'Blog - Tomás Mercado',
+      es: 'Blog - Tomás Mercado',
+    }[params.locale],
+  };
+}
+
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="container py-6">

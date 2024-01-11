@@ -3,7 +3,21 @@ import LinkMantainLocale from 'components/LinkMantainLocale';
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import { getPosts } from 'services/posts';
 
+import { Metadata } from 'next';
 import Image from 'next/image';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: 'en' | 'es' };
+}): Promise<Metadata> {
+  return {
+    title: {
+      en: 'Blog - Tomás Mercado',
+      es: 'Blog - Tomás Mercado',
+    }[params.locale],
+  };
+}
 
 const Blog = async ({
   params,

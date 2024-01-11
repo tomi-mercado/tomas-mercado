@@ -8,6 +8,21 @@ import { ProjectsProvider } from 'contexts/projects';
 import readContent from 'services/content';
 import { projectsSchema } from 'utils/content/projectsContentValidation';
 
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: 'en' | 'es' };
+}): Promise<Metadata> {
+  return {
+    title: {
+      en: 'Projects - Tomás Mercado',
+      es: 'Proyectos - Tomás Mercado',
+    }[params.locale],
+  };
+}
+
 const Projects = async ({
   params: { locale },
 }: {
