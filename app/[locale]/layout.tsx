@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: { locale: 'en' | 'es' };
 }): Promise<Metadata> {
   return {
-    title: 'Tomás Mercado - Developer',
+    title: 'Tomás Mercado',
     description: replaceYearsExperience(
       {
         en: `Website of Tomás Mercado, Full Stack Developer with more than [yearsExperience] years of experience`,
