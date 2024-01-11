@@ -41,7 +41,7 @@ export default async function RootLayout({
   const content = await readContent('content/home.json', locale, homeSchema);
 
   return (
-    <html data-theme="tomTheme" className={lato.className}>
+    <html lang={locale} data-theme="tomTheme" className={lato.className}>
       <body className="flex flex-col min-h-screen">
         <Providers content={content} locale={locale}>
           {/* @ts-expect-error */}
