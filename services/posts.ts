@@ -2,7 +2,7 @@ import { readFile, readdir, stat } from 'fs/promises';
 import path from 'path';
 import { z } from 'zod';
 
-export const extractMetadataFromMarkdown = (markdown: string) => {
+const extractMetadataFromMarkdown = (markdown: string) => {
   const charactersBetweenGroupedHyphens = /^---([\s\S]*?)---/;
   const metadataMatched = markdown.match(charactersBetweenGroupedHyphens);
   const metadata = metadataMatched?.[1];

@@ -15,5 +15,3 @@ export const commonContentSchema = z.object({
     seeSourceCode: z.string(),
   }),
 });
-
-export type CommonContent = z.infer<typeof commonContentSchema>;

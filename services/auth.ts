@@ -1,14 +1,14 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export interface AccessToken {
+interface AccessToken {
   token_type: 'Bearer';
   expires_in: number;
   access_token: string;
   scope: string;
 }
 
-export interface Auth0User {
+interface Auth0User {
   created_at: string;
   email: string;
   email_verified: boolean;
@@ -100,10 +100,7 @@ interface PatchAuth0UserPayload {
   app_metadata: Record<string, unknown>;
 }
 
-export async function patchAuth0User(
-  userId: string,
-  payload: PatchAuth0UserPayload,
-) {
+async function patchAuth0User(userId: string, payload: PatchAuth0UserPayload) {
   const accessToken = await getAccessToken();
   const response = await fetch(
     `${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/${userId}`,
@@ -127,7 +124,7 @@ export async function patchAuth0User(
   return user;
 }
 
-export const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
+const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession(req, res);
 
   if (!session) {
