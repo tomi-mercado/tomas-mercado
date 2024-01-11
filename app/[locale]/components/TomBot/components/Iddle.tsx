@@ -34,6 +34,7 @@ const Iddle: React.FC<IddleProps> = ({ onChange, onSubmit, questionValue }) => {
       <button
         type="submit"
         className="btn btn-primary btn-square btn-xs absolute bottom-4 right-3"
+        aria-label="Send question"
       >
         <SendIcon />
       </button>
