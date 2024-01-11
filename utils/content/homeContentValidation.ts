@@ -49,6 +49,24 @@ export const homeSchema = z.object({
     description: z.string(),
     CTA: z.string(),
   }),
+  experience: z.object({
+    title: z.string(),
+    description: z.string(),
+    presentLabel: z.string(),
+    jobs: z.array(
+      z.object({
+        companyName: z.string(),
+        companyLogo: z.object({ src: z.string(), alt: z.string() }),
+        companyLink: z.string(),
+        position: z.string(),
+        from: z.string().regex(/^\d{4}-\d{2}$/),
+        to: z
+          .string()
+          .regex(/^\d{4}-\d{2}$/)
+          .or(z.literal('Present')),
+      }),
+    ),
+  }),
 });
 
 export type HomeContent = z.infer<typeof homeSchema>;

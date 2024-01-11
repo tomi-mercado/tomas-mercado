@@ -5,6 +5,7 @@ import { homeSchema } from 'utils/content/homeContentValidation';
 
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';
+import Experience from './components/Experience';
 import Introduction from './components/Introduction';
 import ProjectsSection from './components/ProjectsSection';
 import TombotServer from './components/TomBot';
@@ -26,6 +27,7 @@ const Home = async ({
         <Introduction {...content.introduction} />
         <TombotServer locale={locale} />
       </SectionContainer>
+      <Experience {...content.experience} locale={locale} />
       <ProjectsSection {...content.projects} />
       {postsAmount > 0 && <BlogSection {...content.blog} />}
       <Contact {...content.contact} />

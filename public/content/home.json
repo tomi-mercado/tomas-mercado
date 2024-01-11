@@ -2,6 +2,32 @@
   "common": {
     "tombot": {
       "maxQuestions": 5
+    },
+    "experience": {
+      "jobs": [
+        {
+          "companyName": "Aerolab",
+          "companyLogo": {
+            "src": "/images/aerolab-logo.jpeg",
+            "alt": "Aerolab logo"
+          },
+          "companyLink": "https://aerolab.co/",
+          "position": "SSR Javascript Developer",
+          "from": "2022-01",
+          "to": "Present"
+        },
+        {
+          "companyName": "Henry",
+          "companyLogo": {
+            "src": "/images/henry-logo.jpeg",
+            "alt": "Henry logo"
+          },
+          "companyLink": "https://www.soyhenry.com/",
+          "position": "JR Javascript Developer",
+          "from": "2020-08",
+          "to": "2021-12"
+        }
+      ]
     }
   },
   "en": {
@@ -58,6 +84,11 @@
       "title": "Blog",
       "description": "Experiences, thoughts, explanations and other things about my day to day as a developer.",
       "CTA": "Check out my blog"
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "Visit the websites of the companies I worked for and learn more about my experience.",
+      "presentLabel": "Present"
     }
   },
   "es": {
@@ -114,6 +145,11 @@
       "title": "Blog",
       "description": "Experiencias, pensamientos, explicaciones y otras cosas sobre mi día a día como dev.",
       "CTA": "Visita mi blog"
+    },
+    "experience": {
+      "title": "Mi experiencia",
+      "description": "Visita los sitios de las empresas en las que trabajé y conoce más sobre mi experiencia.",
+      "presentLabel": "Actualidad"
     }
   }
 }
