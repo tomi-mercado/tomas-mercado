@@ -2,34 +2,6 @@
   "common": {
     "projects": [
       {
-        "title": "Utel CMS",
-        "url": "https://utel.edu.mx",
-        "images": {
-          "icon": {
-            "isImage": true,
-            "content": "/images/projects/utel-favicon.ico"
-          },
-          "appImage": {
-            "content": "/images/projects/utel-app-img.png"
-          }
-        },
-        "associatedWith": "Aerolab"
-      },
-      {
-        "title": "Henry Website",
-        "url": "https://soyhenry.com",
-        "images": {
-          "icon": {
-            "isImage": true,
-            "content": "/images/projects/henry-favicon.ico"
-          },
-          "appImage": {
-            "content": "/images/projects/henry-app-img.png"
-          }
-        },
-        "associatedWith": "Henry"
-      },
-      {
         "title": "Hangman Game",
         "url": "https://el-ahorcado.vercel.app/",
         "githubUrl": "https://github.com/tomi-mercado/el-ahorcado",
@@ -112,12 +84,6 @@
     },
     "projects": [
       {
-        "description": "Utel is a Mexican online university that offers careers, courses, and master's degrees online to over 60 countries. The client needed to be able to integrate the many sites and enrollment processes into a single location.With that goal in mind, a dynamic CMS was built, which allows for quick and easy website page building, while also allowing for efficient management of the enrollment processes."
-      },
-      {
-        "description": "Henry is a software engineering school that offers full-time and part-time courses in Latin America. The client needed a website that would showcase the company vision and their courses and allowing users to apply for the courses."
-      },
-      {
         "description": "Classic game of Hangman. Available only in Spanish. Use an API that generates random words. The game is responsive, and it is available for mobile devices. Counts with a dark mode."
       },
       {
@@ -144,12 +110,6 @@
       "notOpenSource": "Lo siento, este proyecto no es open source"
     },
     "projects": [
-      {
-        "description": "Utel es una universidad en línea mexicana que ofrece carreras, cursos y maestrías en línea a más de 60 países. El cliente necesitaba poder integrar los muchos sitios y procesos de inscripción en un solo lugar. Con ese objetivo en mente, se construyó un CMS dinámico, que permite la creación rápida y fácil de páginas web, al tiempo que permite una gestión eficiente de los procesos de inscripción."
-      },
-      {
-        "description": "Henry es una escuela de ingeniería de software que ofrece cursos de tiempo completo y parcial en América Latina. El cliente necesitaba un sitio web que mostrara la visión de la empresa y sus cursos y permitiera a los usuarios solicitar los cursos."
-      },
       {
         "description": "Juego clásico del ahorcado. Disponible solo en español. Utiliza una API que genera palabras aleatorias. El juego es responsive, y está disponible para dispositivos móviles. Cuenta con un modo oscuro."
       },
