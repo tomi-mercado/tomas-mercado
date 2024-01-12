@@ -1,6 +1,7 @@
 import { readFile } from 'fs/promises';
 import path from 'path';
 import { commonContentSchema } from 'utils/content/commonContentValidation';
+import { Locale } from 'utils/locales';
 import { z } from 'zod';
 
 type ObjectInfo = Record<string, any>;
@@ -11,7 +12,7 @@ interface Content {
   common: ObjectInfo;
 }
 
-export const readCommonContent = async (locale: 'en' | 'es') => {
+export const readCommonContent = async (locale: Locale) => {
   const contentAllLocalesRaw = await readFile(
     addCwd('content/common.json'),
     'utf-8',
@@ -67,7 +68,7 @@ const addCwd = (p: string) => path.join(process.cwd(), 'public', p);
 
 async function readContent<Schema extends z.ZodRawShape>(
   path: string,
-  locale: 'en' | 'es',
+  locale: Locale,
   schema: z.ZodObject<Schema>,
 ) {
   const content = await readFile(addCwd(path), 'utf-8');

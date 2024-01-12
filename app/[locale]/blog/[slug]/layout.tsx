@@ -1,4 +1,5 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
+import { Locale } from 'utils/locales';
 
 import { ReactNode } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -8,7 +9,7 @@ import { Metadata } from 'next';
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: 'en' | 'es'; slug: string };
+  params: { locale: Locale; slug: string };
 }): Promise<Metadata> {
   return {
     title: {

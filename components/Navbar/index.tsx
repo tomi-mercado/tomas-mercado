@@ -1,6 +1,7 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import { getAuth0User } from 'services/auth';
 import { readCommonContent } from 'services/content';
+import { Locale } from 'utils/locales';
 
 import { MdLogout } from 'react-icons/md';
 
@@ -10,7 +11,7 @@ import Link from 'next/link';
 
 import UpdateLocaleButton from './UpdateLocaleButton';
 
-const Navbar = async ({ locale }: { locale: 'en' | 'es' }) => {
+const Navbar = async ({ locale }: { locale: Locale }) => {
   const {
     userMenu: { welcome },
   } = await readCommonContent(locale);

@@ -3,6 +3,7 @@ import Navbar from 'components/Navbar';
 import Providers from 'components/Providers';
 import readContent from 'services/content';
 import { homeSchema } from 'utils/content/homeContentValidation';
+import { Locale } from 'utils/locales';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { Metadata } from 'next';
@@ -16,7 +17,7 @@ const lato = Lato({
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: 'en' | 'es' };
+  params: { locale: Locale };
 }): Promise<Metadata> {
   return {
     title: 'Tomás Mercado',
@@ -35,7 +36,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
   params: {
-    locale: 'en' | 'es';
+    locale: Locale;
   };
 }) {
   const content = await readContent('content/home.json', locale, homeSchema);

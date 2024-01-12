@@ -1,6 +1,7 @@
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
 import { HomeContent } from 'utils/content/homeContentValidation';
+import { Locale } from 'utils/locales';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,7 +20,7 @@ const Contact = async ({
   locale,
   presentLabel,
 }: HomeContent['experience'] & {
-  locale: 'en' | 'es';
+  locale: Locale;
 }) => {
   return (
     <SectionContainer innerClassName="w-full">

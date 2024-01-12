@@ -1,11 +1,13 @@
+import { Locale } from 'utils/locales';
+
 import React, { createContext } from 'react';
 
 interface LocaleContextProps {
-  locale: 'en' | 'es';
+  locale: Locale;
 }
 
 interface LocaleProviderProps {
-  locale: 'en' | 'es';
+  locale: Locale;
   children: React.ReactNode;
 }
 

@@ -2,6 +2,7 @@ import PostListItem from 'app/[locale]/blog/components/PostListItem';
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import { getPosts } from 'services/posts';
+import { Locale } from 'utils/locales';
 
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -9,7 +10,7 @@ import Image from 'next/image';
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: 'en' | 'es' };
+  params: { locale: Locale };
 }): Promise<Metadata> {
   return {
     title: {
@@ -23,7 +24,7 @@ const Blog = async ({
   params,
 }: {
   params: {
-    locale: 'en' | 'es';
+    locale: Locale;
   };
 }) => {
   const posts = await getPosts({ locale: params.locale });

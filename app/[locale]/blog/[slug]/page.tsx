@@ -1,5 +1,6 @@
 import remarkGfm from 'remark-gfm';
 import { getPost } from 'services/posts';
+import { Locale } from 'utils/locales';
 
 import Markdown from 'react-markdown';
 
@@ -10,7 +11,7 @@ export default async function Page({
 }: {
   params: {
     slug: string;
-    locale: 'en' | 'es';
+    locale: Locale;
   };
 }) {
   const { slug, locale } = params;

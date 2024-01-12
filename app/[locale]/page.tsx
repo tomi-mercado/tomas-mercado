@@ -2,6 +2,7 @@ import SectionContainer from 'components/SectionContainer';
 import readContent from 'services/content';
 import { getPosts } from 'services/posts';
 import { homeSchema } from 'utils/content/homeContentValidation';
+import { Locale } from 'utils/locales';
 
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';
@@ -14,7 +15,7 @@ const Home = async ({
   params: { locale },
 }: {
   params: {
-    locale: 'en' | 'es';
+    locale: Locale;
   };
 }) => {
   const content = await readContent('content/home.json', locale, homeSchema);

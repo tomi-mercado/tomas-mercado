@@ -1,5 +1,6 @@
 import { readFile, readdir, stat } from 'fs/promises';
 import path from 'path';
+import { Locale, localesSchema } from 'utils/locales';
 import { z } from 'zod';
 
 const extractMetadataFromMarkdown = (markdown: string) => {
@@ -36,7 +37,7 @@ const extractMetadataFromMarkdown = (markdown: string) => {
     .object({
       title: z.string(),
       description: z.string(),
-      locale: z.array(z.enum(['en', 'es'])).min(1),
+      locale: z.array(localesSchema).min(1),
       date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     })
     .parse(metadataObject);
@@ -44,7 +45,7 @@ const extractMetadataFromMarkdown = (markdown: string) => {
 
 const postsPath = path.join(process.cwd(), 'public', 'articles');
 
-export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
+export const getPosts = async ({ locale }: { locale: Locale }) => {
   const postsPathExists = await stat(postsPath)
     .then(() => true)
     .catch(() => false);
@@ -81,7 +82,7 @@ export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
 /**
  * Extract text between /-/-/-start_{{locale}}-/-/-/ and /-/-/-end_{{locale}}-/-/-/
  */
-const extractLocaleContent = (markdown: string, locale: 'en' | 'es') => {
+const extractLocaleContent = (markdown: string, locale: Locale) => {
   const startLocaleRegex = new RegExp(
     `/-/-/-start_${locale}-/-/-/`,
     'gim',
@@ -106,7 +107,7 @@ const extractLocaleContent = (markdown: string, locale: 'en' | 'es') => {
   return content;
 };
 
-export const getPost = async (slug: string, locale: 'en' | 'es') => {
+export const getPost = async (slug: string, locale: Locale) => {
   const postPath = path.join(postsPath, `${slug}.md`);
   try {
     const file = await readFile(postPath, 'utf8');
