@@ -16,9 +16,9 @@ export default async function Page({
 }) {
   const { slug, locale } = params;
 
-  const content = await getPost(slug, locale);
+  const post = await getPost(slug, locale);
 
-  if (!content) {
+  if (!post) {
     notFound();
   }
 
@@ -81,7 +81,7 @@ export default async function Page({
         br: ({ node, ...props }) => <br {...props} />,
       }}
     >
-      {content}
+      {post.content}
     </Markdown>
   );
 }

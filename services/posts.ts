@@ -1,3 +1,4 @@
+import { existsSync } from 'fs';
 import { readFile, readdir, stat } from 'fs/promises';
 import path from 'path';
 import { Locale, localesSchema } from 'utils/locales';
@@ -17,6 +18,8 @@ const extractMetadataFromMarkdown = (markdown: string) => {
     title?: string;
     description?: string;
     locale?: string | string[];
+    slug?: string;
+    date?: string;
   } = {};
 
   for (const line of metadataLines) {
@@ -39,6 +42,7 @@ const extractMetadataFromMarkdown = (markdown: string) => {
       description: z.string(),
       locale: z.array(localesSchema).min(1),
       date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      slug: z.string(),
     })
     .parse(metadataObject);
 };
@@ -46,83 +50,51 @@ const extractMetadataFromMarkdown = (markdown: string) => {
 const postsPath = path.join(process.cwd(), 'public', 'articles');
 
 export const getPosts = async ({ locale }: { locale: Locale }) => {
-  const postsPathExists = await stat(postsPath)
-    .then(() => true)
-    .catch(() => false);
+  const postsPathExists = existsSync(postsPath);
 
   if (!postsPathExists) {
     return [];
   }
 
-  const posts = await readdir(postsPath);
+  const dirContent = await readdir(postsPath);
 
-  const postsWithMetadata = await Promise.all(
-    posts
-      .filter((post) => post.endsWith('.md'))
-      .map(async (post) => {
-        const postPath = path.join(postsPath, post);
-        const file = await readFile(postPath, 'utf8');
-        const metadata = extractMetadataFromMarkdown(file);
+  // Each dir into dirContent is a post
+  const postPaths = await Promise.all(
+    dirContent.filter(async (dir) => {
+      const dirPath = path.join(postsPath, dir);
+      const isDir = (await stat(dirPath)).isDirectory();
 
-        return {
-          ...metadata,
-          createdAt: new Date(`${metadata.date}:00:00`),
-          slug: post.replace(/\.md$/, ''),
-        };
-      }),
-  ).then((posts) =>
-    posts
-      .filter((post) => post.locale.includes(locale))
-      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
+      return isDir;
+    }),
   );
 
-  return postsWithMetadata;
-};
+  const posts = await Promise.all(
+    postPaths.map(async (postPath) => {
+      const postLocalePath = path.join(postsPath, postPath, `${locale}.md`);
+      const postLocaleExists = existsSync(postLocalePath);
 
-/**
- * Extract text between /-/-/-start_{{locale}}-/-/-/ and /-/-/-end_{{locale}}-/-/-/
- */
-const extractLocaleContent = (markdown: string, locale: Locale) => {
-  const startLocaleRegex = new RegExp(
-    `/-/-/-start_${locale}-/-/-/`,
-    'gim',
-  ).exec(markdown);
+      if (!postLocaleExists) {
+        return null;
+      }
 
-  const endLocaleRegex = new RegExp(`/-/-/-end_${locale}-/-/-/`, 'gim').exec(
-    markdown,
-  );
+      const file = await readFile(postLocalePath, 'utf8');
+      const metadata = extractMetadataFromMarkdown(file);
+      const content = file.replace(/^---([\s\S]*?)---/, '');
 
-  if (!startLocaleRegex || !endLocaleRegex) {
-    throw new Error('Locale not found');
-  }
+      return {
+        ...metadata,
+        content,
+        createdAt: new Date(`${metadata.date}:00:00`),
+      };
+    }),
+  ).then((posts) => posts.filter((post) => post !== null));
 
-  const startLocaleIndex = startLocaleRegex.index;
-  const endLocaleIndex = endLocaleRegex.index;
-
-  const content = markdown.slice(
-    startLocaleIndex + startLocaleRegex[0].length,
-    endLocaleIndex,
-  );
-
-  return content;
+  return posts as NonNullable<typeof posts[number]>[];
 };
 
 export const getPost = async (slug: string, locale: Locale) => {
-  const postPath = path.join(postsPath, `${slug}.md`);
-  try {
-    const file = await readFile(postPath, 'utf8');
-    const contentWithoutMetadata = file.replace(/---([\s\S]*?)---/, '').trim();
-    const metadata = extractMetadataFromMarkdown(file);
+  const posts = await getPosts({ locale });
+  const post = posts.find((post) => post.slug === slug);
 
-    if (metadata.locale.length === 1) {
-      return contentWithoutMetadata;
-    }
-
-    const content = extractLocaleContent(contentWithoutMetadata, locale);
-
-    return content;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+  return post;
 };

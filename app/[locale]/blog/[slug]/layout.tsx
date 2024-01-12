@@ -1,4 +1,5 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
+import { getPost } from 'services/posts';
 import { Locale } from 'utils/locales';
 
 import { ReactNode } from 'react';
@@ -11,11 +12,11 @@ export async function generateMetadata({
 }: {
   params: { locale: Locale; slug: string };
 }): Promise<Metadata> {
+  const post = await getPost(params.slug, params.locale);
+
   return {
-    title: {
-      en: 'Blog - Tomás Mercado',
-      es: 'Blog - Tomás Mercado',
-    }[params.locale],
+    title: `${post?.title || 'Blog'} | Tomás Mercado`,
+    description: post?.description || 'A blog post by Tomás Mercado',
   };
 }
 
