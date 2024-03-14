@@ -9,7 +9,6 @@ import Contact from './components/Contact';
 import Experience from './components/Experience';
 import Introduction from './components/Introduction';
 import ProjectsSection from './components/ProjectsSection';
-import TombotServer from './components/TomBot';
 
 const Home = async ({
   params: { locale },
@@ -26,7 +25,6 @@ const Home = async ({
     <>
       <SectionContainer className="py-12 min-h-[85vh]">
         <Introduction {...content.introduction} />
-        <TombotServer locale={locale} />
       </SectionContainer>
       <Experience {...content.experience} locale={locale} />
       <ProjectsSection {...content.projects} />
