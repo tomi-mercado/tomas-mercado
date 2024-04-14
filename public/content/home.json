@@ -2,6 +2,32 @@
   "common": {
     "tombot": {
       "maxQuestions": 5
+    },
+    "experience": {
+      "jobs": [
+        {
+          "companyName": "Aerolab",
+          "companyLogo": {
+            "src": "/images/aerolab-logo.jpeg",
+            "alt": "Aerolab logo"
+          },
+          "companyLink": "https://aerolab.co/",
+          "position": "SSR Javascript Developer",
+          "from": "2022-01",
+          "to": "Present"
+        },
+        {
+          "companyName": "Henry",
+          "companyLogo": {
+            "src": "/images/henry-logo.jpeg",
+            "alt": "Henry logo"
+          },
+          "companyLink": "https://www.soyhenry.com/",
+          "position": "JR Javascript Developer",
+          "from": "2020-08",
+          "to": "2021-12"
+        }
+      ]
     }
   },
   "en": {
@@ -18,7 +44,7 @@
         "src": "/images/tomas-mercado.jpg",
         "alt": "Tomás Mercado smiling"
       },
-      "description": "My name is Tomas Mercado (Tom, pls) and I am a Web Developer with [yearsExperience] years of experience who every day try to learn something new. The food is pizza 🍕, the club is Quilmes [quilmesLogo], and the code is TypeScript [typescriptLogo]"
+      "description": "My name is Tomas Mercado (Tom, pls) and I'm a Dev from Argentina 🇦🇷 with [yearsExperience] years of experience. My life improved exponentially the day I met Typescript. I currently make digital products at Aerolab."
     },
     "tombot": {
       "description": "Resolve your questions about me with the TomBot",
@@ -58,6 +84,11 @@
       "title": "Blog",
       "description": "Experiences, thoughts, explanations and other things about my day to day as a developer.",
       "CTA": "Check out my blog"
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "Visit the websites of the companies I worked for and learn more about my experience.",
+      "presentLabel": "Present"
     }
   },
   "es": {
@@ -74,7 +105,7 @@
         "src": "/images/tomas-mercado.jpg",
         "alt": "Tomás Mercado sonriendo"
       },
-      "description": "Mi nombre es Tomás Mercado (Tom, por favor) y soy un Web Developer con [yearsExperience] años de experiencia que todos los días intenta aprender algo nuevo. La comida es pizza 🍕, el club es Quilmes [quilmesLogo], y el código es TypeScript [typescriptLogo]"
+      "description": "Mi nombre es Tomás Mercado (Tom, porfis) y soy un Dev de Argentina 🇦🇷 con [yearsExperience] años de experiencia. Mi vida mejoró exponencialmente el día que conocí Typescript. Actualmente hago productos digitales en Aerolab."
     },
     "tombot": {
       "description": "Resuelve tus dudas sobre mi con el TomBot",
@@ -114,6 +145,11 @@
       "title": "Blog",
       "description": "Experiencias, pensamientos, explicaciones y otras cosas sobre mi día a día como dev.",
       "CTA": "Visita mi blog"
+    },
+    "experience": {
+      "title": "Mi experiencia",
+      "description": "Visita los sitios de las empresas en las que trabajé y conoce más sobre mi experiencia.",
+      "presentLabel": "Actualidad"
     }
   }
 }

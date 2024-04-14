@@ -1,7 +1,24 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
+import { getPost } from 'services/posts';
+import { Locale } from 'utils/locales';
 
 import { ReactNode } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
+
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale; slug: string };
+}): Promise<Metadata> {
+  const post = await getPost(params.slug, params.locale);
+
+  return {
+    title: `${post?.title || 'Blog'} | Tomás Mercado`,
+    description: post?.description || 'A blog post by Tomás Mercado',
+  };
+}
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (

@@ -30,7 +30,7 @@ export function ContentProvider<Schema extends z.ZodObject<z.ZodRawShape>>({
   );
 }
 
-export type GetSchemaUnion<
+type GetSchemaUnion<
   T extends z.ZodObject<z.ZodRawShape>,
   Z extends z.ZodObject<z.ZodRawShape>,
 > = z.ZodObject<z.mergeTypes<Z, T>['shape']> &

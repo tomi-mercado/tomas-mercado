@@ -5,7 +5,8 @@ import React, { ReactNode } from 'react';
 const SectionContainer: React.FC<{
   children: ReactNode;
   className?: string;
-}> = ({ children, className }) => {
+  innerClassName?: string;
+}> = ({ children, className, innerClassName }) => {
   return (
     <div
       className={twMerge(
@@ -13,7 +14,12 @@ const SectionContainer: React.FC<{
         className,
       )}
     >
-      <div className="max-w-3xl px-6 flex flex-col gap-4 items-center text-center">
+      <div
+        className={twMerge(
+          'max-w-3xl px-6 flex flex-col gap-4 items-center text-center',
+          innerClassName,
+        )}
+      >
         {children}
       </div>
     </div>

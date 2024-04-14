@@ -1,10 +1,12 @@
 'use client';
 
+import { Locale } from 'utils/locales';
+
 import { useParams } from 'next/navigation';
 
 const PostListItemDate = ({ date }: { date: Date }) => {
   const params = useParams<{
-    locale: 'en' | 'es';
+    locale: Locale;
   }>();
 
   return (

@@ -1,18 +1,13 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
-import readContent from 'services/content';
-import { homeSchema } from 'utils/content/homeContentValidation';
+import { HomeContent } from 'utils/content/homeContentValidation';
 
-interface ProjectsSectionProps {
-  locale: 'en' | 'es';
-}
-
-const ProjectsSection = async ({ locale }: ProjectsSectionProps) => {
-  const {
-    projects: { title, description, CTA },
-  } = await readContent('content/home.json', locale, homeSchema);
-
+const ProjectsSection = async ({
+  title,
+  description,
+  CTA,
+}: HomeContent['projects']) => {
   return (
     <SectionContainer>
       <h3 className="text-3xl">

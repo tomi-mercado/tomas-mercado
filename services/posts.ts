@@ -1,8 +1,10 @@
+import { existsSync } from 'fs';
 import { readFile, readdir, stat } from 'fs/promises';
 import path from 'path';
+import { Locale, localesSchema } from 'utils/locales';
 import { z } from 'zod';
 
-export const extractMetadataFromMarkdown = (markdown: string) => {
+const extractMetadataFromMarkdown = (markdown: string) => {
   const charactersBetweenGroupedHyphens = /^---([\s\S]*?)---/;
   const metadataMatched = markdown.match(charactersBetweenGroupedHyphens);
   const metadata = metadataMatched?.[1];
@@ -16,6 +18,8 @@ export const extractMetadataFromMarkdown = (markdown: string) => {
     title?: string;
     description?: string;
     locale?: string | string[];
+    slug?: string;
+    date?: string;
   } = {};
 
   for (const line of metadataLines) {
@@ -36,92 +40,61 @@ export const extractMetadataFromMarkdown = (markdown: string) => {
     .object({
       title: z.string(),
       description: z.string(),
-      locale: z.array(z.enum(['en', 'es'])).min(1),
+      locale: z.array(localesSchema).min(1),
       date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      slug: z.string(),
     })
     .parse(metadataObject);
 };
 
 const postsPath = path.join(process.cwd(), 'public', 'articles');
 
-export const getPosts = async ({ locale }: { locale: 'en' | 'es' }) => {
-  const postsPathExists = await stat(postsPath)
-    .then(() => true)
-    .catch(() => false);
+export const getPosts = async ({ locale }: { locale: Locale }) => {
+  const postsPathExists = existsSync(postsPath);
 
   if (!postsPathExists) {
     return [];
   }
 
-  const posts = await readdir(postsPath);
+  const dirContent = await readdir(postsPath);
 
-  const postsWithMetadata = await Promise.all(
-    posts
-      .filter((post) => post.endsWith('.md'))
-      .map(async (post) => {
-        const postPath = path.join(postsPath, post);
-        const file = await readFile(postPath, 'utf8');
-        const metadata = extractMetadataFromMarkdown(file);
+  // Each dir into dirContent is a post
+  const postPaths = await Promise.all(
+    dirContent.filter(async (dir) => {
+      const dirPath = path.join(postsPath, dir);
+      const isDir = (await stat(dirPath)).isDirectory();
 
-        return {
-          ...metadata,
-          createdAt: new Date(`${metadata.date}:00:00`),
-          slug: post.replace(/\.md$/, ''),
-        };
-      }),
-  ).then((posts) =>
-    posts
-      .filter((post) => post.locale.includes(locale))
-      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()),
+      return isDir;
+    }),
   );
 
-  return postsWithMetadata;
+  const posts = await Promise.all(
+    postPaths.map(async (postPath) => {
+      const postLocalePath = path.join(postsPath, postPath, `${locale}.md`);
+      const postLocaleExists = existsSync(postLocalePath);
+
+      if (!postLocaleExists) {
+        return null;
+      }
+
+      const file = await readFile(postLocalePath, 'utf8');
+      const metadata = extractMetadataFromMarkdown(file);
+      const content = file.replace(/^---([\s\S]*?)---/, '');
+
+      return {
+        ...metadata,
+        content,
+        createdAt: new Date(`${metadata.date}:00:00`),
+      };
+    }),
+  ).then((posts) => posts.filter((post) => post !== null));
+
+  return posts as NonNullable<typeof posts[number]>[];
 };
 
-/**
- * Extract text between /-/-/-start_{{locale}}-/-/-/ and /-/-/-end_{{locale}}-/-/-/
- */
-const extractLocaleContent = (markdown: string, locale: 'en' | 'es') => {
-  const startLocaleRegex = new RegExp(
-    `/-/-/-start_${locale}-/-/-/`,
-    'gim',
-  ).exec(markdown);
+export const getPost = async (slug: string, locale: Locale) => {
+  const posts = await getPosts({ locale });
+  const post = posts.find((post) => post.slug === slug);
 
-  const endLocaleRegex = new RegExp(`/-/-/-end_${locale}-/-/-/`, 'gim').exec(
-    markdown,
-  );
-
-  if (!startLocaleRegex || !endLocaleRegex) {
-    throw new Error('Locale not found');
-  }
-
-  const startLocaleIndex = startLocaleRegex.index;
-  const endLocaleIndex = endLocaleRegex.index;
-
-  const content = markdown.slice(
-    startLocaleIndex + startLocaleRegex[0].length,
-    endLocaleIndex,
-  );
-
-  return content;
-};
-
-export const getPost = async (slug: string, locale: 'en' | 'es') => {
-  const postPath = path.join(postsPath, `${slug}.md`);
-  try {
-    const file = await readFile(postPath, 'utf8');
-    const contentWithoutMetadata = file.replace(/---([\s\S]*?)---/, '').trim();
-    const metadata = extractMetadataFromMarkdown(file);
-
-    if (metadata.locale.length === 1) {
-      return contentWithoutMetadata;
-    }
-
-    const content = extractLocaleContent(contentWithoutMetadata, locale);
-
-    return content;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+  return post;
 };

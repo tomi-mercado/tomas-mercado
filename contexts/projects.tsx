@@ -20,7 +20,7 @@ type ProjectsStatus = 'idle' | 'loading' | 'projectSelected';
 
 const ProjectsContext = createContext<ProjectsContextProps | null>(null);
 
-const TIME_TO_CHANGE_PROJECT = 2500;
+const TIME_TO_CHANGE_PROJECT = 1000;
 
 export const ProjectsProvider: React.FC<ProjectsProviderProps> = ({
   children,

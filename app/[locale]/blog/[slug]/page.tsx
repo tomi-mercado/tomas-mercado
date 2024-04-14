@@ -1,5 +1,6 @@
 import remarkGfm from 'remark-gfm';
 import { getPost } from 'services/posts';
+import { Locale } from 'utils/locales';
 
 import Markdown from 'react-markdown';
 
@@ -10,14 +11,14 @@ export default async function Page({
 }: {
   params: {
     slug: string;
-    locale: 'en' | 'es';
+    locale: Locale;
   };
 }) {
   const { slug, locale } = params;
 
-  const content = await getPost(slug, locale);
+  const post = await getPost(slug, locale);
 
-  if (!content) {
+  if (!post) {
     notFound();
   }
 
@@ -80,7 +81,7 @@ export default async function Page({
         br: ({ node, ...props }) => <br {...props} />,
       }}
     >
-      {content}
+      {post.content}
     </Markdown>
   );
 }

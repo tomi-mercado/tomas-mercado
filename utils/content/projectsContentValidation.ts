@@ -24,7 +24,7 @@ const professionalProjectSchema = z.object({
   description: z.string(),
 });
 
-export type ProfessionalProject = z.infer<typeof professionalProjectSchema>;
+type ProfessionalProject = z.infer<typeof professionalProjectSchema>;
 
 export const projectsSchema = z.object({
   main: z.object({
@@ -37,7 +37,5 @@ export const projectsSchema = z.object({
   }),
   projects: z.array(z.union([sideProjectSchema, professionalProjectSchema])),
 });
-
-export type ProjectsContent = z.infer<typeof projectsSchema>;
 
 export type Project = SideProject | ProfessionalProject;

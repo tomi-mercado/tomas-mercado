@@ -1,10 +1,11 @@
 import { readCommonContent } from 'services/content';
+import { Locale } from 'utils/locales';
 
 import { FaGithub } from 'react-icons/fa';
 
 import Link from 'next/link';
 
-const Footer = async ({ locale }: { locale: 'en' | 'es' }) => {
+const Footer = async ({ locale }: { locale: Locale }) => {
   const {
     contact: { github },
     footer: { byMe, madeWith, seeSourceCode },

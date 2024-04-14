@@ -4,12 +4,7 @@ import { useEffect, useState, useTransition } from 'react';
 
 import useDebounce from './useDebounce';
 
-export type TomBotStatus =
-  | 'iddle'
-  | 'success'
-  | 'error'
-  | 'noCredits'
-  | 'loading';
+type TomBotStatus = 'iddle' | 'success' | 'error' | 'noCredits' | 'loading';
 
 const getQuestionValueFromLocalStorage = () => {
   if (typeof window === 'undefined') {
