@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Experience from './components/Experience';
 import Introduction from './components/Introduction';
 import ProjectsSection from './components/ProjectsSection';
+import Resume from './components/Resume';
 import TombotServer from './components/TomBot';
 
 const Home = async ({
@@ -32,6 +33,7 @@ const Home = async ({
       <ProjectsSection {...content.projects} />
       {postsAmount > 0 && <BlogSection {...content.blog} />}
       <Contact {...content.contact} />
+      <Resume {...content.resume} />
     </>
   );
 };

@@ -67,6 +67,11 @@ export const homeSchema = z.object({
       }),
     ),
   }),
+  resume: z.object({
+    title: z.string(),
+    description: z.string(),
+    cta: z.string(),
+  }),
 });
 
 export type HomeContent = z.infer<typeof homeSchema>;
