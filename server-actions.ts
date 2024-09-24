@@ -8,7 +8,7 @@ import { getAuth0User, getCredits, updateCredits } from 'services/auth';
 import { getSession } from '@auth0/nextjs-auth0';
 import { revalidatePath } from 'next/cache';
 
-const DEBUGGING = process.env.DEBUGGING_TOMBOT;
+const DEBUGGING = process.env.DEBUGGING_TOMBOT === 'true';
 
 const preResponse = async (
   userId: string,

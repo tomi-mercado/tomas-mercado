@@ -91,14 +91,15 @@ const TomBotClient: React.FC<TombotClientProps> = ({
 
   return (
     <form
-      className="flex flex-col gap-3 w-full items-center"
+      className="flex flex-col gap-3 w-full items-center bg-secondary px-4 pt-6 pb-8 rounded-lg"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
       }}
     >
       <div className="flex flex-col gap-1 w-full items-center">
-        <p className="text-lg">{description} 🤖</p>
+        <p className="text-2xl font-bold">TomBot 🤖</p>
+        <p className="text-lg">{description}</p>
         <p className="text-xs">
           {replaceMaxQuestions(aclaration, maxQuestions)}
         </p>
