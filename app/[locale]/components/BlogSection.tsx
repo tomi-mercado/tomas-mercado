@@ -1,6 +1,6 @@
 import LinkMantainLocale from 'components/LinkMantainLocale';
+import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
-import UnderlinedText from 'components/UnderlinedText';
 import { HomeContent } from 'utils/content/homeContentValidation';
 
 const BlogSection = async ({
@@ -10,7 +10,7 @@ const BlogSection = async ({
 }: HomeContent['blog']) => {
   return (
     <SectionContainer className="text-center">
-      <UnderlinedText className="text-3xl">{title}</UnderlinedText>
+      <MarkedHighlightText className="text-3xl">{title}</MarkedHighlightText>
       <p>{description}</p>
       <LinkMantainLocale href="/blog" className="btn btn-primary">
         {CTA}
