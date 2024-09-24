@@ -96,5 +96,5 @@ export const getPost = async (slug: string, locale: Locale) => {
   const posts = await getPosts({ locale });
   const post = posts.find((post) => post.slug === slug);
 
-  return post;
+  return { ...post, createdAt: new Date(`${post?.date}:00:00`) };
 };
