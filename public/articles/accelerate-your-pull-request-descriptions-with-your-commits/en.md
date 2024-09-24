@@ -3,7 +3,7 @@ slug: pull-request-description-with-commits
 title: Accelerate your pull request descriptions with your commits
 description: A small trick to use your commits as a base of a pull request
 locale: en
-date: 2024-8-23
+date: 2024-08-23
 ---
 
 # Accelerate your pull request descriptions with your commits
