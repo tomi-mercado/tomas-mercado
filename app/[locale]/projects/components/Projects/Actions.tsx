@@ -28,7 +28,7 @@ const Actions: React.FC<{
     >
       {selectedProject && (
         <>
-          {isSideProject(selectedProject) ? (
+          {isSideProject(selectedProject) && selectedProject.githubUrl ? (
             <Link
               target="_blank"
               href={selectedProject.githubUrl}
