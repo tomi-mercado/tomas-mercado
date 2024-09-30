@@ -3,7 +3,7 @@ import { z } from 'zod';
 const sideProjectSchema = z.object({
   title: z.string(),
   url: z.string(),
-  githubUrl: z.string(),
+  githubUrl: z.string().optional(),
   images: z.object({
     icon: z.object({ isImage: z.boolean(), content: z.string() }),
     appImage: z.object({ content: z.string() }),

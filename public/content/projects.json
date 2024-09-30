@@ -70,6 +70,32 @@
             "content": "/images/projects/typesense-vector-store-img.png"
           }
         }
+      },
+      {
+        "title": "Alta tinta",
+        "url": "https://alta-tinta.vercel.app/",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "🖨️"
+          },
+          "appImage": {
+            "content": "/images/projects/alta-tinta.png"
+          }
+        }
+      },
+      {
+        "title": "La Pastería de Ale",
+        "url": "https://la-pasteria-de-ale.vercel.app/",
+        "images": {
+          "icon": {
+            "isImage": false,
+            "content": "🍝"
+          },
+          "appImage": {
+            "content": "/images/projects/la-pasteria-de-ale.png"
+          }
+        }
       }
     ]
   },
@@ -97,6 +123,12 @@
       },
       {
         "description": "Open source contribution to Langchain, integrating Typesense as a vector store to save, update, delete and search vectors, providing a fast and scalable way to use this search engine to do a similarity search."
+      },
+      {
+        "description": "Landing page of Alta tinta, a business that offers printing services."
+      },
+      {
+        "description": "Landing page of La Pastería de Ale, a business that offers pasta."
       }
     ]
   },
@@ -124,6 +156,12 @@
       },
       {
         "description": "Contribución open source a Langchain, integrando Typesense como vector store para guardar, actualizar, eliminar y buscar vectores, proporcionando una forma rápida y escalable de usar este motor de búsqueda para realizar una similarity search."
+      },
+      {
+        "description": "Landing page de Alta tinta, un negocio que ofrece servicios de impresión."
+      },
+      {
+        "description": "Landing page de La Pastería de Ale, un negocio que ofrece pastas."
       }
     ]
   }
