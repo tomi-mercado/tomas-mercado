@@ -174,14 +174,14 @@
         {
           "description": [
             "Actualmente, lidero un equipo trabajando en un sistema interno para Endeavor para facilitar el acceso a la información para el staff en más de 40 oficinas en todo el mundo.",
-            "Mi rol implica codificar con altos estándares técnicos, brindar guía técnica, realizar revisiones de código y colaborar en estimaciones y planificación de hoja de ruta.",
+            "Mi rol implica desarrollar con altos estándares técnicos, brindar guía técnica, realizar code reviews y colaborar en estimaciones y planificación de roadmap.",
             "Anteriormente, tuve la oportunidad de trabajar en proyectos en diversos sectores, incluyendo educación, gaming y ONGs."
           ]
         },
         {
           "description": [
-            "Contribuí a construir los elementos fundacionales de las aplicaciones de la empresa en sus primeras etapas.",
-            "Esto incluyó el desarrollo de la landing page, la app de estudiantes, la app de seguimiento de pagos y la librería de diseño inicial del sistema."
+            "Contribuí a construir las apps fundacionales de la empresa en sus primeras etapas.",
+            "Esto incluyó el desarrollo de la landing page, la app de estudiantes, la app de seguimiento de pagos y el design system library inicial del sistema."
           ]
         }
       ]
