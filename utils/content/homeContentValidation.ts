@@ -56,6 +56,7 @@ export const homeSchema = z.object({
     jobs: z.array(
       z.object({
         companyName: z.string(),
+        description: z.array(z.string()),
         companyLogo: z.object({ src: z.string(), alt: z.string() }),
         companyLink: z.string(),
         position: z.string(),

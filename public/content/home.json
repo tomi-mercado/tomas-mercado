@@ -12,7 +12,7 @@
             "alt": "Aerolab logo"
           },
           "companyLink": "https://aerolab.co/",
-          "position": "SSR Javascript Developer",
+          "position": "Full Stack Developer",
           "from": "2022-01",
           "to": "Present"
         },
@@ -23,7 +23,7 @@
             "alt": "Henry logo"
           },
           "companyLink": "https://www.soyhenry.com/",
-          "position": "JR Javascript Developer",
+          "position": "Full Stack Developer",
           "from": "2020-08",
           "to": "2021-12"
         }
@@ -87,8 +87,23 @@
     },
     "experience": {
       "title": "Experience",
-      "description": "Visit the websites of the companies I worked for and learn more about my experience.",
-      "presentLabel": "Present"
+      "description": "Learn more about my experience.",
+      "presentLabel": "Present",
+      "jobs": [
+        {
+          "description": [
+            "Currently, I'm leading a team working on an internal system for Endeavor to facilitate information access for the staff across 40+ offices worldwide.",
+            "My role involves coding with high technical standards, providing technical guidance, conducting code reviews, and collaborating on estimations and roadmap planning.",
+            "Previously, I had the opportunity to work on projects in various sectors, including education, gaming, and NGOs."
+          ]
+        },
+        {
+          "description": [
+            "I contributed to building the foundational elements of the company's applications in its early stages.",
+            "This included the development of the landing page, the student app, the payment tracking app, and the initial design system library."
+          ]
+        }
+      ]
     },
     "resume": {
       "title": "Resume",
@@ -154,7 +169,22 @@
     "experience": {
       "title": "Mi experiencia",
       "description": "Visita los sitios de las empresas en las que trabajé y conoce más sobre mi experiencia.",
-      "presentLabel": "Actualidad"
+      "presentLabel": "Actualidad",
+      "jobs": [
+        {
+          "description": [
+            "Actualmente, lidero un equipo trabajando en un sistema interno para Endeavor para facilitar el acceso a la información para el staff en más de 40 oficinas en todo el mundo.",
+            "Mi rol implica codificar con altos estándares técnicos, brindar guía técnica, realizar revisiones de código y colaborar en estimaciones y planificación de hoja de ruta.",
+            "Anteriormente, tuve la oportunidad de trabajar en proyectos en diversos sectores, incluyendo educación, gaming y ONGs."
+          ]
+        },
+        {
+          "description": [
+            "Contribuí a construir los elementos fundacionales de las aplicaciones de la empresa en sus primeras etapas.",
+            "Esto incluyó el desarrollo de la landing page, la app de estudiantes, la app de seguimiento de pagos y la librería de diseño inicial del sistema."
+          ]
+        }
+      ]
     },
     "resume": {
       "title": "Currículum",
