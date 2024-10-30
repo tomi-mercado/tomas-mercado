@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
 
+import { Button } from '@/components/ui/button';
 import NotIddleWrapper from './NotIddleWrapper';
 
 interface SuccessProps {
@@ -77,9 +78,9 @@ const Success: React.FC<SuccessProps> = ({
           {`${typedResponse}`}
         </ReactMarkdown>
       </p>
-      <button className="btn btn-primary btn-xs self-end" onClick={onRetry}>
+      <Button className="self-end" onClick={onRetry} size="sm">
         {replaceRemainingQuestions(askAgain, remaining)}
-      </button>
+      </Button>
     </NotIddleWrapper>
   );
 };

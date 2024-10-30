@@ -64,14 +64,6 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
   // Auth
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  const openLoginRequiredModal = () => {
-    setIsLoginModalOpen(true);
-    setTimeout(() => {
-      // @ts-expect-error
-      document.getElementById('login-modal')?.showModal();
-    }, 100);
-  };
-
   const openNoCreditsModal = () => {
     setTimeout(() => {
       // @ts-expect-error
@@ -92,7 +84,7 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
 
         // This means that the user is not logged in
         if (credits.amount === undefined && !credits.error) {
-          openLoginRequiredModal();
+          setIsLoginModalOpen(true);
           return;
         }
 
@@ -143,7 +135,7 @@ const useChatbot = ({ credits }: UseChatbotArgs) => {
     questionValue,
     response,
     isLoginModalOpen,
-    openLoginRequiredModal,
+    setIsLoginModalOpen,
     setQuestionValue,
     actions,
   };

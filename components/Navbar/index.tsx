@@ -3,12 +3,17 @@ import { getAuth0User } from 'services/auth';
 import { readCommonContent } from 'services/content';
 import { Locale } from 'utils/locales';
 
-import { MdLogout } from 'react-icons/md';
-
 import { getSession } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { MdLogout } from 'react-icons/md';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 import UpdateLocaleButton from './UpdateLocaleButton';
 
 const Navbar = async ({ locale }: { locale: Locale }) => {
@@ -35,8 +40,8 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
         <div className="flex gap-4 items-center">
           <UpdateLocaleButton />
           {!!user && (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
                 <Image
                   src={user.picture || ''}
                   alt={user.name || 'Profile Image'}
@@ -48,20 +53,19 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
                   }}
                   className="rounded-full"
                 />
-              </label>
-              <div
-                tabIndex={0}
-                className="z-[1] p-3 shadow-md min-w-[240px] gap-2"
-              >
-                <p>
-                  {welcome}, {user.name || user.nickname || 'User'}
-                </p>
-                <Link href="/api/auth/logout">
-                  <MdLogout />
-                  Logout
-                </Link>
-              </div>
-            </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/api/auth/logout"
+                    className="flex gap-2 items-center cursor-pointer"
+                  >
+                    <MdLogout />
+                    Logout
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
         </div>
       </div>

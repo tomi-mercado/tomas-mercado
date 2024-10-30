@@ -8,6 +8,7 @@ import replaceMaxQuestions from 'utils/replaceMaxQuestions';
 import React from 'react';
 
 import { BorderBeam } from '@/components/ui/border-beam';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import ErrorComponent from './components/Error';
 import Iddle from './components/Iddle';
 import Loading from './components/Loading';
@@ -38,6 +39,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
     response,
     isLoginModalOpen,
     setQuestionValue,
+    setIsLoginModalOpen,
     actions,
   } = useChatbot({
     credits: {
@@ -70,12 +72,14 @@ const TomBotClient: React.FC<TombotClientProps> = ({
     ),
     success:
       response && credits !== undefined ? (
-        <Success
-          questionValue={questionValue}
-          response={response}
-          onRetry={() => actions.success.onNewQuestion()}
-          remaining={credits}
-        />
+        <UserProvider>
+          <Success
+            questionValue={questionValue}
+            response={response}
+            onRetry={() => actions.success.onNewQuestion()}
+            remaining={credits}
+          />
+        </UserProvider>
       ) : null,
     error: <ErrorComponent onRetryClick={() => actions.error.onRetry()} />,
     noCredits: (
@@ -110,7 +114,10 @@ const TomBotClient: React.FC<TombotClientProps> = ({
         {renderByStatus[status]}
       </div>
 
-      {isLoginModalOpen && <ModalLoginRequired />}
+      <ModalLoginRequired
+        open={isLoginModalOpen}
+        onOpenChange={setIsLoginModalOpen}
+      />
       <BorderBeam size={300} duration={6} />
     </form>
   );

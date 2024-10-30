@@ -3,9 +3,20 @@ import { useContent } from 'contexts/content';
 import React from 'react';
 import { FaGoogle as GoogleIcon } from 'react-icons/fa';
 
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import Link from 'next/link';
 
-const ModalLoginRequired: React.FC = () => {
+const ModalLoginRequired: React.FC<{
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}> = ({ open, onOpenChange }) => {
   const {
     content: {
       common: { close },
@@ -14,21 +25,23 @@ const ModalLoginRequired: React.FC = () => {
   } = useContent('Home');
 
   return (
-    <dialog id="login-modal" className="modal">
-      <div className="modal-box">
-        <h3 className="font-bold text-lg">{almostReady} 🤖</h3>
-        <p className="py-4">{needLogin}</p>
-        <div className="modal-action">
-          <form method="dialog">
-            <button className="btn btn-error">{close}</button>
-          </form>
-          <Link className="btn btn-primary" href="/api/auth/login">
-            <GoogleIcon />
-            {loginWithGoogle}
-          </Link>
-        </div>
-      </div>
-    </dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogTitle>{almostReady} 🤖</DialogTitle>
+        <DialogDescription>{needLogin}</DialogDescription>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            {close}
+          </Button>
+          <Button asChild>
+            <Link href="/api/auth/login">
+              <GoogleIcon />
+              {loginWithGoogle}
+            </Link>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 
