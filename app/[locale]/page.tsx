@@ -4,6 +4,7 @@ import { getPosts } from 'services/posts';
 import { homeSchema } from 'utils/content/homeContentValidation';
 import { Locale } from 'utils/locales';
 
+import FlickeringGrid from '@/components/ui/flickering-grid';
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';
 import Experience from './components/Experience';
@@ -25,7 +26,14 @@ const Home = async ({
 
   return (
     <>
-      <SectionContainer className="py-12 min-h-[85vh]">
+      <SectionContainer className="min-h-[85vh] relative -mt-[120px]">
+        <FlickeringGrid
+          color="#6B7280"
+          squareSize={8}
+          flickerChance={0.45}
+          className="absolute h-full w-full z-[-1]"
+          maxOpacity={0.2}
+        />
         <Introduction {...content.introduction} />
         <TombotServer locale={locale} />
       </SectionContainer>

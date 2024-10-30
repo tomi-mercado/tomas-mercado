@@ -5,6 +5,7 @@ import { Locale } from 'utils/locales';
 
 import { FaCalendar } from 'react-icons/fa';
 
+import { MagicCard } from '@/components/ui/magic-card';
 import Image from 'next/image';
 
 const parseDate = (date: string, locale: string) => {
@@ -48,9 +49,9 @@ const Experience = async ({
                 : presentLabel;
 
             return (
-              <div
+              <MagicCard
                 key={companyName}
-                className="bg-base-100 rounded-lg p-6 shadow-lg text-left"
+                className="bg-card text-card-foreground rounded-md p-6 shadow-lg text-left border"
               >
                 <div className="flex items-center mb-4">
                   <Image
@@ -76,7 +77,7 @@ const Experience = async ({
                     <li key={idx}>{item}</li>
                   ))}
                 </ul>
-              </div>
+              </MagicCard>
             );
           },
         )}

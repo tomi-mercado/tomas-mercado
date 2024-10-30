@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 import { useContent } from 'contexts/content';
 
 import React from 'react';
@@ -18,8 +20,8 @@ const Iddle: React.FC<IddleProps> = ({ onChange, onSubmit, questionValue }) => {
 
   return (
     <>
-      <textarea
-        className="textarea textarea-primary w-full pr-10 no-scroll h-full min-h-[inherit] bg-base-300"
+      <Textarea
+        className="h-full min-h-[inherit]"
         placeholder={placeholder}
         value={questionValue}
         onChange={onChange}
@@ -31,13 +33,14 @@ const Iddle: React.FC<IddleProps> = ({ onChange, onSubmit, questionValue }) => {
           }
         }}
       />
-      <button
+      <Button
         type="submit"
-        className="btn btn-primary btn-square btn-xs absolute bottom-4 right-3"
+        className="absolute bottom-4 right-3"
+        size="icon"
         aria-label="Send question"
       >
         <SendIcon />
-      </button>
+      </Button>
     </>
   );
 };

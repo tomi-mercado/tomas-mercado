@@ -16,6 +16,7 @@ module.exports = {
       animation: {
         'left-to-right-and-right-to-left':
           'left-to-right-and-right-to-left 10s ease-in-out infinite',
+        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -23,7 +24,6 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        gradient: '--gradient',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -63,6 +63,13 @@ module.exports = {
           3: 'hsl(var(--chart-3))',
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
+        },
+      },
+      keyframes: {
+        'border-beam': {
+          '100%': {
+            'offset-distance': '100%',
+          },
         },
       },
     },

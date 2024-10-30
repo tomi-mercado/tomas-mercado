@@ -19,7 +19,7 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
   const user = session ? await getAuth0User(session.user.sub) : undefined;
 
   return (
-    <header className="w-full flex justify-center fixed z-10 py-6 bg-muted">
+    <header className="w-full flex justify-center fixed z-20 py-6 bg-muted border-b-2">
       <div className="container flex justify-between">
         <LinkMantainLocale href="/" className="flex gap-2 items-center">
           <Image

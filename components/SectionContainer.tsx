@@ -10,7 +10,7 @@ const SectionContainer: React.FC<{
   return (
     <div
       className={twMerge(
-        'w-full flex justify-center items-center py-24 even:bg-secondary',
+        'w-full flex justify-center items-center py-24 even:bg-accent',
         className,
       )}
     >

@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import LinkMantainLocale from 'components/LinkMantainLocale';
 import MarkedHighlightText from 'components/MarkedHighlightText';
 import SectionContainer from 'components/SectionContainer';
@@ -14,9 +15,9 @@ const ProjectsSection = async ({
         <MarkedHighlightText>{title}</MarkedHighlightText>
       </h3>
       <p>{description}</p>
-      <LinkMantainLocale href="/projects" className="btn btn-primary">
-        {CTA}
-      </LinkMantainLocale>
+      <Button asChild size="lg" className="mt-2">
+        <LinkMantainLocale href="/projects">{CTA}</LinkMantainLocale>
+      </Button>
     </SectionContainer>
   );
 };

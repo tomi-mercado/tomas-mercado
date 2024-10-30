@@ -3,7 +3,7 @@ import { HomeContent } from 'utils/content/homeContentValidation';
 import getTimeOfDay from 'utils/getTimeOfDay';
 import replaceYearsExperience from 'utils/replaceYearsExperience';
 
-import SwapImage from './SwapImage';
+import Image from 'next/image';
 
 const Introduction = async ({
   title,
@@ -29,7 +29,15 @@ const Introduction = async ({
         </MarkedHighlightText>
       </h2>
 
-      <SwapImage image={image} />
+      {/** TODO: reimplement <SwapImage/> */}
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={150}
+        height={150}
+        priority
+        className="rounded-full w-[150px] h-[150px] object-cover border-2"
+      />
 
       <p className="text-lg">{replaceYearsExperience(description)}</p>
     </>

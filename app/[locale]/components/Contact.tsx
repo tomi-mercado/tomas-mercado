@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa';
 import { MdEmail as EmailIcon } from 'react-icons/md';
 
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const Contact = async ({
@@ -28,19 +29,25 @@ const Contact = async ({
       <p className="text-lg">{reachMe}</p>
 
       <div className="flex gap-4 items-center justify-between">
-        <Link href={linkedin} target="_blank" aria-label="LinkedIn of Tomás">
-          <LinkedinIcon className="text-4xl" />
-        </Link>
-        <Link href={github} target="_blank" aria-label="GitHub of Tomás">
-          <GithubIcon className="text-4xl" />
-        </Link>
-        <Link
-          href={`mailto:${email}`}
-          target="_blank"
-          aria-label="Email of Tomás"
-        >
-          <EmailIcon className="text-4xl" />
-        </Link>
+        <Button size="icon" asChild variant="secondary">
+          <Link href={linkedin} target="_blank" aria-label="LinkedIn of Tomás">
+            <LinkedinIcon width={240} height={240} />
+          </Link>
+        </Button>
+        <Button size="icon" asChild variant="secondary">
+          <Link href={github} target="_blank" aria-label="GitHub of Tomás">
+            <GithubIcon />
+          </Link>
+        </Button>
+        <Button size="icon" asChild variant="secondary">
+          <Link
+            href={`mailto:${email}`}
+            target="_blank"
+            aria-label="Email of Tomás"
+          >
+            <EmailIcon />
+          </Link>
+        </Button>
       </div>
     </SectionContainer>
   );

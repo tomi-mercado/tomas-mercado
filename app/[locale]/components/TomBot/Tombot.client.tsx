@@ -7,6 +7,7 @@ import replaceMaxQuestions from 'utils/replaceMaxQuestions';
 
 import React from 'react';
 
+import { BorderBeam } from '@/components/ui/border-beam';
 import ErrorComponent from './components/Error';
 import Iddle from './components/Iddle';
 import Loading from './components/Loading';
@@ -91,7 +92,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
 
   return (
     <form
-      className="flex flex-col gap-3 w-full items-center bg-secondary px-4 pt-6 pb-8 rounded-lg"
+      className="flex flex-col gap-3 w-full items-center bg-card text-card-foreground border px-4 pt-6 pb-8 rounded-md relative"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
@@ -110,6 +111,7 @@ const TomBotClient: React.FC<TombotClientProps> = ({
       </div>
 
       {isLoginModalOpen && <ModalLoginRequired />}
+      <BorderBeam size={300} duration={6} />
     </form>
   );
 };

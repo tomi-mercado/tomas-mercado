@@ -29,7 +29,7 @@ const HiglightMarker = () => (
 
 const MarkedHighlightText: React.FC<MarkedHighlightTextProps> = ({
   children,
-  highlightColor = 'before:bg-accent',
+  highlightColor = 'before:bg-teal-900',
   className,
   ...props
 }) => {
