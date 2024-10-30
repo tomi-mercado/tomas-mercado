@@ -8,6 +8,7 @@ import replaceYearsExperience from 'utils/replaceYearsExperience';
 
 import { Metadata } from 'next';
 import { Lato } from 'next/font/google';
+import Script from 'next/script';
 
 const lato = Lato({
   subsets: ['latin-ext'],
@@ -44,6 +45,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} data-theme="tomTheme" className={lato.className}>
       <body className="flex flex-col min-h-screen">
+        <Script
+          type="module"
+          strategy="beforeInteractive"
+          src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/helix.js"
+        />
         <Providers content={content} locale={locale}>
           <Navbar locale={locale} />
           <div className="flex flex-col grow pt-[122px]">{children}</div>

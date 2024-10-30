@@ -1,9 +1,9 @@
-import SectionContainer from 'components/SectionContainer';
 import readContent from 'services/content';
 import { getPosts } from 'services/posts';
 import { homeSchema } from 'utils/content/homeContentValidation';
 import { Locale } from 'utils/locales';
 
+import SectionContainer from '@/components/SectionContainer';
 import FlickeringGrid from '@/components/ui/flickering-grid';
 import BlogSection from './components/BlogSection';
 import Contact from './components/Contact';

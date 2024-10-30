@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
+import { Spinner } from '../../Spinner';
 import NotIddleWrapper from './NotIddleWrapper';
 
 interface LoadingProps {
   message: string;
 }
-
-const Spinner = () => {
-  useEffect(() => {
-    const load = async () => {
-      const { helix } = await import('ldrs');
-      helix.register();
-    };
-    load();
-  }, []);
-  return <l-helix size="45" speed="2.5" color="white" />;
-};
 
 const Loading: React.FC<LoadingProps> = ({ message }) => {
   return (
