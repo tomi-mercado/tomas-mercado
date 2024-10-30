@@ -19,8 +19,8 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
   const user = session ? await getAuth0User(session.user.sub) : undefined;
 
   return (
-    <header className="w-full flex justify-center bg-base-300 fixed z-10">
-      <div className="navbar container justify-between">
+    <header className="w-full flex justify-center fixed z-10 py-6 bg-muted">
+      <div className="container flex justify-between">
         <LinkMantainLocale href="/" className="flex gap-2 items-center">
           <Image
             src="/images/logo.png"
@@ -51,15 +51,12 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
               </label>
               <div
                 tabIndex={0}
-                className="menu menu-lg dropdown-content z-[1] p-3 shadow bg-base-200 rounded-box min-w-[240px] gap-2"
+                className="z-[1] p-3 shadow-md min-w-[240px] gap-2"
               >
                 <p>
                   {welcome}, {user.name || user.nickname || 'User'}
                 </p>
-                <Link
-                  href="/api/auth/logout"
-                  className="btn btn-secondary btn-xs"
-                >
+                <Link href="/api/auth/logout">
                   <MdLogout />
                   Logout
                 </Link>
